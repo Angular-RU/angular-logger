@@ -113,4 +113,19 @@ export class AppComponent implements OnInit {
 
         this.logger.level = LoggerLevel.ALL;
     }
+
+    showExample5() {
+      this.logger.clear();
+
+      this.logger
+        .css('text-transform: uppercase; font-weight: bold')
+        .debug('window current ', window);
+
+      this.logger
+        .css('color: red; text-decoration: underline; font-weight: bold')
+        .info('It is awesome logger');
+
+      this.logger.warn('logger.css(...) does not define a global format!');
+      this.logger.info('For global configuration, use the constructor parameters');
+    }
 }
