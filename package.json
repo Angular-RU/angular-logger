@@ -5,14 +5,10 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build ",
-    "build.meta": "echo ‘prebuild`",
+    "build.meta": "echo 'prebuild'",
     "test": "jest --config ./jest.app.config.js --coverage",
     "lint": "ng lint",
     "format": "prettier --write \"*/**/*.ts\""
-  },
-  "jest": {
-  "preset": "jest-preset-angular",
-  "setupTestFrameworkScriptFile": "<rootDir>/setupJest.ts"
   },
   "private": true,
   "dependencies": {

@@ -18,7 +18,7 @@ export class LoggerFactory {
         const label: string = LABELS[LoggerLevel[type]];
         const color: string = COLORS[LoggerLevel[type]];
         const lineStyle: string = this.cssFactory.style;
-        const args: Arguments = [console, `%c${label} %c%s`, `color: ${color}; font-weight: bold`];
+        const args: Arguments = [this.console.instance, `%c${label} %c%s`, `color: ${color}; font-weight: bold`];
         return lineStyle ? args.concat(lineStyle) : args;
     }
 }
