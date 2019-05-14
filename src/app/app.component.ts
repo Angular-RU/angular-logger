@@ -2,8 +2,6 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { LoggerLevel, LoggerService } from '@angular-ru/logger';
 import * as devtools from 'devtools-detect';
 import { DevToolsEvent } from 'devtools-detect';
-import {logger} from "codelyzer/util/logger";
-import {HttpClientModule} from "@angular/common/http";
 
 @Component({
     selector: 'app-root',
@@ -15,7 +13,7 @@ export class AppComponent implements OnInit {
     public isLoaded: boolean;
     public devToolsIsOpen: boolean = devtools.isOpen;
 
-    constructor(private logger: LoggerService, private http: HttpClientModule) {}
+    constructor(private logger: LoggerService) {}
 
     public ngOnInit() {
         this.isLoaded = true;
@@ -116,13 +114,18 @@ export class AppComponent implements OnInit {
         this.logger.level = LoggerLevel.ALL;
     }
 
-    // showExample5() {
-    //     this.logger.clear();
-    //
-    //     (("http://data.io").then((greatBigJSON) => {
-    //
-    //      this.logger.debug('Classic json', greatBigJSON);
-    //      this.logger.log(...logger.stringify(greatBigJSON));
-    //   })
-    //  }
+    showExample5() {
+      this.logger.clear();
+
+      this.logger
+        .css('text-transform: uppercase; font-weight: bold')
+        .debug('window current ', window);
+
+      this.logger
+        .css('color: red; text-decoration: underline; font-weight: bold')
+        .info('It is awesome logger');
+
+      this.logger.warn('logger.css(...) does not define a global format!');
+      this.logger.info('For global configuration, use the constructor parameters');
+    }
 }

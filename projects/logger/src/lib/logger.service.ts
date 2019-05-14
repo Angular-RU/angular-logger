@@ -4,13 +4,15 @@ import { LoggerLevel } from './logger.config';
 import { ConsoleService } from './utils/console.service';
 import { GroupFactory } from './utils/group-factory.service';
 import { CONSOLE_API, LogMethod, Pipeline } from './logger.interfaces';
+import { CssFactory } from './utils/css-factory.service';
 
 @Injectable()
 export class LoggerService {
     constructor(
         private console: ConsoleService,
         private factory: LoggerFactory,
-        private groupFactory: GroupFactory
+        private groupFactory: GroupFactory,
+        private cssFactory: CssFactory
     ) {}
 
     public get clear(): LogMethod {
@@ -74,4 +76,8 @@ export class LoggerService {
         return this;
     }
 
+    public css(style: string): LoggerService {
+        this.cssFactory.style = style;
+        return this;
+    }
 }
