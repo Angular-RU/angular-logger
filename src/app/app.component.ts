@@ -2,6 +2,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { LoggerLevel, LoggerService } from '@angular-ru/logger';
 import * as devtools from 'devtools-detect';
 import { DevToolsEvent } from 'devtools-detect';
+import {logger} from "codelyzer/util/logger";
+import {HttpClientModule} from "@angular/common/http";
 
 @Component({
     selector: 'app-root',
@@ -13,7 +15,7 @@ export class AppComponent implements OnInit {
     public isLoaded: boolean;
     public devToolsIsOpen: boolean = devtools.isOpen;
 
-    constructor(private logger: LoggerService) {}
+    constructor(private logger: LoggerService, private http: HttpClientModule) {}
 
     public ngOnInit() {
         this.isLoaded = true;
@@ -113,4 +115,14 @@ export class AppComponent implements OnInit {
 
         this.logger.level = LoggerLevel.ALL;
     }
+
+    // showExample5() {
+    //     this.logger.clear();
+    //
+    //     (("http://data.io").then((greatBigJSON) => {
+    //
+    //      this.logger.debug('Classic json', greatBigJSON);
+    //      this.logger.log(...logger.stringify(greatBigJSON));
+    //   })
+    //  }
 }

@@ -21,4 +21,6 @@ export class LoggerFactory {
             `color: ${color}; font-weight: bold`
         );
     }
+
+    public 
 }

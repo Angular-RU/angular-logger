@@ -73,4 +73,5 @@ export class LoggerService {
         this.groupFactory.group(title, pipeline, this);
         return this;
     }
+
 }
