@@ -6,10 +6,13 @@ export type Pipeline = (logger: LoggerService) => void;
 
 export type LogMethod = (message?: any, ...optionalParams: any[]) => void;
 
+export interface ObjectKeyMap<T = any> {
+  [key: string]: T;
+}
 export interface LoggerOptions {
     instance?: Console;
     minLevel?: LoggerLevel;
 }
 
-export const CONSOLE_API = new InjectionToken<string>('CONSOLE_API');
-export const MIN_LEVEL = new InjectionToken<string>('MIN_LEVEL');
+export const CONSOLE_API: InjectionToken<string> = new InjectionToken<string>('CONSOLE_API');
+export const MIN_LEVEL: InjectionToken<string> = new InjectionToken<string>('MIN_LEVEL');

@@ -8,7 +8,8 @@ describe('console', () => {
 
     beforeAll(() => {
         TestBed.configureTestingModule({
-            imports: [LoggerModule.forRoot(LoggerInjector.patch())],
+            imports: [LoggerModule.forRoot({ instance: LoggerInjector.patch()
+            })]
         });
         logger = TestBed.get(LoggerService);
     });
@@ -17,7 +18,7 @@ describe('console', () => {
         logger.debug(1, 2, 3);
         expect(LoggerInjector.stack()).toEqual(
             LoggerInjector.createStack({
-                [TestLoggerLineType.DEBUG]: [1, 2, 3],
+                [TestLoggerLineType.DEBUG]: [1, 2, 3]
             })
         );
     });

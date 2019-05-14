@@ -5,9 +5,9 @@ import { LoggerService } from '../logger.service';
 
 @Injectable()
 export class GroupFactory {
-    private counterOpenedGroup = 0;
+    private counterOpenedGroup: number = 0;
 
-    constructor(private console: ConsoleService) {}
+    constructor(readonly console: ConsoleService) {}
 
     public close(): void {
         this.counterOpenedGroup--;

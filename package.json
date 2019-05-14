@@ -4,11 +4,15 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
+    "build": "ng build ",
+    "build.meta": "echo ‘prebuild`",
+    "test": "jest --config ./jest.app.config.js --coverage",
     "lint": "ng lint",
-    "e2e": "ng e2e",
     "format": "prettier --write \"*/**/*.ts\""
+  },
+  "jest": {
+  "preset": "jest-preset-angular",
+  "setupTestFrameworkScriptFile": "<rootDir>/setupJest.ts"
   },
   "private": true,
   "dependencies": {
@@ -35,9 +39,11 @@
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
-    "codelyzer": "~4.5.0",
+    "codelyzer": "^4.5.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
+    "jest": "^24.8.0",
+    "jest-preset-angular": "^7.1.0",
     "karma": "~4.0.0",
     "karma-chrome-launcher": "~2.2.0",
     "karma-coverage-istanbul-reporter": "~2.0.1",
@@ -50,6 +56,8 @@
     "tsickle": ">=0.34.0",
     "tslib": "^1.9.0",
     "tslint": "~5.11.0",
+    "tslint-eslint-rules": "^5.4.0",
+    "tslint-sonarts": "^1.9.0",
     "typescript": "~3.2.2"
   }
 }

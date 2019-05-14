@@ -1,18 +1,18 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { LoggerFactory } from './utils/factory.service';
 import { LoggerLevel } from './logger.config';
 import { ConsoleService } from './utils/console.service';
 import { GroupFactory } from './utils/group-factory.service';
-import { CONSOLE_API, LogMethod, Pipeline } from './logger.interfaces';
+import { LogMethod, Pipeline } from './logger.interfaces';
 import { CssFactory } from './utils/css-factory.service';
 
 @Injectable()
 export class LoggerService {
     constructor(
-        private console: ConsoleService,
-        private factory: LoggerFactory,
-        private groupFactory: GroupFactory,
-        private cssFactory: CssFactory
+        readonly console: ConsoleService,
+        readonly factory: LoggerFactory,
+        readonly groupFactory: GroupFactory,
+        readonly cssFactory: CssFactory
     ) {}
 
     public get clear(): LogMethod {
@@ -56,7 +56,7 @@ export class LoggerService {
         return this;
     }
 
-    public groupCollapsed(title, pipeline?: Pipeline): LoggerService {
+    public groupCollapsed(title: string, pipeline?: Pipeline): LoggerService {
         this.groupFactory.groupCollapsed(title, pipeline, this);
         return this;
     }
@@ -71,7 +71,7 @@ export class LoggerService {
         return this;
     }
 
-    public group(title, pipeline?: Pipeline): LoggerService {
+    public group(title: string, pipeline?: Pipeline): LoggerService {
         this.groupFactory.group(title, pipeline, this);
         return this;
     }
@@ -80,4 +80,5 @@ export class LoggerService {
         this.cssFactory.style = style;
         return this;
     }
+
 }

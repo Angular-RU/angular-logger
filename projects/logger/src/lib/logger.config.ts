@@ -1,9 +1,11 @@
+import { ObjectKeyMap } from './logger.interfaces';
+
 export enum LABELS {
     TRACE = '[TRACE]:',
     DEBUG = '[DEBUG]:',
     INFO = '[INFO]:',
     WARN = '[WARN]:',
-    ERROR = '[ERROR]:',
+    ERROR = '[ERROR]:'
 }
 
 export enum COLORS {
@@ -11,7 +13,7 @@ export enum COLORS {
     DEBUG = '#00BFFE',
     INFO = '#000000',
     WARN = '#FF6419',
-    ERROR = '#F1062D',
+    ERROR = '#F1062D'
 }
 
 export enum LoggerLevel {
@@ -21,13 +23,13 @@ export enum LoggerLevel {
     INFO,
     WARN,
     ERROR,
-    OFF,
+    OFF
 }
 
-export const DEFAULT_METHODS = {
+export const DEFAULT_METHODS: ObjectKeyMap  = {
     [LoggerLevel.TRACE]: 'debug',
     [LoggerLevel.DEBUG]: 'info',
     [LoggerLevel.INFO]: 'info',
     [LoggerLevel.WARN]: 'warn',
-    [LoggerLevel.ERROR]: 'error',
+    [LoggerLevel.ERROR]: 'error'
 };

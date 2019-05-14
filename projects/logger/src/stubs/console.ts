@@ -1,3 +1,4 @@
+/* tslint:disable */
 export enum TestLoggerLineType {
     TABLE = 'table',
     ASSERT = 'assert',
@@ -6,13 +7,13 @@ export enum TestLoggerLineType {
     LOG = 'log',
     INFO = 'info',
     WARN = 'warn',
-    ERROR = 'error',
+    ERROR = 'error'
 }
 
 export enum TestLoggerGroupType {
     GROUP_OPEN = 'group_open',
     GROUP_COLLAPSED_OPEN = 'group_collapsed_open',
-    GROUP_END = 'group_end',
+    GROUP_END = 'group_end'
 }
 
 export const LoggerInjector = {
@@ -27,71 +28,71 @@ export const LoggerInjector = {
         consoleForTest.assert = function(condition, output) {
             if (!condition) {
                 that.referenceConsole.history.push({
-                    [TestLoggerLineType.ASSERT]: [output],
+                    [TestLoggerLineType.ASSERT]: [output]
                 });
             }
         };
 
         consoleForTest.table = function(data) {
             that.referenceConsole.history.push({
-                [TestLoggerLineType.TABLE]: [data],
+                [TestLoggerLineType.TABLE]: [data]
             });
         };
 
         consoleForTest.debug = function() {
             const args = Array.prototype.slice.call(arguments);
             that.referenceConsole.history.push({
-                [TestLoggerLineType.TRACE]: args,
+                [TestLoggerLineType.TRACE]: args
             });
         };
 
-        consoleForTest.log = function() {
+        consoleForTest.log = function(): void {
             const args = Array.prototype.slice.call(arguments);
             args.unshift(null, null);
             that.referenceConsole.history.push({
-                [TestLoggerLineType.LOG]: args,
+                [TestLoggerLineType.LOG]: args
             });
         };
 
         consoleForTest.info = function() {
             const args = Array.prototype.slice.call(arguments);
             that.referenceConsole.history.push({
-                [TestLoggerLineType.INFO]: args,
+                [TestLoggerLineType.INFO]: args
             });
         };
 
         consoleForTest.warn = function() {
             const args = Array.prototype.slice.call(arguments);
             that.referenceConsole.history.push({
-                [TestLoggerLineType.WARN]: args,
+                [TestLoggerLineType.WARN]: args
             });
         };
 
         consoleForTest.error = function() {
             const args = Array.prototype.slice.call(arguments);
             that.referenceConsole.history.push({
-                [TestLoggerLineType.ERROR]: args,
+                [TestLoggerLineType.ERROR]: args
             });
         };
 
         consoleForTest.group = function() {
             const args = Array.prototype.slice.call(arguments);
             that.referenceConsole.history.push({
-                [TestLoggerGroupType.GROUP_OPEN]: args[0],
+                [TestLoggerGroupType.GROUP_OPEN]: args[0]
             });
         };
 
         consoleForTest.groupCollapsed = function() {
             const args = Array.prototype.slice.call(arguments);
             that.referenceConsole.history.push({
-                [TestLoggerGroupType.GROUP_COLLAPSED_OPEN]: args[0],
+                [TestLoggerGroupType.GROUP_COLLAPSED_OPEN]: args[0]
             });
         };
 
         consoleForTest.groupEnd = function() {
             const args = Array.prototype.slice.call(arguments);
             that.referenceConsole.history.push({
-                [TestLoggerGroupType.GROUP_END]: args,
+                [TestLoggerGroupType.GROUP_END]: args
             });
         };
 
@@ -119,11 +120,11 @@ export const LoggerInjector = {
         return JSON.stringify(history);
     },
 
-    stackList(stack: string) {
+    stackList(stack) {
         const stackObject = JSON.parse(stack);
         const stackList = [];
 
-        stackObject.forEach(line => {
+        stackObject.forEach((line)  => {
             for (const levelLog in line) {
                 if (line.hasOwnProperty(levelLog)) {
                     stackList.push(line[levelLog]);
@@ -138,17 +139,17 @@ export const LoggerInjector = {
         const stackList = this.stackList(this.stack(0));
         const stackOptionsList = [];
 
-        stackList.forEach(line => {
+        stackList.forEach((line) => {
             stackOptionsList.push({
                 label: String(line[0]).replace('%c', ''),
-                styles: this.parseCssString(line[usageNext ? 2 : 1]),
+                styles: this.parseCssString(line[usageNext ? 2 : 1])
             });
         });
 
         return stackOptionsList;
     },
 
-    parseCssString(css: string) {
+    parseCssString(css) {
         const result = {};
         const attributes = css.split(';');
 
@@ -162,5 +163,5 @@ export const LoggerInjector = {
         }
 
         return result;
-    },
+    }
 };

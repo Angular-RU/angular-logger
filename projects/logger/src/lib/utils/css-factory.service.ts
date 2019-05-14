@@ -8,7 +8,7 @@ export class CssFactory {
     }
 
     public get style(): string {
-      const style = this.lineStyle || '';
+      const style: string = this.lineStyle || '';
       this.lineStyle = '';
       return style;
     }
