@@ -124,7 +124,7 @@ export const LoggerInjector = {
         const stackObject = JSON.parse(stack);
         const stackList = [];
 
-        stackObject.forEach((line)  => {
+        stackObject.forEach((line) => {
             for (const levelLog in line) {
                 if (line.hasOwnProperty(levelLog)) {
                     stackList.push(line[levelLog]);

@@ -9,7 +9,7 @@ export type LogMethod = (message?: any, ...optionalParams: any[]) => void;
 export type Arguments = any[];
 
 export interface ObjectKeyMap<T = any> {
-  [key: string]: T;
+    [key: string]: T;
 }
 export interface LoggerOptions {
     instance?: Console;

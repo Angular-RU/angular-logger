@@ -43,11 +43,14 @@ export class AppComponent implements OnInit {
             this.logger.error('error is worked', 5, (2.55).toFixed());
         });
 
-        this.logger.group('Show trace in opened group', ({ trace }: LoggerService): void => {
-            for (let i: number = 0; i < 20; i++) {
-                trace('trace is worked', i);
+        this.logger.group(
+            'Show trace in opened group',
+            ({ trace }: LoggerService): void => {
+                for (let i: number = 0; i < 20; i++) {
+                    trace('trace is worked', i);
+                }
             }
-        });
+        );
 
         this.logger.groupCollapsed(
             'Show trace in collapsed group',
@@ -115,19 +118,13 @@ export class AppComponent implements OnInit {
     }
 
     public showExample5(): void {
-      this.logger.clear();
+        this.logger.clear();
 
-      this.logger
-        .css('text-transform: uppercase; font-weight: bold')
-        .debug('window current ', window);
+        this.logger.css('text-transform: uppercase; font-weight: bold').debug('window current ', window);
 
-      this.logger
-        .css('color: red; text-decoration: underline; font-weight: bold')
-        .info('It is awesome logger');
+        this.logger.css('color: red; text-decoration: underline; font-weight: bold').info('It is awesome logger');
 
-      this.logger.warn('logger.css(...) does not define a global format!');
-      this.logger.info('For global configuration, use the constructor parameters');
+        this.logger.warn('logger.css(...) does not define a global format!');
+        this.logger.info('For global configuration, use the constructor parameters');
     }
-
-
 }

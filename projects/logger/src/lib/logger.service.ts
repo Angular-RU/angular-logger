@@ -80,5 +80,4 @@ export class LoggerService {
         this.cssFactory.style = style;
         return this;
     }
-
 }

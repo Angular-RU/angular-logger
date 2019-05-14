@@ -4,12 +4,12 @@ import { Injectable } from '@angular/core';
 export class CssFactory {
     private lineStyle: string;
     public set style(value: string) {
-      this.lineStyle = value;
+        this.lineStyle = value;
     }
 
     public get style(): string {
-      const style: string = this.lineStyle || '';
-      this.lineStyle = '';
-      return style;
+        const style: string = this.lineStyle || '';
+        this.lineStyle = '';
+        return style;
     }
 }

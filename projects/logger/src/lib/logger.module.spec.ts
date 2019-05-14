@@ -8,8 +8,7 @@ describe('console', () => {
 
     beforeAll(() => {
         TestBed.configureTestingModule({
-            imports: [LoggerModule.forRoot({ instance: LoggerInjector.patch()
-            })]
+            imports: [LoggerModule.forRoot({ instance: LoggerInjector.patch() })]
         });
         logger = TestBed.get(LoggerService);
     });

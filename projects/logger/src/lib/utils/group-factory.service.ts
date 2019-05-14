@@ -20,11 +20,7 @@ export class GroupFactory {
         }
     }
 
-    public group(
-        title: string,
-        pipeline: Pipeline,
-        logger: LoggerService
-    ): void {
+    public group(title: string, pipeline: Pipeline, logger: LoggerService): void {
         this.counterOpenedGroup++;
         this.console.instance.group(title);
         if (pipeline) {
@@ -33,11 +29,7 @@ export class GroupFactory {
         }
     }
 
-    public groupCollapsed(
-        title: string,
-        pipeline: Pipeline,
-        logger: LoggerService
-    ): void {
+    public groupCollapsed(title: string, pipeline: Pipeline, logger: LoggerService): void {
         this.counterOpenedGroup++;
         this.console.instance.groupCollapsed(title);
         if (pipeline) {

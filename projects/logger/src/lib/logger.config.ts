@@ -26,7 +26,7 @@ export enum LoggerLevel {
     OFF
 }
 
-export const DEFAULT_METHODS: ObjectKeyMap  = {
+export const DEFAULT_METHODS: ObjectKeyMap = {
     [LoggerLevel.TRACE]: 'debug',
     [LoggerLevel.DEBUG]: 'info',
     [LoggerLevel.INFO]: 'info',
