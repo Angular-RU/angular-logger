@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { COLORS, DEFAULT_METHODS, LABELS, LoggerLevel } from '../logger.config';
 import { ConsoleService } from './console.service';
-import { LogMethod } from '../logger.interfaces';
+import { Arguments, LogMethod } from '../logger.interfaces';
 import { CssFactory } from './css-factory.service';
-type Arguments = any[];
+
 @Injectable()
 export class LoggerFactory {
     constructor(readonly console: ConsoleService, readonly cssFactory: CssFactory) {}

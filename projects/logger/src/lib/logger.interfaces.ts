@@ -6,6 +6,8 @@ export type Pipeline = (logger: LoggerService) => void;
 
 export type LogMethod = (message?: any, ...optionalParams: any[]) => void;
 
+export type Arguments = any[];
+
 export interface ObjectKeyMap<T = any> {
   [key: string]: T;
 }
