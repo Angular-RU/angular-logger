@@ -27,8 +27,8 @@ export enum LoggerLevel {
 }
 
 export enum GroupLevel {
-  GROUP = 1,
-  GROUP_COLLAPSED
+    GROUP = 'group',
+    GROUP_COLLAPSED = 'groupCollapsed'
 }
 
 export const DEFAULT_METHODS: ObjectKeyMap = {
@@ -38,3 +38,6 @@ export const DEFAULT_METHODS: ObjectKeyMap = {
     [LoggerLevel.WARN]: 'warn',
     [LoggerLevel.ERROR]: 'error'
 };
+
+// tslint:disable-next-line:max-line-length
+export const LexerJSON: RegExp = /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g;

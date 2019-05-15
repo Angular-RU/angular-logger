@@ -11,12 +11,12 @@ import { ClipboardFactory } from './utils/clipboard-factory.service';
 @Injectable()
 export class LoggerService {
     constructor(
-        readonly console: ConsoleService,
-        readonly factory: LoggerFactory,
-        readonly groupFactory: GroupFactory,
-        readonly cssFactory: CssFactory,
-        readonly jsonFactory: JsonFactory,
-        readonly clipboardFactory: ClipboardFactory
+      private readonly console: ConsoleService,
+      private readonly factory: LoggerFactory,
+      private readonly groupFactory: GroupFactory,
+      private readonly cssFactory: CssFactory,
+      private readonly jsonFactory: JsonFactory,
+      private readonly clipboardFactory: ClipboardFactory
     ) {}
 
     public get clear(): LogMethod {
@@ -28,23 +28,23 @@ export class LoggerService {
     }
 
     public get trace(): LogMethod {
-        return this.factory.createLogger<LogMethod>(LoggerLevel.TRACE);
+        return this.factory.createLogger<LogMethod>(LoggerLevel.TRACE, this);
     }
 
     public get debug(): LogMethod {
-        return this.factory.createLogger(LoggerLevel.DEBUG);
+        return this.factory.createLogger<LogMethod>(LoggerLevel.DEBUG, this);
     }
 
     public get info(): LogMethod {
-        return this.factory.createLogger(LoggerLevel.INFO);
+        return this.factory.createLogger<LogMethod>(LoggerLevel.INFO, this);
     }
 
     public get warn(): LogMethod {
-        return this.factory.createLogger(LoggerLevel.WARN);
+        return this.factory.createLogger<LogMethod>(LoggerLevel.WARN, this);
     }
 
     public get error(): LogMethod {
-        return this.factory.createLogger(LoggerLevel.ERROR);
+        return this.factory.createLogger<LogMethod>(LoggerLevel.ERROR, this);
     }
 
     public get level(): LoggerLevel {
@@ -87,7 +87,7 @@ export class LoggerService {
 
     public prettyJSON(json: any): any {
         json = JSON.stringify(json, null, 2);
-        return this.jsonFactory.colorifyJSON(json);
+        return this.jsonFactory.colorsJSON(json);
     }
 
     public copy(value: any): boolean {

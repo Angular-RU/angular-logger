@@ -1,17 +1,42 @@
 import { Injectable } from '@angular/core';
-import { COLORS, DEFAULT_METHODS, LABELS, LoggerLevel } from '../logger.config';
+import { COLORS, DEFAULT_METHODS, GroupLevel, LABELS, LoggerLevel } from '../logger.config';
 import { ConsoleService } from './console.service';
-import { Arguments } from '../logger.interfaces';
+import { Arguments, ConsoleOperation, GroupFactoryMethod, Pipeline } from '../logger.interfaces';
 import { CssFactory } from './css-factory.service';
+import { GroupFactory } from './group-factory.service';
+import { LoggerService } from '../logger.service';
 
 @Injectable()
 export class LoggerFactory {
-    constructor(readonly console: ConsoleService, readonly cssFactory: CssFactory) {}
+    constructor(
+        private readonly console: ConsoleService,
+        private readonly cssFactory: CssFactory,
+        private readonly groupFactory: GroupFactory
+    ) {}
 
-    public createLogger<T = any>(type: LoggerLevel): T {
-        const args: Arguments = this.getArgumentsByType(type);
-        const method: string = DEFAULT_METHODS[type];
-        return this.console.instance[method].bind(...args);
+    public createLogger<T = any>(level: LoggerLevel, logger: LoggerService): T {
+        const args: Arguments = this.getArgumentsByType(level);
+        const method: string = DEFAULT_METHODS[level];
+        const operation: ConsoleOperation = this.console.instance[method].bind(...args);
+        return this.defineProperties<T>(operation, logger);
+    }
+
+    private defineProperties<T>(operation: ConsoleOperation, logger: LoggerService): T {
+        const groupMethods: string[] = [GroupLevel.GROUP, GroupLevel.GROUP_COLLAPSED];
+
+        for (const methodName of groupMethods) {
+            Object.defineProperty(operation, methodName, {
+                enumerable: true,
+                configurable: true,
+                value: (label: string, pipeLine?: Pipeline): LoggerService => {
+                    const groupMethod: GroupFactoryMethod = this.groupFactory[methodName].bind(this.groupFactory);
+                    groupMethod(label, pipeLine, logger);
+                    return logger;
+                }
+            });
+        }
+
+        return (operation as any) as T;
     }
 
     private getArgumentsByType(type: LoggerLevel): Arguments {

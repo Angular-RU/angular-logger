@@ -7,7 +7,10 @@ export class ConsoleService {
     public instance: Console;
     public minLevel: LoggerLevel;
 
-    constructor(@Inject(MIN_LEVEL) readonly level: LoggerLevel, @Inject(CONSOLE_API) readonly consoleApi: any) {
+    constructor(
+        @Inject(MIN_LEVEL) public readonly level: LoggerLevel,
+        @Inject(CONSOLE_API) public readonly consoleApi: any
+    ) {
         this.minLevel = level || LoggerLevel.ALL;
         this.instance = consoleApi || console;
     }
@@ -15,5 +18,4 @@ export class ConsoleService {
     public set console(instance: Console) {
         this.instance = instance;
     }
-
 }

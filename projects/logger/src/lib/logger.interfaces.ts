@@ -4,13 +4,17 @@ import { InjectionToken } from '@angular/core';
 
 export type Pipeline = (logger: LoggerService) => void;
 
-export interface LogMethodGetter extends Function {
+export interface GroupMethods extends Function {
     group(label: string, pipeline?: Pipeline): LoggerService;
 
     groupCollapsed(label: string, pipeline?: Pipeline): LoggerService;
 }
 
-export type LogMethod = LogMethodGetter & ((message?: any, ...optionalParams: any[]) => void);
+export type ConsoleOperation = (message?: any, ...optionalParams: any[]) => void;
+
+export type GroupFactoryMethod = (title: string, pipeline: Pipeline, logger: LoggerService) => void;
+
+export type LogMethod = GroupMethods & ConsoleOperation;
 
 export type Arguments = any[];
 

@@ -150,4 +150,43 @@ export class AppComponent implements OnInit {
         this.logger.log(example);
         return this.logger.copy(example);
     }
+
+    public showExample8(): any {
+        this.logger.clear();
+        this.logger.level = LoggerLevel.INFO;
+
+        this.logger.trace.group('hello');
+
+        this.logger.trace
+            .group('A')
+            .pipe(
+                ({ trace }: LoggerService) => trace('trace is worked'),
+                ({ debug }: LoggerService) => debug('debug is worked'),
+                ({ info }: LoggerService) => info('info is worked'),
+                ({ warn }: LoggerService) => warn('warn is worked'),
+                ({ error }: LoggerService) => error('error is worked')
+            )
+            .close();
+        this.logger
+            .groupCollapsed('B')
+            .pipe(
+                ({ trace }: LoggerService) => trace('trace is worked'),
+                ({ debug }: LoggerService) => debug('debug is worked'),
+                ({ info }: LoggerService) => info('info is worked'),
+                ({ warn }: LoggerService) => warn('warn is worked'),
+                ({ error }: LoggerService) => error('error is worked')
+            )
+            .close();
+        this.logger
+            .groupCollapsed('C')
+            .pipe(
+                ({ trace }: LoggerService) => trace('trace is worked'),
+                ({ debug }: LoggerService) => debug('debug is worked'),
+                ({ info }: LoggerService) => info('info is worked'),
+                ({ warn }: LoggerService) => warn('warn is worked'),
+                ({ error }: LoggerService) => error('error is worked')
+            )
+            .close();
+        this.logger.level = LoggerLevel.ALL;
+    }
 }

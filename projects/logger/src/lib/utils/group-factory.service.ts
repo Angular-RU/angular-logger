@@ -7,7 +7,7 @@ import { LoggerService } from '../logger.service';
 export class GroupFactory {
     private counterOpenedGroup: number = 0;
 
-    constructor(readonly console: ConsoleService) {}
+    constructor(private readonly console: ConsoleService) {}
 
     public close(): void {
         this.counterOpenedGroup--;

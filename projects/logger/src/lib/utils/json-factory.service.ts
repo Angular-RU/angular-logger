@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
+import { LexerJSON } from '../logger.config';
 
 @Injectable()
 export class JsonFactory {
-    private _string: string = 'color:green';
-    private _number: string = 'color:darkorange';
-    private _boolean: string = 'color:blue';
-    private _null: string = 'color:magenta';
-    private _key: string = 'color:red';
-    private filter: string =
-        '/("(\\\\u[a-zA-Z0-9]{4}|\\\\[^u]|[^\\\\"])*"(\\s*:)?|\\b(true|false|null)\\b|-?\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d+)?)/g';
+    private readonly _string: string = 'color:green';
+    private readonly _number: string = 'color:darkorange';
+    private readonly _boolean: string = 'color:blue';
+    private readonly _null: string = 'color:magenta';
+    private readonly _key: string = 'color:red';
+    private readonly lexerTypeFinder: RegExp = LexerJSON;
 
-    public colorifyJSON(json: string) {
-        const arr = [];
-        json = json.replace(this.filter, (match) => {
+    public colorsJSON(json: string): string[] {
+        const arr: string[] = [];
+        json = json.replace(this.lexerTypeFinder, (match: any) => {
             let style: string = this._number;
             if (/^"/.test(match)) {
                 if (/:$/.test(match)) {
@@ -27,7 +27,7 @@ export class JsonFactory {
             }
             arr.push(style);
             arr.push('');
-            return '%c' + match + '%c';
+            return `%c${match}%c`;
         });
 
         arr.unshift(json);
