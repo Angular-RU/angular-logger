@@ -6,6 +6,7 @@ import { GroupFactory } from './utils/group-factory.service';
 import { LogMethod, Pipeline } from './logger.interfaces';
 import { CssFactory } from './utils/css-factory.service';
 import { JsonFactory } from './utils/json-factory.service';
+import { ClipboardFactory } from './utils/clipboard-factory.service';
 
 @Injectable()
 export class LoggerService {
@@ -14,7 +15,8 @@ export class LoggerService {
         readonly factory: LoggerFactory,
         readonly groupFactory: GroupFactory,
         readonly cssFactory: CssFactory,
-        readonly jsonFactory: JsonFactory
+        readonly jsonFactory: JsonFactory,
+        readonly clipboardFactory: ClipboardFactory
     ) {}
 
     public get clear(): LogMethod {
@@ -26,7 +28,7 @@ export class LoggerService {
     }
 
     public get trace(): LogMethod {
-        return this.factory.createLogger(LoggerLevel.TRACE);
+        return this.factory.createLogger<LogMethod>(LoggerLevel.TRACE);
     }
 
     public get debug(): LogMethod {
@@ -83,8 +85,12 @@ export class LoggerService {
         return this;
     }
 
-    public prettyJSON(json: any) {
+    public prettyJSON(json: any): any {
         json = JSON.stringify(json, null, 2);
         return this.jsonFactory.colorifyJSON(json);
+    }
+
+    public copy(value: any): boolean {
+        return this.clipboardFactory.copyData(value);
     }
 }

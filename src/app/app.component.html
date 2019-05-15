@@ -1,70 +1,83 @@
 <div class="ext-box" id="app" [class.load]="isLoaded">
+    <div class="int-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="center m-bottom">Simple logger for javascript</h3>
+                    <p class="center">
+                        In order to see examples, you need to open the browser console or press F12. <br />
+                    </p>
+                </div>
+            </div>
 
-  <div class="int-box">
+            <div id="console-activate" class="row example" [class.no-display]="!devToolsIsOpen">
+                <div class="col-3">
+                    <button class="center-block" (click)="showExample1()">Show me (example 1)</button>
+                    <h5 class="center m-bottom">
+                        Basic method <br />
+                        (trace, debug, info, ..)
+                    </h5>
+                </div>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <h3 class="center m-bottom">Simple logger for javascript</h3>
-          <p class="center">
-            In order to see examples, you need to open the browser console or press F12. <br>
-            You can also open a demo in REPL:
-            <a href="https://stackblitz.com/github/splincodewd/client-logger/tree/demo" target="_blank">stackblitz</a> or
-            <a href="https://codesandbox.io/s/github/splincodewd/client-logger/tree/master/demo" target="_blank">codesandbox</a>
-          </p>
+                <div class="col-3">
+                    <button class="center-block" (click)="showExample2()">Show me (example 2)</button>
+                    <h5 class="center m-bottom">
+                        Example groups <br />
+                        (closed, opened)
+                    </h5>
+                </div>
+
+                <div class="col-3">
+                    <button class="center-block" (click)="showExample3()">Show me (example 3)</button>
+                    <h5 class="center m-bottom">
+                        Nested groups <br />
+                        (deep)
+                    </h5>
+                </div>
+
+                <div class="col-3">
+                    <button class="center-block" (click)="showExample4()">Show me (example 4)</button>
+                    <h5 class="center m-bottom">Show only warnings and error <br /></h5>
+                </div>
+
+                <div class="col-3">
+                    <button class="center-block" (click)="showExample5()">Show me (example 5)</button>
+                    <h5 class="center m-bottom">
+                        Custom CSS styles <br />
+                        for line
+                    </h5>
+                </div>
+
+                <div class="col-3">
+                    <button class="center-block" (click)="showExample6()">Show me (example 6)</button>
+                    <h5 class="center m-bottom">
+                        Pretty JSON <br />
+                        (output)
+                    </h5>
+                </div>
+
+                <div class="col-3">
+                    <button class="center-block" (click)="showExample7()">Show me (example 7)</button>
+                    <h5 class="center m-bottom">
+                        Copy to clipboard <br />
+                        (output)
+                    </h5>
+                </div>
+
+              <div class="col-3">
+                <button class="center-block" (click)="showExample8()">Show me (example 8)</button>
+                <h5 class="center m-bottom">
+                 Level groups <br />
+                  (trace, debug, info, ..)
+                </h5>
+              </div>
+            </div>
         </div>
-      </div>
 
-      <div id="console-activate" class="row example" [class.no-display]="!devToolsIsOpen">
-        <div class="col-3">
-          <button class="center-block" (click)="showExample1()">Show me (example 1)</button>
-          <h5 class="center m-bottom">Basic method <br> (trace, debug, info, ..)</h5>
+        <div id="console-dis-activate" class="row example" [class.no-display]="devToolsIsOpen">
+            <div class="col-12">
+                <h4 class="center m-bottom">You need open console</h4>
+            </div>
         </div>
-
-        <div class="col-3">
-          <button class="center-block" (click)="showExample2()">Show me (example 2)</button>
-          <h5 class="center m-bottom">Example groups  <br> (closed, opened)</h5>
-        </div>
-
-        <div class="col-3">
-          <button class="center-block" (click)="showExample3()">Show me (example 3)</button>
-          <h5 class="center m-bottom">Nested groups <br> (deep)</h5>
-        </div>
-
-        <div class="col-3">
-          <button class="center-block" (click)="showExample4()">Show me (example 4)</button>
-          <h5 class="center m-bottom">Show only warnings
-            and error <br> </h5>
-        </div>
-
-        <div class="col-3">
-          <button class="center-block" (click)="showExample5()">Show me (example 5)</button>
-          <h5 class="center m-bottom">Custom CSS styles
-            <br> for line</h5>
-        </div>
-
-        <div class="col-3">
-          <button class="center-block" (click)="showExample6()">Show me (example 6)</button>
-          <h5 class="center m-bottom">Pretty JSON
-            <br> (output)</h5>
-        </div>
-
-        <div class="col-3">
-          <button class="center-block" (click)="showExample7()">Show me (example 7)</button>
-          <h5 class="center m-bottom">Copy to clipboard
-            <br> (output)</h5>
-        </div>
-
-      </div>
-
     </div>
-
-    <div id="console-dis-activate" class="row example" [class.no-display]="devToolsIsOpen">
-      <div class="col-12">
-        <h4 class="center m-bottom">You need open console</h4>
-      </div>
-    </div>
-
-  </div>
-
 </div>

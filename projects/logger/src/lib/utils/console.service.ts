@@ -15,4 +15,5 @@ export class ConsoleService {
     public set console(instance: Console) {
         this.instance = instance;
     }
+
 }

@@ -2,34 +2,33 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class JsonFactory {
-    public colorifyJSON(json) {
-        const arr = [];
-        const _string: string = 'color:green';
-        const _number: string = 'color:darkorange';
-        const _boolean: string = 'color:blue';
-        const _null: string = 'color:magenta';
-        const _key: string = 'color:red';
+    private _string: string = 'color:green';
+    private _number: string = 'color:darkorange';
+    private _boolean: string = 'color:blue';
+    private _null: string = 'color:magenta';
+    private _key: string = 'color:red';
+    private filter: string =
+        '/("(\\\\u[a-zA-Z0-9]{4}|\\\\[^u]|[^\\\\"])*"(\\s*:)?|\\b(true|false|null)\\b|-?\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d+)?)/g';
 
-        json = json.replace(
-            /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,
-            (match) => {
-                let style: string = _number;
-                if (/^"/.test(match)) {
-                    if (/:$/.test(match)) {
-                        style = _key;
-                    } else {
-                        style = _string;
-                    }
-                } else if (/true|false/.test(match)) {
-                    style = _boolean;
-                } else if (/null/.test(match)) {
-                    style = _null;
+    public colorifyJSON(json: string) {
+        const arr = [];
+        json = json.replace(this.filter, (match) => {
+            let style: string = this._number;
+            if (/^"/.test(match)) {
+                if (/:$/.test(match)) {
+                    style = this._key;
+                } else {
+                    style = this._string;
                 }
-                arr.push(style);
-                arr.push('');
-                return '%c' + match + '%c';
+            } else if (/true|false/.test(match)) {
+                style = this._boolean;
+            } else if (/null/.test(match)) {
+                style = this._null;
             }
-        );
+            arr.push(style);
+            arr.push('');
+            return '%c' + match + '%c';
+        });
 
         arr.unshift(json);
 

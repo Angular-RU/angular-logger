@@ -26,6 +26,11 @@ export enum LoggerLevel {
     OFF
 }
 
+export enum GroupLevel {
+  GROUP = 1,
+  GROUP_COLLAPSED
+}
+
 export const DEFAULT_METHODS: ObjectKeyMap = {
     [LoggerLevel.TRACE]: 'debug',
     [LoggerLevel.DEBUG]: 'info',

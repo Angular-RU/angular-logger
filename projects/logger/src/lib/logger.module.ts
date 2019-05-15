@@ -6,9 +6,10 @@ import { CONSOLE_API, MIN_LEVEL, LoggerOptions } from './logger.interfaces';
 import { GroupFactory } from './utils/group-factory.service';
 import { CssFactory } from './utils/css-factory.service';
 import { JsonFactory } from './utils/json-factory.service';
+import { ClipboardFactory } from './utils/clipboard-factory.service';
 
 @NgModule({
-    providers: [LoggerService, LoggerFactory, ConsoleService, GroupFactory, CssFactory, JsonFactory]
+    providers: [LoggerService, LoggerFactory, ConsoleService, GroupFactory, CssFactory, JsonFactory, ClipboardFactory]
 })
 export class LoggerModule {
     public static forRoot(options: LoggerOptions = {}): ModuleWithProviders {
