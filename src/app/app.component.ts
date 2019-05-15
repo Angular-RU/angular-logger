@@ -125,7 +125,27 @@ export class AppComponent implements OnInit {
 
     this.logger.css('color: red; text-decoration: underline; font-weight: bold').info('It is awesome logger');
 
+    this.logger.debug({ a: 1})
+
     this.logger.warn('logger.css(...) does not define a global format!');
     this.logger.info('For global configuration, use the constructor parameters');
+  }
+
+  public showExample6(): void {
+    this.logger.clear();
+    const jsonExample  = {
+          'id': 1,
+          'hello': 'world'
+    };
+
+    // default browser print json
+    this.logger.debug('Classic output json', jsonExample);
+
+    // for pretty json usage logger.log method
+    this.logger.log(...this.logger.prettyJSON(jsonExample));
+  }
+
+  public showExample7(): void {
+    this.logger.clear();
   }
 }

@@ -5,6 +5,7 @@ import { ConsoleService } from './utils/console.service';
 import { GroupFactory } from './utils/group-factory.service';
 import { LogMethod, Pipeline } from './logger.interfaces';
 import { CssFactory } from './utils/css-factory.service';
+import { JsonFactory } from './utils/json-factory.service';
 
 @Injectable()
 export class LoggerService {
@@ -12,7 +13,8 @@ export class LoggerService {
         readonly console: ConsoleService,
         readonly factory: LoggerFactory,
         readonly groupFactory: GroupFactory,
-        readonly cssFactory: CssFactory
+        readonly cssFactory: CssFactory,
+        readonly jsonFactory: JsonFactory
     ) {}
 
     public get clear(): LogMethod {
@@ -79,5 +81,10 @@ export class LoggerService {
     public css(style: string): LoggerService {
         this.cssFactory.style = style;
         return this;
+    }
+
+    public prettyJSON(json: any) {
+        json = JSON.stringify(json, null, 2);
+        return this.jsonFactory.colorifyJSON(json);
     }
 }

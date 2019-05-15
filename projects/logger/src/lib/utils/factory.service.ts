@@ -17,8 +17,16 @@ export class LoggerFactory {
     private getArgumentsByType(type: LoggerLevel): Arguments {
         const label: string = LABELS[LoggerLevel[type]];
         const color: string = COLORS[LoggerLevel[type]];
+        const styleLabel: string = this.cssFactory.getStyleLabelByColor(color);
         const lineStyle: string = this.cssFactory.style;
-        const args: Arguments = [this.console.instance, `%c${label} %c%s`, `color: ${color}; font-weight: bold`];
-        return lineStyle ? args.concat(lineStyle) : args;
+        const args: Arguments = [this.console.instance];
+
+        if (lineStyle) {
+            args.push(`%c${label} %c%s`, styleLabel, lineStyle);
+        } else {
+            args.push(`%c${label}`, styleLabel);
+        }
+
+        return args;
     }
 }

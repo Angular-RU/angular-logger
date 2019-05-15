@@ -12,4 +12,8 @@ export class CssFactory {
         this.lineStyle = '';
         return style;
     }
+
+    public getStyleLabelByColor(color: string): string {
+        return `color: ${color}; font-weight: bold`;
+    }
 }
