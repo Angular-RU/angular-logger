@@ -17,11 +17,14 @@ export class LoggerFactory {
     public createLogger<T = any>(level: LoggerLevel, logger: LoggerService): T {
         const args: Arguments = this.getArgumentsByType(level);
         const method: string = DEFAULT_METHODS[level];
-        const operation: ConsoleOperation = this.console.instance[method].bind(...args);
-        return this.defineProperties<T>(operation, logger);
+
+        const operation: ConsoleOperation =
+            this.console.minLevel < level ? this.console.instance[method].bind(...args) : () => {};
+
+        return this.defineProperties<T>(level, operation, logger);
     }
 
-    private defineProperties<T>(operation: ConsoleOperation, logger: LoggerService): T {
+    private defineProperties<T>(level: LoggerLevel, operation: ConsoleOperation, logger: LoggerService): T {
         const groupMethods: string[] = [GroupLevel.GROUP, GroupLevel.GROUP_COLLAPSED];
 
         for (const methodName of groupMethods) {
@@ -29,8 +32,11 @@ export class LoggerFactory {
                 enumerable: true,
                 configurable: true,
                 value: (label: string, pipeLine?: Pipeline): LoggerService => {
-                    const groupMethod: GroupFactoryMethod = this.groupFactory[methodName].bind(this.groupFactory);
-                    groupMethod(label, pipeLine, logger);
+                    if (this.console.minLevel < level) {
+                        const groupMethod: GroupFactoryMethod = this.groupFactory[methodName].bind(this.groupFactory);
+                        groupMethod(label, pipeLine, logger);
+                    }
+
                     return logger;
                 }
             });

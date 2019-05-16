@@ -20,8 +20,8 @@ export class GroupFactory {
         }
     }
 
-    public group(title: string, pipeline: Pipeline, logger: LoggerService): void {
-        this.counterOpenedGroup++;
+    public group(title: string, pipeline: Pipeline, logger: LoggerService): any {
+      this.counterOpenedGroup++;
         this.console.instance.group(title);
         if (pipeline) {
             pipeline(logger);
