@@ -167,6 +167,7 @@ export class AppComponent implements OnInit {
                 ({ error }: LoggerService) => error('error is worked')
             )
             .close();
+
         this.logger
             .groupCollapsed('B')
             .pipe(
