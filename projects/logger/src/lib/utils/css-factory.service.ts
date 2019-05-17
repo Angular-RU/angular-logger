@@ -5,7 +5,7 @@ import { CSS_CLASS_MAP, LINE_STYLE } from '../logger.interfaces';
 export class CssFactory {
     constructor(
         @Inject(LINE_STYLE) public readonly globalLineStyle: string,
-        @Inject(CSS_CLASS_MAP) public readonly cssMap
+        @Inject(CSS_CLASS_MAP) public readonly cssMap: any
     ) {}
 
     private lineStyle: string;

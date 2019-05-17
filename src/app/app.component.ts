@@ -2,6 +2,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { LoggerLevel, LoggerService } from '@angular-ru/logger';
 import * as devtools from 'devtools-detect';
+import { LogMethod } from '../../projects/logger/src/lib/logger.interfaces';
 
 @Component({
     selector: 'app-root',
@@ -161,10 +162,48 @@ export class AppComponent implements OnInit {
         this.logger.clear();
         this.logger.level = LoggerLevel.INFO;
 
-        this.logger.trace.group('hello');
-
         this.logger.trace
             .group('A')
+            .pipe(
+                ({ trace }: LoggerService) => trace(this.traceIsWork),
+                ({ debug }: LoggerService) => debug(this.debugIsWork),
+                ({ info }: LoggerService) => info(this.infoIsWork),
+                ({ warn }: LoggerService) => warn(this.warnIsWork),
+                ({ error }: LoggerService) => error(this.errorIsWork)
+            )
+            .close()
+
+            .debug.group('B')
+            .pipe(
+                ({ trace }: LoggerService) => trace(this.traceIsWork),
+                ({ debug }: LoggerService) => debug(this.debugIsWork),
+                ({ info }: LoggerService) => info(this.infoIsWork),
+                ({ warn }: LoggerService) => warn(this.warnIsWork),
+                ({ error }: LoggerService) => error(this.errorIsWork)
+            )
+            .close()
+
+            .info.group('C')
+            .pipe(
+                ({ trace }: LoggerService) => trace(this.traceIsWork),
+                ({ debug }: LoggerService) => debug(this.debugIsWork),
+                ({ info }: LoggerService) => info(this.infoIsWork),
+                ({ warn }: LoggerService) => warn(this.warnIsWork),
+                ({ error }: LoggerService) => error(this.errorIsWork)
+            )
+            .close()
+
+            .warn.group('D')
+            .pipe(
+                ({ trace }: LoggerService) => trace(this.traceIsWork),
+                ({ debug }: LoggerService) => debug(this.debugIsWork),
+                ({ info }: LoggerService) => info(this.infoIsWork),
+                ({ warn }: LoggerService) => warn(this.warnIsWork),
+                ({ error }: LoggerService) => error(this.errorIsWork)
+            )
+            .close()
+
+            .error.group('E')
             .pipe(
                 ({ trace }: LoggerService) => trace(this.traceIsWork),
                 ({ debug }: LoggerService) => debug(this.debugIsWork),
@@ -188,4 +227,5 @@ export class AppComponent implements OnInit {
 
         this.logger.cssClass('bold line-through').debug('JavaScript sucks', 'JavaScript is the best');
     }
+
 }

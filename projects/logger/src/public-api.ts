@@ -4,4 +4,5 @@
 
 export * from './lib/logger.service';
 export * from './lib/logger.module';
-export { LoggerLevel } from './lib/logger.config';
+export * from './lib/logger.config';
+export * from './lib/logger.interfaces';

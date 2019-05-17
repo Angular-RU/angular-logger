@@ -2,10 +2,11 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-import { ObjectKeyMap } from '../../projects/logger/src/lib/logger.interfaces';
+import { ObjectKeyMap } from '@angular-ru/logger';
 
 export const environment: ObjectKeyMap = {
-    production: false
+    production: false,
+    useConfig: false
 };
 
 /*

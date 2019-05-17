@@ -11,12 +11,12 @@ import { ClipboardFactory } from './utils/clipboard-factory.service';
 @Injectable()
 export class LoggerService {
     constructor(
-      private readonly console: ConsoleService,
-      private readonly factory: LoggerFactory,
-      private readonly groupFactory: GroupFactory,
-      private readonly cssFactory: CssFactory,
-      private readonly jsonFactory: JsonFactory,
-      private readonly clipboardFactory: ClipboardFactory
+        private readonly console: ConsoleService,
+        private readonly factory: LoggerFactory,
+        private readonly groupFactory: GroupFactory,
+        private readonly cssFactory: CssFactory,
+        private readonly jsonFactory: JsonFactory,
+        private readonly clipboardFactory: ClipboardFactory
     ) {}
 
     public get clear(): LogMethod {
@@ -56,12 +56,15 @@ export class LoggerService {
     }
 
     public pipe(...pipelines: Pipeline[]): LoggerService {
-        pipelines.forEach((pipeline: Pipeline) => pipeline(this));
+        if (this.groupFactory.executePipesGroup) {
+            pipelines.forEach((pipeline: Pipeline) => pipeline(this));
+        }
+
         return this;
     }
 
     public groupCollapsed(title: string, pipeline?: Pipeline): LoggerService {
-        this.groupFactory.groupCollapsed(title, pipeline, this);
+        this.groupFactory.groupCollapsed(title, pipeline, this, LoggerLevel.INFO);
         return this;
     }
 
@@ -76,7 +79,7 @@ export class LoggerService {
     }
 
     public group(title: string, pipeline?: Pipeline): LoggerService {
-        this.groupFactory.group(title, pipeline, this);
+        this.groupFactory.group(title, pipeline, this, LoggerLevel.INFO);
         return this;
     }
 
@@ -94,8 +97,8 @@ export class LoggerService {
         return this.clipboardFactory.copyData(value);
     }
 
-    // public cssClass(cssClassName: string) {
-    //     this.cssFactory.setClass(cssClassName);
-    //     return this;
-    // }
+    public cssClass(cssClassName: string): LoggerService {
+        this.cssFactory.setClass(cssClassName);
+        return this;
+    }
 }
