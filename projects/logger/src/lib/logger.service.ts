@@ -85,7 +85,7 @@ export class LoggerService {
         return this;
     }
 
-    public prettyJSON(json: any): any {
+    public prettyJSON(json: any): string[] {
         json = JSON.stringify(json, null, 2);
         return this.jsonFactory.colorsJSON(json);
     }
@@ -93,4 +93,9 @@ export class LoggerService {
     public copy(value: any): boolean {
         return this.clipboardFactory.copyData(value);
     }
+
+    // public cssClass(cssClassName: string) {
+    //     this.cssFactory.setClass(cssClassName);
+    //     return this;
+    // }
 }

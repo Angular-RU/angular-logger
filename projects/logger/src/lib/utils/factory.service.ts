@@ -14,12 +14,12 @@ export class LoggerFactory {
         private readonly groupFactory: GroupFactory
     ) {}
 
-    public createLogger<T = any>(level: LoggerLevel, logger: LoggerService): T {
+    public createLogger<T>(level: LoggerLevel, logger: LoggerService): T {
         const args: Arguments = this.getArgumentsByType(level);
         const method: string = DEFAULT_METHODS[level];
 
         const operation: ConsoleOperation =
-            this.console.minLevel < level ? this.console.instance[method].bind(...args) : () => {};
+            this.console.minLevel < level ? this.console.instance[method].bind(...args) : (): void => {};
 
         return this.defineProperties<T>(level, operation, logger);
     }

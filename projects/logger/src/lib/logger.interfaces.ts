@@ -25,7 +25,11 @@ export interface ObjectKeyMap<T = any> {
 export interface LoggerOptions {
     instance?: Console;
     minLevel?: LoggerLevel;
+    globalLineStyle?: string;
+    cssClassMap?: object;
 }
 
 export const CONSOLE_API: InjectionToken<string> = new InjectionToken<string>('CONSOLE_API');
 export const MIN_LEVEL: InjectionToken<string> = new InjectionToken<string>('MIN_LEVEL');
+export const LINE_STYLE: InjectionToken<string> = new InjectionToken<string>('LINE_STYLE');
+export const CSS_CLASS_MAP: InjectionToken<string> = new InjectionToken<string>('CSS_CLASS_MAP');

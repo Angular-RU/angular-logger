@@ -22,32 +22,38 @@ export class AppComponent implements OnInit {
         });
     }
 
+    private readonly traceIsWork: string = 'trace is worked';
+    private readonly debugIsWork: string = 'debug is worked';
+    private readonly infoIsWork: string = 'info is worked';
+    private readonly warnIsWork: string = 'warn is worked';
+    private readonly errorIsWork: string = 'error is worked';
+
     public showExample1(): void {
         this.logger.clear();
 
-        this.logger.trace('trace is worked', 1, { a: 1 });
-        this.logger.debug('debug is worked', 2, console);
-        this.logger.info('info is worked', 3, Object);
-        this.logger.warn('warn is worked', 4, String);
-        this.logger.error('error is worked', 5, (2.55).toFixed());
+        this.logger.trace(this.traceIsWork, 1, { a: 1 });
+        this.logger.debug(this.debugIsWork, 2, console);
+        this.logger.info(this.infoIsWork, 3, Object);
+        this.logger.warn(this.warnIsWork, 4, String);
+        this.logger.error(this.errorIsWork, 5, (2.55).toFixed());
     }
 
     public showExample2(): void {
         this.logger.clear();
 
         this.logger.groupCollapsed('EXAMPLE 2: show stack', () => {
-            this.logger.trace('trace is worked', 1, { a: 1 });
-            this.logger.debug('debug is worked', 2, console);
-            this.logger.info('info is worked', 3, Object);
-            this.logger.warn('warn is worked', 4, String);
-            this.logger.error('error is worked', 5, (2.55).toFixed());
+            this.logger.trace(this.traceIsWork, 1, { a: 1 });
+            this.logger.debug(this.debugIsWork, 2, console);
+            this.logger.info(this.infoIsWork, 3, Object);
+            this.logger.warn(this.warnIsWork, 4, String);
+            this.logger.error(this.errorIsWork, 5, (2.55).toFixed());
         });
 
         this.logger.group(
             'Show trace in opened group',
             ({ trace }: LoggerService): void => {
                 for (let i: number = 0; i < 20; i++) {
-                    trace('trace is worked', i);
+                    trace(this.traceIsWork, i);
                 }
             }
         );
@@ -56,7 +62,7 @@ export class AppComponent implements OnInit {
             'Show trace in collapsed group',
             ({ debug }: LoggerService): void => {
                 for (let i: number = 0; i < 15; i++) {
-                    debug('trace is worked', i);
+                    debug(this.traceIsWork, i);
                 }
             }
         );
@@ -68,38 +74,38 @@ export class AppComponent implements OnInit {
         this.logger
             .groupCollapsed('GROUP TEST')
             .pipe(({ trace, debug, info, warn, error }: LoggerService) => {
-                trace('trace is worked');
-                debug('debug is worked');
-                info('info is worked');
-                warn('warn is worked');
-                error('error is worked');
+                trace(this.traceIsWork);
+                debug(this.debugIsWork);
+                info(this.infoIsWork);
+                warn(this.warnIsWork);
+                error(this.errorIsWork);
             })
             .close();
 
         this.logger
             .group('A')
             .pipe(
-                ({ trace }: LoggerService) => trace('trace is worked'),
-                ({ debug }: LoggerService) => debug('debug is worked'),
-                ({ info }: LoggerService) => info('info is worked'),
-                ({ warn }: LoggerService) => warn('warn is worked'),
-                ({ error }: LoggerService) => error('error is worked')
+                ({ trace }: LoggerService) => trace(this.traceIsWork),
+                ({ debug }: LoggerService) => debug(this.debugIsWork),
+                ({ info }: LoggerService) => info(this.infoIsWork),
+                ({ warn }: LoggerService) => warn(this.warnIsWork),
+                ({ error }: LoggerService) => error(this.errorIsWork)
             )
             .groupCollapsed('B')
             .pipe(
-                ({ trace }: LoggerService) => trace('trace is worked'),
-                ({ debug }: LoggerService) => debug('debug is worked'),
-                ({ info }: LoggerService) => info('info is worked'),
-                ({ warn }: LoggerService) => warn('warn is worked'),
-                ({ error }: LoggerService) => error('error is worked')
+                ({ trace }: LoggerService) => trace(this.traceIsWork),
+                ({ debug }: LoggerService) => debug(this.debugIsWork),
+                ({ info }: LoggerService) => info(this.infoIsWork),
+                ({ warn }: LoggerService) => warn(this.warnIsWork),
+                ({ error }: LoggerService) => error(this.errorIsWork)
             )
             .group('C')
             .pipe(
-                ({ trace }: LoggerService) => trace('trace is worked'),
-                ({ debug }: LoggerService) => debug('debug is worked'),
-                ({ info }: LoggerService) => info('info is worked'),
-                ({ warn }: LoggerService) => warn('warn is worked'),
-                ({ error }: LoggerService) => error('error is worked')
+                ({ trace }: LoggerService) => trace(this.traceIsWork),
+                ({ debug }: LoggerService) => debug(this.debugIsWork),
+                ({ info }: LoggerService) => info(this.infoIsWork),
+                ({ warn }: LoggerService) => warn(this.warnIsWork),
+                ({ error }: LoggerService) => error(this.errorIsWork)
             )
             .closeAll();
     }
@@ -109,10 +115,10 @@ export class AppComponent implements OnInit {
 
         this.logger.level = LoggerLevel.INFO;
 
-        this.logger.trace('trace is worked', 4, String);
-        this.logger.debug('debug is worked', 4, String);
-        this.logger.warn('warn is worked', 4, String);
-        this.logger.error('error is worked', 5, (2.55).toFixed());
+        this.logger.trace(this.traceIsWork, 4, String);
+        this.logger.debug(this.debugIsWork, 4, String);
+        this.logger.warn(this.warnIsWork, 4, String);
+        this.logger.error(this.errorIsWork, 5, (2.55).toFixed());
 
         this.logger.level = LoggerLevel.ALL;
     }
@@ -160,34 +166,26 @@ export class AppComponent implements OnInit {
         this.logger.trace
             .group('A')
             .pipe(
-                ({ trace }: LoggerService) => trace('trace is worked'),
-                ({ debug }: LoggerService) => debug('debug is worked'),
-                ({ info }: LoggerService) => info('info is worked'),
-                ({ warn }: LoggerService) => warn('warn is worked'),
-                ({ error }: LoggerService) => error('error is worked')
+                ({ trace }: LoggerService) => trace(this.traceIsWork),
+                ({ debug }: LoggerService) => debug(this.debugIsWork),
+                ({ info }: LoggerService) => info(this.infoIsWork),
+                ({ warn }: LoggerService) => warn(this.warnIsWork),
+                ({ error }: LoggerService) => error(this.errorIsWork)
             )
             .close();
 
-        this.logger
-            .groupCollapsed('B')
-            .pipe(
-                ({ trace }: LoggerService) => trace('trace is worked'),
-                ({ debug }: LoggerService) => debug('debug is worked'),
-                ({ info }: LoggerService) => info('info is worked'),
-                ({ warn }: LoggerService) => warn('warn is worked'),
-                ({ error }: LoggerService) => error('error is worked')
-            )
-            .close();
-        this.logger
-            .groupCollapsed('C')
-            .pipe(
-                ({ trace }: LoggerService) => trace('trace is worked'),
-                ({ debug }: LoggerService) => debug('debug is worked'),
-                ({ info }: LoggerService) => info('info is worked'),
-                ({ warn }: LoggerService) => warn('warn is worked'),
-                ({ error }: LoggerService) => error('error is worked')
-            )
-            .close();
         this.logger.level = LoggerLevel.ALL;
+    }
+
+    public showExample9(): void {
+        this.logger.clear();
+
+        this.logger.css('font-weight: normal; text-decoration: none; color: blue;').info(3.14);
+    }
+
+    public showExample10(): void {
+        this.logger.clear();
+
+        this.logger.cssClass('bold line-through').debug('JavaScript sucks', 'JavaScript is the best');
     }
 }
