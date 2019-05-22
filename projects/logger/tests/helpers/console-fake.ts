@@ -114,8 +114,8 @@ export class ConsoleFake implements Console {
         const result: ObjectKeyMap = {};
         const attributes: string[] = css.split(';');
 
-        for (let i: number = 0; i < attributes.length; i++) {
-            const entry: string[] = attributes[i].split(':');
+        for (const obj of attributes) {
+            const entry: string[] = attributes[obj].split(':');
             const property: string = String(entry.splice(0, 1)[0]).trim();
             const options: string = entry.join(':').trim();
             if (property.length) {

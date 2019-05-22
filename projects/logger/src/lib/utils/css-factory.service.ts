@@ -30,8 +30,8 @@ export class CssFactory {
     public setClass(cssClassName: string): void {
         const classList: string[] = cssClassName.split(/\s+/g);
         const styles: string[] = [];
-        for (let i: number = 0; i < classList.length; i++) {
-            const style: string = this.cssClassMap[classList[i]];
+        for (const css of styles) {
+            const style: string = this.cssClassMap[classList[css]];
             if (style) {
                 styles.push(style);
             }
