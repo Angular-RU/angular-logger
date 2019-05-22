@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { LoggerModule } from '../src/lib/logger.module';
 import { LoggerService } from '../src/lib/logger.service';
 import { LoggerLevel } from '../src/lib/logger.config';
-import { ConsoleFake, TestLoggerLineType } from './helpers/console-fake';
+import { ConsoleFake, TestLoggerLineType } from '../../../helpers/console-fake';
 import { ObjectKeyMap } from '../src/lib/logger.interfaces';
 
 describe('[TEST]: Execute method by Level', () => {

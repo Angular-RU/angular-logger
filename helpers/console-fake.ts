@@ -1,4 +1,4 @@
-import { ObjectKeyMap } from '../../src/lib/logger.interfaces';
+import { ObjectKeyMap } from '../projects/logger/src/lib/logger.interfaces';
 
 export enum TestLoggerLineType {
     TABLE = 'table',
@@ -114,17 +114,18 @@ export class ConsoleFake implements Console {
         const result: ObjectKeyMap = {};
         const attributes: string[] = css.split(';');
 
-        for (const obj of attributes) {
-            const entry: string[] = attributes[obj].split(':');
+        attributes.forEach((attribute: string) => {
+            const entry: string[] = attribute.split(':');
             const property: string = String(entry.splice(0, 1)[0]).trim();
             const options: string = entry.join(':').trim();
             if (property.length) {
                 result[property] = options;
             }
-        }
+        });
 
         return result;
     }
+
     public clear(): void {
         this._stack = [];
     }

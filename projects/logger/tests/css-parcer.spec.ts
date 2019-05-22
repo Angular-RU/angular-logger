@@ -1,5 +1,5 @@
 import { LoggerService } from '../src/lib/logger.service';
-import { ConsoleFake, TestLoggerLineType } from './helpers/console-fake';
+import { ConsoleFake, TestLoggerLineType } from '../../../helpers/console-fake';
 import { LoggerLevel } from '../src/lib/logger.config';
 import { TestBed } from '@angular/core/testing';
 import { LoggerModule } from '../src/lib/logger.module';

@@ -112,9 +112,8 @@ export class LoggerService {
         return this;
     }
 
-    public prettyJSON(json: string): string[] {
-        json = JSON.stringify(json, null, 2);
-        return this.jsonFactory.colorsJSON(json);
+    public prettyJSON(json: ObjectKeyMap): string[] {
+        return this.jsonFactory.colorsJSON(JSON.stringify(json, null, 2));
     }
 
     public cssClass(cssClassName: string): LoggerService {

@@ -30,7 +30,8 @@ export class AppComponent implements OnInit {
 
     public showExample1(): void {
         this.logger.clear();
-        this.logger.css('color: red').log('text', this.traceIsWork, 1, { a: 1 });
+        this.logger.log('Example');
+        this.logger.trace(this.traceIsWork, 1, { a: 1 });
         this.logger.debug(this.debugIsWork, 2, console);
         this.logger.info(this.infoIsWork, 3, Object);
         this.logger.warn(this.warnIsWork, 4, String);

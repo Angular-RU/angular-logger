@@ -1,5 +1,5 @@
 import { LoggerService } from '../src/lib/logger.service';
-import { ConsoleFake } from './helpers/console-fake';
+import { ConsoleFake } from '../../../helpers/console-fake';
 import { TestBed } from '@angular/core/testing';
 import { LoggerModule } from '../src/lib/logger.module';
 import { ObjectKeyMap } from '../src/lib/logger.interfaces';

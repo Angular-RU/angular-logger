@@ -30,12 +30,13 @@ export class CssFactory {
     public setClass(cssClassName: string): void {
         const classList: string[] = cssClassName.split(/\s+/g);
         const styles: string[] = [];
-        for (const css of styles) {
-            const style: string = this.cssClassMap[classList[css]];
+
+        classList.forEach((className: string) => {
+            const style: string = this.cssClassMap[className];
             if (style) {
                 styles.push(style);
             }
-        }
+        });
 
         const localStyles: string = styles.length ? styles.join('; ') : '';
         this.lineStyle = `${this.globalStyles}${localStyles}`;
