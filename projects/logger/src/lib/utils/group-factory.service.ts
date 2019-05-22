@@ -3,13 +3,14 @@ import { ConsoleService } from './console.service';
 import { GroupMethod, Pipeline } from '../logger.interfaces';
 import { LoggerService } from '../logger.service';
 import { LoggerLevel } from '../logger.config';
+import { CssFactory } from './css-factory.service';
 
 @Injectable()
 export class GroupFactory {
     public executePipesGroup: boolean;
     private counterOpenedGroup: number = 0;
 
-    constructor(private readonly console: ConsoleService) {}
+    constructor(private readonly console: ConsoleService, private readonly cssFactory: CssFactory) {}
 
     public close(): void {
         if (this.executePipesGroup) {
@@ -25,12 +26,12 @@ export class GroupFactory {
     }
 
     public group(title: string, pipeline: Pipeline, logger: LoggerService, level: LoggerLevel): void {
-        const group: GroupMethod = this.console.instance.group;
+        const group: GroupMethod = this.console.instance.group.bind(this.console.instance);
         this.createGroupLogger(group, title, pipeline, logger, level);
     }
 
     public groupCollapsed(title: string, pipeline: Pipeline, logger: LoggerService, level: LoggerLevel): void {
-        const groupCollapsed: GroupMethod = this.console.instance.groupCollapsed;
+        const groupCollapsed: GroupMethod = this.console.instance.groupCollapsed.bind(this.console.instance);
         this.createGroupLogger(groupCollapsed, title, pipeline, logger, level);
     }
 
@@ -45,7 +46,11 @@ export class GroupFactory {
         if (showGroup) {
             this.executePipesGroup = true;
             this.counterOpenedGroup++;
-            groupType(title);
+
+            const label: string = this.console.getLabel(level);
+            const lineStyle: string = this.cssFactory.getStyleLabel(level);
+
+            groupType(`%c${label}`, lineStyle, title);
             if (pipeline) {
                 pipeline(logger);
                 this.close();

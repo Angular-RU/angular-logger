@@ -2,7 +2,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { LoggerLevel, LoggerService } from '@angular-ru/logger';
 import * as devtools from 'devtools-detect';
-import { LogMethod } from '../../projects/logger/src/lib/logger.interfaces';
 
 @Component({
     selector: 'app-root',
@@ -31,8 +30,7 @@ export class AppComponent implements OnInit {
 
     public showExample1(): void {
         this.logger.clear();
-
-        this.logger.trace(this.traceIsWork, 1, { a: 1 });
+        this.logger.css('color: red').log('text', this.traceIsWork, 1, { a: 1 });
         this.logger.debug(this.debugIsWork, 2, console);
         this.logger.info(this.infoIsWork, 3, Object);
         this.logger.warn(this.warnIsWork, 4, String);
@@ -116,6 +114,7 @@ export class AppComponent implements OnInit {
 
         this.logger.level = LoggerLevel.INFO;
 
+        this.logger.log('log is working', 1, String);
         this.logger.trace(this.traceIsWork, 4, String);
         this.logger.debug(this.debugIsWork, 4, String);
         this.logger.warn(this.warnIsWork, 4, String);
@@ -155,7 +154,6 @@ export class AppComponent implements OnInit {
         this.logger.clear();
         const example: string = 'your mom.';
         this.logger.log(example);
-        return this.logger.copy(example);
     }
 
     public showExample8(): any {
@@ -219,7 +217,7 @@ export class AppComponent implements OnInit {
     public showExample9(): void {
         this.logger.clear();
 
-        this.logger.css('font-weight: normal; text-decoration: none; color: blue;').info(3.14);
+        this.logger.css('font-weight: normal; text-decoration: none; color: blue; font-style: italic;').info(3.14);
     }
 
     public showExample10(): void {
@@ -227,5 +225,4 @@ export class AppComponent implements OnInit {
 
         this.logger.cssClass('bold line-through').debug('JavaScript sucks', 'JavaScript is the best');
     }
-
 }

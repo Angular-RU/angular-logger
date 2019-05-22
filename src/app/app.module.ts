@@ -13,7 +13,7 @@ import { environment } from '../environments/environment';
             environment.useConfig
                 ? {
                       useLevelGroup: true,
-                      globalLineStyle: 'color: red',
+                      globalLineStyle: 'color: red; text-decoration: underline; font-weight: bold; font-size: 15px',
                       cssClassMap: {
                           bold: 'font-weight: bold',
                           'line-through': 'text-decoration: line-through',

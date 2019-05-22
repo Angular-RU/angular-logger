@@ -21,6 +21,7 @@ export enum LoggerLevel {
     TRACE,
     DEBUG,
     INFO,
+    LOG,
     WARN,
     ERROR,
     OFF
@@ -32,7 +33,13 @@ export enum GroupLevel {
 }
 
 export const DEFAULT_METHODS: ObjectKeyMap = {
+    /**
+     * Used `debug` instead `trace` method because need
+     * output without stack trace in console
+     * LoggerLevel.TRACE -> console.debug
+     */
     [LoggerLevel.TRACE]: 'debug',
+    [LoggerLevel.LOG]: 'log',
     [LoggerLevel.DEBUG]: 'info',
     [LoggerLevel.INFO]: 'info',
     [LoggerLevel.WARN]: 'warn',

@@ -1,6 +1,4 @@
-import { ObjectKeyMap } from '../../projects/logger/src/lib/logger.interfaces';
-
-export const environment: ObjectKeyMap = {
+export const environment: any = {
     production: true,
     useConfig: true
 };

@@ -1,18 +1,19 @@
 import { Inject, Injectable } from '@angular/core';
-import { CSS_CLASS_MAP, LINE_STYLE } from '../logger.interfaces';
+import { CSS_CLASS_MAP, LABEL_COLORS, LINE_STYLE } from '../logger.interfaces';
+import { LoggerLevel } from '../logger.config';
 
 @Injectable()
 export class CssFactory {
+    private lineStyle: string;
+
     constructor(
         @Inject(LINE_STYLE) public readonly globalLineStyle: string,
-        @Inject(CSS_CLASS_MAP) public readonly cssMap: any
+        @Inject(LABEL_COLORS) public readonly labelColors: any,
+        @Inject(CSS_CLASS_MAP) public readonly cssClassMap: any
     ) {}
 
-    private lineStyle: string;
-    public cssClassMap: object = this.cssMap;
-
     public set style(css: string) {
-        this.lineStyle = `${this.globalLineStyle}; ${css}`;
+        this.lineStyle = `${this.globalStyles}${css}`;
     }
 
     public get style(): string {
@@ -21,7 +22,8 @@ export class CssFactory {
         return style;
     }
 
-    public getStyleLabelByColor(color: string): string {
+    public getStyleLabel(level: LoggerLevel): string {
+        const color: string = this.labelColors[level];
         return `color: ${color}; font-weight: bold`;
     }
 
@@ -29,8 +31,17 @@ export class CssFactory {
         const classList: string[] = cssClassName.split(/\s+/g);
         const styles: string[] = [];
         for (let i: number = 0; i < classList.length; i++) {
-            styles.push(this.cssClassMap[classList[i]]);
+            const style: string = this.cssClassMap[classList[i]];
+            if (style) {
+                styles.push(style);
+            }
         }
-        this.lineStyle = `${this.globalLineStyle}; ${styles.join(' ;')}`;
+
+        const localStyles: string = styles.length ? styles.join('; ') : '';
+        this.lineStyle = `${this.globalStyles}${localStyles}`;
+    }
+
+    private get globalStyles(): string {
+        return this.globalLineStyle ? `${this.globalLineStyle};` : '';
     }
 }

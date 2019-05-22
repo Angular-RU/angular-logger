@@ -6,11 +6,9 @@ import {
     ConsoleOperation as Operation,
     Descriptor,
     GroupFactoryMethod,
-    PipeOperation,
     Pipeline,
-    USE_LEVEL_GROUP,
-    LABEL_NAMES,
-    LABEL_COLORS
+    PipeOperation,
+    USE_LEVEL_GROUP
 } from '../logger.interfaces';
 import { CssFactory } from './css-factory.service';
 import { GroupFactory } from './group-factory.service';
@@ -20,8 +18,6 @@ import { LoggerService } from '../logger.service';
 export class LoggerFactory {
     constructor(
         @Inject(USE_LEVEL_GROUP) private readonly useLevelGroup: any,
-        @Inject(LABEL_NAMES) public readonly labelNames: any,
-        @Inject(LABEL_COLORS) public readonly labelColors: any,
         private readonly console: ConsoleService,
         private readonly cssFactory: CssFactory,
         private readonly groupFactory: GroupFactory
@@ -68,17 +64,21 @@ export class LoggerFactory {
         };
     }
 
-    private getArgumentsByType(type: LoggerLevel): Arguments {
-        const label: string = this.labelNames[type];
-        const color: string = this.labelColors[type];
-        const styleLabel: string = this.cssFactory.getStyleLabelByColor(color);
+    private getArgumentsByType(level: LoggerLevel): Arguments {
+        const label: string = this.console.getLabel(level);
+        const styleLabel: string = this.cssFactory.getStyleLabel(level);
         const lineStyle: string = this.cssFactory.style;
         const args: Arguments = [this.console.instance];
+        const withLabel: boolean = level !== LoggerLevel.LOG;
 
-        if (lineStyle) {
-            args.push(`%c${label} %c%s`, styleLabel, lineStyle);
-        } else {
-            args.push(`%c${label}`, styleLabel);
+        if (withLabel) {
+            if (lineStyle) {
+                args.push(`%c${label} %c%s`, styleLabel, lineStyle);
+            } else {
+                args.push(`%c${label}`, styleLabel);
+            }
+        } else if (lineStyle) {
+            args.push(`%c%s`, lineStyle);
         }
 
         return args;
