@@ -80,7 +80,7 @@ describe('[TEST]: Check style', () => {
         );
     });
 
-    it('do not get styles', () => {
+    it('should work with empty cssClass', () => {
         logger.cssClass('').debug('test string');
 
         expect(logger.getCurrentLineStyle()).toEqual('');
@@ -106,14 +106,14 @@ describe('[TEST]: Check global styles', () => {
 
     beforeEach(() => logger.clear());
 
-    it('do not get styles v2', () => {
+    it('should use global styles', () => {
         logger.log('test string');
         expect(fakeConsole.stack()).toEqual(
             '[{"log":["%c%s","color: violet; font-weight: bold; font-size: 12px;","test string"]}]'
         );
     });
 
-    it('do not get styles v2', () => {
+    it('should use global styles and work with empty css', () => {
         logger.css('').log('test string');
         expect(fakeConsole.stack()).toEqual(
             '[{"log":["%c%s","color: violet; font-weight: bold; font-size: 12px;","test string"]}]'

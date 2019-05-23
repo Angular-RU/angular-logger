@@ -132,7 +132,6 @@ export class AppComponent implements OnInit {
         this.logger.css('text-transform: uppercase; font-weight: bold').debug('window current ', window);
 
         this.logger.css('color: red; text-decoration: underline; font-weight: bold').info('It is awesome logger');
-
         this.logger.debug({ a: 1 });
 
         this.logger.warn('logger.css(...) does not define a global format!');
@@ -146,17 +145,16 @@ export class AppComponent implements OnInit {
             hello: 'world'
         };
 
-        // default browser print json
         this.logger.debug('Classic output json', jsonExample);
 
-        // for pretty json usage logger.log method
         this.logger.log(...this.logger.prettyJSON(jsonExample));
     }
 
     public showExample7(): any {
         this.logger.clear();
-        const example: string = 'your mom.';
+        const example: string = 'test string';
         this.logger.log(example);
+        this.logger.copy(example);
     }
 
     public showExample8(): any {
@@ -220,13 +218,19 @@ export class AppComponent implements OnInit {
     public showExample9(): void {
         this.logger.clear();
 
-        this.logger.css('font-weight: normal; text-decoration: none; color: blue; font-style: italic;').info(3.14);
+        this.logger.css('font-weight: normal; text-decoration: none; font-style: italic;').info(3.14);
         this.logger.css('font-weight: normal;').info(3.14);
         this.logger.warn('global format with style!');
     }
 
     public showExample10(): void {
         this.logger.clear();
+
+        this.logger.cssClass('bold line-through').log('JavaScript sucks', 'JavaScript is the best');
+
+        this.logger
+            .cssClass('code-sandbox')
+            .log('\n   @Component({ .. })' + '\n   export class AppComponent { .. }    \n\n');
 
         this.logger.cssClass('bold line-through').debug('JavaScript sucks', 'JavaScript is the best');
     }

@@ -45,3 +45,16 @@ export const CSS_CLASS_MAP: InjectionToken<string> = new InjectionToken<string>(
 export const USE_LEVEL_GROUP: InjectionToken<string> = new InjectionToken<string>('USE_LEVEL_GROUP');
 export const LABEL_COLORS: InjectionToken<string> = new InjectionToken<string>('LABEL_COLORS');
 export const LABEL_NAMES: InjectionToken<string> = new InjectionToken<string>('LABEL_NAMES');
+
+export interface ConsoleServiceInterface {
+    getTemplateWithoutLabel(): string;
+}
+
+export interface Clipboard {
+    copyOnBuffer(data: unknown): boolean;
+    readonly clipboardSetData: SetDataType;
+    readonly queryCommandCopy: boolean;
+    textAreaSelectData(value: string): boolean;
+}
+
+export type SetDataType = (format: string, data: string) => void | boolean;

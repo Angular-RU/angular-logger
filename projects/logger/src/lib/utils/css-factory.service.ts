@@ -18,7 +18,7 @@ export class CssFactory {
 
     public get style(): string {
         const style: string = this.localStyle;
-        this.lineStyle = '';
+        this.clearLocalStyle();
         return `${this.globalStyles}${style}`;
     }
 
@@ -47,6 +47,10 @@ export class CssFactory {
     }
 
     private get localStyle(): string {
-      return this.lineStyle ? `${this.lineStyle};` : '';
+        return this.lineStyle ? `${this.lineStyle};` : '';
+    }
+
+    private clearLocalStyle(): void {
+        this.lineStyle = '';
     }
 }

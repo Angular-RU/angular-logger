@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { ConsoleService } from './console.service';
-import { GroupMethod, Pipeline } from '../logger.interfaces';
+import { GroupMethod, LABEL_NAMES, Pipeline } from '../logger.interfaces';
 import { LoggerService } from '../logger.service';
 import { LoggerLevel } from '../logger.config';
 import { CssFactory } from './css-factory.service';
@@ -10,7 +10,11 @@ export class GroupFactory {
     public executePipesGroup: boolean;
     private counterOpenedGroup: number = 0;
 
-    constructor(private readonly console: ConsoleService, private readonly cssFactory: CssFactory) {}
+    constructor(
+        private readonly console: ConsoleService,
+        private readonly cssFactory: CssFactory,
+        @Inject(LABEL_NAMES) public labelNames: any
+    ) {}
 
     public close(): void {
         if (this.executePipesGroup) {
@@ -47,10 +51,10 @@ export class GroupFactory {
             this.executePipesGroup = true;
             this.counterOpenedGroup++;
 
-            const label: string = this.console.getLabel(level);
+            const label: string = this.console.getTemplateLabel(level);
             const lineStyle: string = this.cssFactory.getStyleLabel(level);
 
-            groupType(`%c${label}`, lineStyle, title);
+            groupType(label, lineStyle, title);
             if (pipeline) {
                 pipeline(logger);
                 this.close();

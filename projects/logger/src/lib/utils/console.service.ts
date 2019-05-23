@@ -1,9 +1,16 @@
 import { Inject, Injectable } from '@angular/core';
 import { LoggerLevel } from '../logger.config';
-import { CONSOLE_API, LABEL_COLORS, LABEL_NAMES, MIN_LEVEL } from '../logger.interfaces';
+import {
+    CONSOLE_API,
+    ConsoleOperation,
+    ConsoleServiceInterface,
+    LABEL_COLORS,
+    LABEL_NAMES,
+    MIN_LEVEL
+} from '../logger.interfaces';
 
 @Injectable()
-export class ConsoleService {
+export class ConsoleService implements ConsoleServiceInterface {
     public instance: Console;
     public minLevel: LoggerLevel;
 
@@ -25,7 +32,19 @@ export class ConsoleService {
         return this.instance;
     }
 
-    public getLabel(level: LoggerLevel): string {
-        return this.labelNames[level];
+    public getTemplateLabel(level: LoggerLevel): string {
+        return `%c${this.labelNames[level]}`;
+    }
+
+    public getFormatTemplateLabel(level: LoggerLevel): string {
+        return `%c${this.labelNames[level]} %c%s`;
+    }
+
+    public getTemplateWithoutLabel(): string {
+        return `%c%s`;
+    }
+
+    public get noop(): ConsoleOperation {
+        return ((): void => {}) as ConsoleOperation;
     }
 }

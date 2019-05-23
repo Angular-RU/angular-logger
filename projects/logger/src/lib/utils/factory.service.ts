@@ -28,7 +28,7 @@ export class LoggerFactory {
         const method: string = DEFAULT_METHODS[level];
 
         const operation: Operation =
-            this.console.minLevel <= level ? this.console.instance[method].bind(...args) : (): void => {};
+            this.console.minLevel <= level ? this.console.instance[method].bind(...args) : this.console.noop;
 
         const pipeOperation: PipeOperation = this.useLevelGroup
             ? this.defineLevelGroups(level, operation, logger)
@@ -62,7 +62,6 @@ export class LoggerFactory {
     }
 
     private getArgumentsByType(level: LoggerLevel): Arguments {
-        const label: string = this.console.getLabel(level);
         const styleLabel: string = this.cssFactory.getStyleLabel(level);
         const lineStyle: string = this.cssFactory.style;
         const args: Arguments = [this.console.instance];
@@ -70,12 +69,12 @@ export class LoggerFactory {
 
         if (withLabel) {
             if (lineStyle) {
-                args.push(`%c${label} %c%s`, styleLabel, lineStyle);
+                args.push(this.console.getFormatTemplateLabel(level), styleLabel, lineStyle);
             } else {
-                args.push(`%c${label}`, styleLabel);
+                args.push(this.console.getTemplateLabel(level), styleLabel);
             }
         } else if (lineStyle) {
-            args.push(`%c%s`, lineStyle);
+            args.push(this.console.getTemplateWithoutLabel(), lineStyle);
         }
 
         return args;
