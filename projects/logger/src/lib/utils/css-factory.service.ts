@@ -12,14 +12,22 @@ export class CssFactory {
         @Inject(CSS_CLASS_MAP) public readonly cssClassMap: any
     ) {}
 
-    public set style(css: string) {
-        this.lineStyle = css;
-    }
-
     public get style(): string {
         const style: string = this.localStyle;
         this.clearLocalStyle();
         return `${this.globalStyles}${style}`;
+    }
+
+    public set style(css: string) {
+        this.lineStyle = css;
+    }
+
+    private get globalStyles(): string {
+        return this.globalLineStyle ? `${this.globalLineStyle};` : '';
+    }
+
+    private get localStyle(): string {
+        return this.lineStyle ? `${this.lineStyle};` : '';
     }
 
     public getStyleLabel(level: LoggerLevel): string {
@@ -40,14 +48,6 @@ export class CssFactory {
 
         const localStyles: string = styles.length ? styles.join('; ') : '';
         this.lineStyle = `${this.globalStyles}${localStyles}`;
-    }
-
-    private get globalStyles(): string {
-        return this.globalLineStyle ? `${this.globalLineStyle};` : '';
-    }
-
-    private get localStyle(): string {
-        return this.lineStyle ? `${this.lineStyle};` : '';
     }
 
     private clearLocalStyle(): void {

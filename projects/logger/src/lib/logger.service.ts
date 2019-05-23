@@ -12,10 +12,10 @@ import { ClipboardFactory } from './utils/clipboard-factory.service';
 export class LoggerService {
     constructor(
         public readonly clipboard: ClipboardFactory,
+        public readonly cssFactory: CssFactory,
         private readonly console: ConsoleService,
         private readonly factory: LoggerFactory,
         private readonly groupFactory: GroupFactory,
-        public readonly cssFactory: CssFactory,
         private readonly jsonFactory: JsonFactory
     ) {}
 

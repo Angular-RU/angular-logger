@@ -10,15 +10,12 @@ export interface GroupMethods extends Function {
     groupCollapsed(label: string, pipeline?: Pipeline): LoggerService;
 }
 
-export type ConsoleOperation = (message?: any, ...optionalParams: any[]) => void;
+export type ConsoleOperation<T = any, P = any> = (message?: T, ...optionalParams: P[]) => void;
 export type PipeOperation = GroupMethods | ConsoleOperation;
-
-export type GroupMethod = (groupTitle?: string, ...optionalParams: any[]) => void;
+export type GroupMethod<T = any> = (groupTitle?: string, ...optionalParams: T[]) => void;
 export type GroupFactoryMethod = (title: string, pipeline: Pipeline, logger: LoggerService, level: LoggerLevel) => void;
-
 export type LogMethod = GroupMethods & ConsoleOperation;
-
-export type Arguments = any[];
+export type Arguments<T = any> = T[];
 
 export interface ObjectKeyMap<T = any> {
     [key: string]: T;

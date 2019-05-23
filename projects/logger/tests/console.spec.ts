@@ -27,7 +27,7 @@ describe('[TEST]: ConsoleService', () => {
     });
 });
 
-describe('[TEST]: ConsoleService based', () => {
+describe('[TEST]: ConsoleService without options', () => {
     let logger: LoggerService;
     let consoleService: ConsoleService;
 
@@ -44,7 +44,7 @@ describe('[TEST]: ConsoleService based', () => {
         expect(logger).toBeTruthy();
     });
 
-    it(`should be truthy logger`, () => {
+    it(`should be correct minLevel and instance`, () => {
         expect(consoleService.minLevel).toEqual(LoggerLevel.ALL);
         expect(consoleService.instance).toEqual(console);
     });

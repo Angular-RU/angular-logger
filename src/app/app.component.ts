@@ -13,6 +13,12 @@ export class AppComponent implements OnInit {
     public isLoaded: boolean;
     public devToolsIsOpen: boolean = devtools.isOpen;
 
+    private readonly traceIsWork: string = 'trace is worked';
+    private readonly debugIsWork: string = 'debug is worked';
+    private readonly infoIsWork: string = 'info is worked';
+    private readonly warnIsWork: string = 'warn is worked';
+    private readonly errorIsWork: string = 'error is worked';
+
     constructor(private readonly logger: LoggerService) {}
 
     public ngOnInit(): void {
@@ -21,12 +27,6 @@ export class AppComponent implements OnInit {
             this.devToolsIsOpen = e.detail.isOpen;
         });
     }
-
-    private readonly traceIsWork: string = 'trace is worked';
-    private readonly debugIsWork: string = 'debug is worked';
-    private readonly infoIsWork: string = 'info is worked';
-    private readonly warnIsWork: string = 'warn is worked';
-    private readonly errorIsWork: string = 'error is worked';
 
     public showExample1(): void {
         this.logger.clear();

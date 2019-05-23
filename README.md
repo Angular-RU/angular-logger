@@ -1,6 +1,6 @@
 # ClientLogger
 
-> Lightweight and configurable JavaScript logger (written on TypeScript)
+> Lightweight and configurable Angular logger
 
 ## Motivation
 
@@ -8,22 +8,9 @@ This logger is a handy tool that can be useful in the design and development of 
 setting of logging levels and convenient work with groups. Among other things, you can use meta programming
 (decorators).
 
-## Usage
-
-You could easily use this Logger in the browser. You only need to install the package and import it in your scripts
-before assembly. To see how to use the Logger please follow that's [link]().
-
-You can also run the examples on webpack:
-
-```ts
-import { ClientLogger } from '@splincode/client-logger';
-
-const logger = new ClientLogger();
-```
-
 ## Table of contents
 
--   [Logging](#)
+-   [Logging](#logging)
     -   [Basic usage API `trace`, `debug`, `info`, `warn`. `error`](#example-basic-methods)
     -   [Groups, `groupCollapsed`, `collapsible`](#example-groups)
     -   [Nested groups (usage pipe method)](#example-nested-groups)
@@ -68,6 +55,8 @@ export class AppComponent {
 import { LoggerService } from '@angular-ru/logger';
 
 export class AppComponent {
+    private readonly traceIsWork: string = 'trace is worked';
+
     constructor(private readonly logger: LoggerService) {}
 
     public showExample(): void {
@@ -93,6 +82,12 @@ export class AppComponent {
 import { LoggerService } from '@angular-ru/logger';
 
 export class AppComponent {
+    private readonly traceIsWork: string = 'trace is worked';
+    private readonly debugIsWork: string = 'debug is worked';
+    private readonly infoIsWork: string = 'info is worked';
+    private readonly warnIsWork: string = 'warn is worked';
+    private readonly errorIsWork: string = 'error is worked';
+
     constructor(private readonly logger: LoggerService) {}
 
     public showExample(): void {
@@ -135,6 +130,12 @@ export class AppComponent {
 import { LoggerService } from '@angular-ru/logger';
 
 export class AppComponent {
+    private readonly traceIsWork: string = 'trace is worked';
+    private readonly debugIsWork: string = 'debug is worked';
+    private readonly infoIsWork: string = 'info is worked';
+    private readonly warnIsWork: string = 'warn is worked';
+    private readonly errorIsWork: string = 'error is worked';
+
     constructor(private readonly logger: LoggerService) {}
 
     public showExample(): void {
@@ -189,6 +190,12 @@ Basic parameterization
 import { LoggerService } from '@angular-ru/logger';
 
 export class AppComponent {
+    private readonly traceIsWork: string = 'trace is worked';
+    private readonly debugIsWork: string = 'debug is worked';
+    private readonly infoIsWork: string = 'info is worked';
+    private readonly warnIsWork: string = 'warn is worked';
+    private readonly errorIsWork: string = 'error is worked';
+
     constructor(private readonly logger: LoggerService) {}
 
     public showExample(): void {
@@ -218,6 +225,12 @@ export class AppComponent {
 import { LoggerService } from '@angular-ru/logger';
 
 export class AppComponent {
+    private readonly traceIsWork: string = 'trace is worked';
+    private readonly debugIsWork: string = 'debug is worked';
+    private readonly infoIsWork: string = 'info is worked';
+    private readonly warnIsWork: string = 'warn is worked';
+    private readonly errorIsWork: string = 'error is worked';
+
     constructor(private readonly logger: LoggerService) {}
 
     public showExample8(): any {
@@ -432,6 +445,12 @@ export class AppModule {}
 import { LoggerService } from '@angular-ru/logger';
 
 export class AppComponent {
+    private readonly traceIsWork: string = 'trace is worked';
+    private readonly debugIsWork: string = 'debug is worked';
+    private readonly infoIsWork: string = 'info is worked';
+    private readonly warnIsWork: string = 'warn is worked';
+    private readonly errorIsWork: string = 'error is worked';
+
     constructor(private readonly logger: LoggerService) {}
 
     public showExample(): void {

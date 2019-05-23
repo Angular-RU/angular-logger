@@ -11,9 +11,9 @@ export class GroupFactory {
     private counterOpenedGroup: number = 0;
 
     constructor(
+        @Inject(LABEL_NAMES) public labelNames: any,
         private readonly console: ConsoleService,
-        private readonly cssFactory: CssFactory,
-        @Inject(LABEL_NAMES) public labelNames: any
+        private readonly cssFactory: CssFactory
     ) {}
 
     public close(): void {
