@@ -36,7 +36,10 @@ describe('[TEST]: Check style', () => {
 
         expect(fakeConsole.stack()).toEqual(
             fakeConsole.createStack({
-                [TestLoggerLineType.INFO]: ['color: red; text-decoration: underline; font-weight: bold', `It's awesome`]
+                [TestLoggerLineType.INFO]: [
+                    'color: red; text-decoration: underline; font-weight: bold;',
+                    `It's awesome`
+                ]
             })
         );
     });
@@ -46,7 +49,7 @@ describe('[TEST]: Check style', () => {
 
         expect(fakeConsole.stack()).toEqual(
             fakeConsole.createStack({
-                [TestLoggerLineType.LOG]: ['%c%s', 'font-weight: bold; color: #666', 'Hello world']
+                [TestLoggerLineType.LOG]: ['%c%s', 'font-weight: bold; color: #666;', 'Hello world']
             })
         );
 
@@ -54,14 +57,14 @@ describe('[TEST]: Check style', () => {
 
         logger.cssClass('class-2').debug('Test 2');
         expect(fakeConsole.stack()).toEqual(
-            fakeConsole.createStack({ [TestLoggerLineType.DEBUG]: ['text-decoration: line-through', 'Test 2'] })
+            fakeConsole.createStack({ [TestLoggerLineType.DEBUG]: ['text-decoration: line-through;', 'Test 2'] })
         );
     });
 
     it('Clear line style', () => {
         // with style
         logger.css('font-weight: bold');
-        expect(logger.getCurrentLineStyle()).toEqual('font-weight: bold');
+        expect(logger.getCurrentLineStyle()).toEqual('font-weight: bold;');
 
         // without style
         logger.css('font-weight: bold');
@@ -73,7 +76,7 @@ describe('[TEST]: Check style', () => {
         logger.css('text-transform: uppercase, font-weight: bold, font-size: 12px, margin: 10px, padding: 10px');
 
         expect(logger.getCurrentLineStyle()).toEqual(
-            'text-transform: uppercase, font-weight: bold, font-size: 12px, margin: 10px, padding: 10px'
+            'text-transform: uppercase, font-weight: bold, font-size: 12px, margin: 10px, padding: 10px;'
         );
     });
 
@@ -84,7 +87,7 @@ describe('[TEST]: Check style', () => {
     });
 });
 
-describe('[TEST]: Check style', () => {
+describe('[TEST]: Check global styles', () => {
     let logger: LoggerService;
     const fakeConsole: Console & ConsoleFake = new ConsoleFake();
 
@@ -93,7 +96,7 @@ describe('[TEST]: Check style', () => {
             imports: [
                 LoggerModule.forRoot({
                     instance: fakeConsole,
-                    globalLineStyle: 'color: violet, font-weight: bold, font-size: 12px'
+                    globalLineStyle: 'color: violet; font-weight: bold; font-size: 12px'
                 })
             ]
         });
@@ -104,8 +107,16 @@ describe('[TEST]: Check style', () => {
     beforeEach(() => logger.clear());
 
     it('do not get styles v2', () => {
-        logger.css('').debug('test string');
+        logger.log('test string');
+        expect(fakeConsole.stack()).toEqual(
+            '[{"log":["%c%s","color: violet; font-weight: bold; font-size: 12px;","test string"]}]'
+        );
+    });
 
-        expect(logger.getCurrentLineStyle()).toEqual('');
+    it('do not get styles v2', () => {
+        logger.css('').log('test string');
+        expect(fakeConsole.stack()).toEqual(
+            '[{"log":["%c%s","color: violet; font-weight: bold; font-size: 12px;","test string"]}]'
+        );
     });
 });

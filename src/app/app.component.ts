@@ -58,14 +58,16 @@ export class AppComponent implements OnInit {
             }
         );
 
-        this.logger.groupCollapsed(
-            'Show trace in collapsed group',
-            ({ debug }: LoggerService): void => {
-                for (let i: number = 0; i < 15; i++) {
-                    debug(this.traceIsWork, i);
+        this.logger
+            .groupCollapsed(
+                'Show trace in collapsed group',
+                ({ debug }: LoggerService): void => {
+                    for (let i: number = 0; i < 15; i++) {
+                        debug(this.traceIsWork, i);
+                    }
                 }
-            }
-        );
+            )
+            .closeAll();
     }
 
     public showExample3(): void {
@@ -219,6 +221,8 @@ export class AppComponent implements OnInit {
         this.logger.clear();
 
         this.logger.css('font-weight: normal; text-decoration: none; color: blue; font-style: italic;').info(3.14);
+        this.logger.css('font-weight: normal;').info(3.14);
+        this.logger.warn('global format with style!');
     }
 
     public showExample10(): void {

@@ -81,6 +81,14 @@ describe('[TEST]: Check clipboard', () => {
         expect(isExec).toEqual(false);
         expect(buffer).toEqual(null);
     });
+
+    it(`should be correct fallback`, () => {
+        const stringValue: string = 'test string';
+        const isExec: boolean = logger.copy(stringValue);
+
+        expect(isExec).toEqual(false);
+        expect(buffer).toEqual(null);
+    });
 });
 
 function createMockQueryCommands(textareaRef: Partial<HTMLTextAreaElement>): void {

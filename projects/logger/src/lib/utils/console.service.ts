@@ -13,8 +13,8 @@ export class ConsoleService {
         @Inject(LABEL_NAMES) public labelNames: any,
         @Inject(LABEL_COLORS) public labelColors: any
     ) {
-        this.minLevel = level || LoggerLevel.ALL;
-        this.instance = consoleApi || console;
+        this.minLevel = level;
+        this.instance = consoleApi;
     }
 
     public set console(instance: Console) {

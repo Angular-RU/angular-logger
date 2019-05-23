@@ -1,3 +1,4 @@
+/* tslint:disable:quotemark */
 import { LoggerService } from '../src/lib/logger.service';
 import { ConsoleFake, TestLoggerGroupType, TestLoggerLineType } from '../../../helpers/console-fake';
 import { TestBed } from '@angular/core/testing';
@@ -310,5 +311,31 @@ describe('[TEST]: Check work in groups', () => {
                 { [TestLoggerGroupType.GROUP_END]: [] }
             )
         );
+    });
+});
+
+describe('[TEST]: ConsoleService based', () => {
+    const fakeConsole: Console & ConsoleFake = new ConsoleFake();
+    let logger: LoggerService;
+
+    beforeAll(() => {
+        TestBed.configureTestingModule({
+            imports: [
+                LoggerModule.forRoot({
+                    instance: fakeConsole,
+                    useLevelGroup: false
+                })
+            ]
+        });
+
+        logger = TestBed.get(LoggerService);
+    });
+
+    it(`should be throw logger`, () => {
+        try {
+            logger.info.group('hello world');
+        } catch (e) {
+            expect(e.message).toEqual('logger.info.group is not a function');
+        }
     });
 });

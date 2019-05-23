@@ -13,13 +13,13 @@ export class CssFactory {
     ) {}
 
     public set style(css: string) {
-        this.lineStyle = `${this.globalStyles}${css}`;
+        this.lineStyle = css;
     }
 
     public get style(): string {
-        const style: string = this.lineStyle || '';
+        const style: string = this.localStyle;
         this.lineStyle = '';
-        return style;
+        return `${this.globalStyles}${style}`;
     }
 
     public getStyleLabel(level: LoggerLevel): string {
@@ -44,5 +44,9 @@ export class CssFactory {
 
     private get globalStyles(): string {
         return this.globalLineStyle ? `${this.globalLineStyle};` : '';
+    }
+
+    private get localStyle(): string {
+      return this.lineStyle ? `${this.lineStyle};` : '';
     }
 }

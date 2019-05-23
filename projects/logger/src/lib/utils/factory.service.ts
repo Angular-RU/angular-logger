@@ -38,15 +38,12 @@ export class LoggerFactory {
     }
 
     private defineLevelGroups(level: LoggerLevel, operation: Operation, logger: LoggerService): Operation {
-        const { GROUP, GROUP_COLLAPSED }: any = GroupLevel;
-        const groupsIsNull: boolean = !(operation.hasOwnProperty(GROUP) || operation.hasOwnProperty(GROUP_COLLAPSED));
+        const { GROUP, GROUP_COLLAPSED }: typeof GroupLevel = GroupLevel;
 
-        if (groupsIsNull) {
-            Object.defineProperties(operation, {
-                [GROUP]: this.setGroupMethod(GROUP, level, logger),
-                [GROUP_COLLAPSED]: this.setGroupMethod(GROUP_COLLAPSED, level, logger)
-            });
-        }
+        Object.defineProperties(operation, {
+            [GROUP]: this.setGroupMethod(GROUP, level, logger),
+            [GROUP_COLLAPSED]: this.setGroupMethod(GROUP_COLLAPSED, level, logger)
+        });
 
         return operation;
     }

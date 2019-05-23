@@ -24,6 +24,8 @@ export class ClipboardFactory implements Clipboard {
             } finally {
                 document.body.removeChild(textarea);
             }
+        } else {
+            return false;
         }
     }
 }
