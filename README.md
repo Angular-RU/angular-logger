@@ -1,4 +1,4 @@
-# ClientLogger
+# NgxLogger
 
 > Lightweight and configurable Angular logger
 
@@ -20,7 +20,7 @@ setting of logging levels and convenient work with groups. Among other things, y
     -   [Add css classes](#example-css-classes)
     -   [Output pretty json `stringify`](#example-pretty-json)
     -   [Copy `json, object, text` to clipboard](#example-clipboard)
-    -   [Configuration `ClientLogger`](#example-full-configurations)
+    -   [Configuration `NgxLogger`](#example-full-configurations)
 -   [Todo](#todo)
 
 ## Logging
