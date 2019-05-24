@@ -10,7 +10,8 @@
         "build.meta": "echo 'prebuild'",
         "test": "jest --config ./jest.app.config.js --coverage",
         "lint": "ng lint",
-        "format": "prettier --write \"*/**/*.ts\""
+        "format": "prettier --write \"*/**/*.ts\"",
+        "coverage": "npm run test | coveralls"
     },
     "private": true,
     "dependencies": {
@@ -37,6 +38,7 @@
         "@types/jasmine": "~2.8.8",
         "@types/jasminewd2": "~2.0.3",
         "@types/node": "~8.9.4",
+        "coveralls": "^3.0.1",
         "codelyzer": "^4.5.0",
         "jasmine-core": "~2.99.1",
         "jasmine-spec-reporter": "~4.2.1",

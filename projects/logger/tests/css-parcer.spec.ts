@@ -8,6 +8,8 @@ describe('[TEST]: Check style', () => {
     let logger: LoggerService;
     const fakeConsole: Console & ConsoleFake = new ConsoleFake();
 
+    const testString: string = 'test string';
+
     beforeAll(() => {
         TestBed.configureTestingModule({
             imports: [
@@ -81,7 +83,7 @@ describe('[TEST]: Check style', () => {
     });
 
     it('should work with empty cssClass', () => {
-        logger.cssClass('').debug('test string');
+        logger.cssClass('').debug(testString);
 
         expect(logger.getCurrentLineStyle()).toEqual('');
     });
@@ -90,6 +92,7 @@ describe('[TEST]: Check style', () => {
 describe('[TEST]: Check global styles', () => {
     let logger: LoggerService;
     const fakeConsole: Console & ConsoleFake = new ConsoleFake();
+    const testString: string = 'test string';
 
     beforeAll(() => {
         TestBed.configureTestingModule({
@@ -107,14 +110,14 @@ describe('[TEST]: Check global styles', () => {
     beforeEach(() => logger.clear());
 
     it('should use global styles', () => {
-        logger.log('test string');
+        logger.log(testString);
         expect(fakeConsole.stack()).toEqual(
             '[{"log":["%c%s","color: violet; font-weight: bold; font-size: 12px;","test string"]}]'
         );
     });
 
     it('should use global styles and work with empty css', () => {
-        logger.css('').log('test string');
+        logger.css('').log(testString);
         expect(fakeConsole.stack()).toEqual(
             '[{"log":["%c%s","color: violet; font-weight: bold; font-size: 12px;","test string"]}]'
         );
