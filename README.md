@@ -24,7 +24,7 @@ setting of logging levels and convenient work with groups. Among other things, y
 
 ## Logging
 
-![](https://habrastorage.org/webt/m1/o3/hs/m1o3hslyjt1k13dzwesd6a0ve-k.gif)
+![](https://habrastorage.org/webt/lq/a9/_s/lqa9_sp8gxkwax_sy6x9w3qf5ry.gif)
 
 
 ### Example: basic methods
@@ -177,7 +177,7 @@ export class AppComponent implements OnInit {
 }
 ```
 
-![](https://habrastorage.org/webt/-k/qy/zf/-kqyzfaypig9ey4r-nygzbks_by.gif)
+![](https://habrastorage.org/webt/_n/wz/8l/_nwz8l25o12tmu0d8sxyyjttmck.gif)
 
 ### Example: set minimal logging level
 
@@ -394,7 +394,7 @@ export class AppComponent implements OnInit {
 }
 ```
 
-![](https://habrastorage.org/webt/ms/3q/cg/ms3qcgobarlpnpfla2lbppabh4k.gif)
+![](https://habrastorage.org/webt/sd/uo/3a/sduo3ags-5rsnoanvxtckysresw.gif)
 
 ### Example: full configurations
 
