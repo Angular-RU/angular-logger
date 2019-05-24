@@ -9,8 +9,7 @@ setting of logging levels and convenient work with groups. Among other things, y
 (decorators).
 
 ## Table of contents
-
--   [Logging](#logging)
+* [Logging](#)
     -   [Basic usage API `trace`, `debug`, `info`, `warn`. `error`](#example-basic-methods)
     -   [Groups, `groupCollapsed`, `collapsible`](#example-groups)
     -   [Nested groups (usage pipe method)](#example-nested-groups)
@@ -25,17 +24,18 @@ setting of logging levels and convenient work with groups. Among other things, y
 
 ## Logging
 
-![](https://habrastorage.org/webt/xi/ku/d9/xikud9fkxwng2ndu66f_c8yolag.gif)
+![](https://habrastorage.org/webt/m1/o3/hs/m1o3hslyjt1k13dzwesd6a0ve-k.gif)
+
 
 ### Example: basic methods
 
 ```typescript
 import { LoggerService } from '@angular-ru/logger';
 
-export class AppComponent {
+export class AppComponent implements OnInit {
     constructor(private readonly logger: LoggerService) {}
 
-    public showExample(): void {
+    public ngOnInit(): void {
         this.logger.trace('trace is worked', 1, { a: 1 });
         this.logger.debug('debug is worked', 2, {});
         this.logger.info('info is worked', 3, Object);
@@ -54,12 +54,11 @@ export class AppComponent {
 ```typescript
 import { LoggerService } from '@angular-ru/logger';
 
-export class AppComponent {
+export class AppComponent implements OnInit {
     private readonly traceIsWork: string = 'trace is worked';
-
     constructor(private readonly logger: LoggerService) {}
 
-    public showExample(): void {
+    public ngOnInit(): void {
         this.logger.group(
             'Show trace in opened group',
             ({ trace }: LoggerService): void => {
@@ -72,8 +71,6 @@ export class AppComponent {
 }
 ```
 
-![](https://habrastorage.org/webt/un/fl/81/unfl81h_wjnltr184of-vx1skio.gif)
-
 ### Example: groups
 
 -   **Logger groups with auto closed (usage callback):**
@@ -81,7 +78,7 @@ export class AppComponent {
 ```typescript
 import { LoggerService } from '@angular-ru/logger';
 
-export class AppComponent {
+export class AppComponent implements OnInit {
     private readonly traceIsWork: string = 'trace is worked';
     private readonly debugIsWork: string = 'debug is worked';
     private readonly infoIsWork: string = 'info is worked';
@@ -90,7 +87,7 @@ export class AppComponent {
 
     constructor(private readonly logger: LoggerService) {}
 
-    public showExample(): void {
+    public ngOnInit(): void {
         this.logger.groupCollapsed('EXAMPLE 2: show stack', () => {
             this.logger.trace(this.traceIsWork, 1, { a: 1 });
             this.logger.debug(this.debugIsWork, 2, console);
@@ -129,7 +126,7 @@ export class AppComponent {
 ```typescript
 import { LoggerService } from '@angular-ru/logger';
 
-export class AppComponent {
+export class AppComponent implements OnInit {
     private readonly traceIsWork: string = 'trace is worked';
     private readonly debugIsWork: string = 'debug is worked';
     private readonly infoIsWork: string = 'info is worked';
@@ -138,7 +135,7 @@ export class AppComponent {
 
     constructor(private readonly logger: LoggerService) {}
 
-    public showExample(): void {
+    public ngOnInit(): void {
         this.logger
             .groupCollapsed('GROUP TEST')
             .pipe(({ trace, debug, info, warn, error }: LoggerService) => {
@@ -180,7 +177,7 @@ export class AppComponent {
 }
 ```
 
-![](https://habrastorage.org/webt/77/vi/gm/77vigmltfbdmxhiruv8xgxwjdrg.gif)
+![](https://habrastorage.org/webt/-k/qy/zf/-kqyzfaypig9ey4r-nygzbks_by.gif)
 
 ### Example: set minimal logging level
 
@@ -189,7 +186,7 @@ Basic parameterization
 ```typescript
 import { LoggerService } from '@angular-ru/logger';
 
-export class AppComponent {
+export class AppComponent implements OnInit {
     private readonly traceIsWork: string = 'trace is worked';
     private readonly debugIsWork: string = 'debug is worked';
     private readonly infoIsWork: string = 'info is worked';
@@ -198,7 +195,7 @@ export class AppComponent {
 
     constructor(private readonly logger: LoggerService) {}
 
-    public showExample(): void {
+    public ngOnInit(): void {
         this.logger.trace(this.traceIsWork, 1, { a: 1 });
         this.logger.debug(this.debugIsWork, 2, console);
         this.logger.info(this.infoIsWork, 3, Object);
@@ -224,7 +221,7 @@ export class AppComponent {
 ```typescript
 import { LoggerService } from '@angular-ru/logger';
 
-export class AppComponent {
+export class AppComponent implements OnInit {
     private readonly traceIsWork: string = 'trace is worked';
     private readonly debugIsWork: string = 'debug is worked';
     private readonly infoIsWork: string = 'info is worked';
@@ -233,7 +230,7 @@ export class AppComponent {
 
     constructor(private readonly logger: LoggerService) {}
 
-    public showExample8(): any {
+    public ngOnInit(): void {
         this.logger.level = LoggerLevel.INFO;
 
         this.logger.trace
@@ -299,10 +296,10 @@ export class AppComponent {
 ```typescript
 import { LoggerService } from '@angular-ru/logger';
 
-export class AppComponent {
+export class AppComponent implements OnInit {
     constructor(private readonly logger: LoggerService) {}
 
-    public showExample5(): void {
+    public ngOnInit(): void {
         this.logger.clear();
 
         this.logger.css('text-transform: uppercase; font-weight: bold').debug('window current ', window);
@@ -324,10 +321,10 @@ export class AppComponent {
 ```typescript
 import { LoggerService } from '@angular-ru/logger';
 
-export class AppComponent {
+export class AppComponent implements OnInit {
     constructor(private readonly logger: LoggerService) {}
 
-    public showExample(): void {
+    public ngOnInit(): void {
         this.logger.clear();
 
         this.logger.css('font-weight: normal; text-decoration: none; font-style: italic;').info(3.14);
@@ -344,10 +341,10 @@ export class AppComponent {
 ```typescript
 import { LoggerService } from '@angular-ru/logger';
 
-export class AppComponent {
+export class AppComponent implements OnInit {
     constructor(private readonly logger: LoggerService) {}
 
-    public showExample(): void {
+    public ngOnInit(): void {
         this.logger.cssClass('bold line-through').log('JavaScript sucks', 'JavaScript is the best');
 
         this.logger
@@ -366,10 +363,10 @@ export class AppComponent {
 ```typescript
 import { LoggerService } from '@angular-ru/logger';
 
-export class AppComponent {
+export class AppComponent implements OnInit {
     constructor(private readonly logger: LoggerService) {}
 
-    public showExample(): void {
+    public ngOnInit(): void {
         // default browser print json
         this.logger.debug('Classic output json', jsonExample);
 
@@ -386,10 +383,10 @@ export class AppComponent {
 ```typescript
 import { LoggerService } from '@angular-ru/logger';
 
-export class AppComponent {
+export class AppComponent implements OnInit {
     constructor(private readonly logger: LoggerService) {}
 
-    public showExample(): void {
+    public ngOnInit(): void {
         const example: string = 'test string';
         this.logger.log(example);
         this.logger.copy(example);
@@ -397,7 +394,7 @@ export class AppComponent {
 }
 ```
 
-![](https://habrastorage.org/webt/nq/uo/0z/nquo0zs2_tbvpxkaut4eavh-qeq.gif)
+![](https://habrastorage.org/webt/ms/3q/cg/ms3qcgobarlpnpfla2lbppabh4k.gif)
 
 ### Example: full configurations
 
@@ -444,7 +441,9 @@ export class AppModule {}
 ```ts
 import { LoggerService } from '@angular-ru/logger';
 
-export class AppComponent {
+export class AppComponent implements OnInit {
+
+  public ngOnInit(): void {
     private readonly traceIsWork: string = 'trace is worked';
     private readonly debugIsWork: string = 'debug is worked';
     private readonly infoIsWork: string = 'info is worked';
