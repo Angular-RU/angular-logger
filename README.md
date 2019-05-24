@@ -1,8 +1,21 @@
-# NgxLogger
+# Angular Logger
 
 > Lightweight and configurable Angular logger
 
  [![Build Status](https://travis-ci.org/Angular-RU/angular-logger.svg?branch=master)](https://travis-ci.org/Angular-RU/angular-logger) [![npm version](https://badge.fury.io/js/%40angular-ru%2Flogger.svg)](https://badge.fury.io/js/%40angular-ru%2Flogger) [![Coverage Status](https://coveralls.io/repos/github/Angular-RU/angular-logger/badge.svg?branch=develop)](https://coveralls.io/github/Angular-RU/angular-logger?branch=develop) [![npm-stat](https://img.shields.io/npm/dt/@Angular-RU/logger.svg)](https://npm-stat.com/charts.html?package=%40Angular-RU%2Flogger&from=2017-01-12)
+ 
+ ```typescript
+import { LoggerModule } from '@angular-ru/logger';
+...
+
+@NgModule({
+  imports: [
+     LoggerModule.forRoot()
+  ],
+  ...
+})
+export class AppModule {}
+```
 
 
 ## Motivation
@@ -22,7 +35,7 @@ setting of logging levels and convenient work with groups. Among other things, y
     -   [Add css classes](#example-css-classes)
     -   [Output pretty json `stringify`](#example-pretty-json)
     -   [Copy `json, object, text` to clipboard](#example-clipboard)
-    -   [Configuration `NgxLogger`](#example-full-configurations)
+    -   [Configuration `Angular Logger`](#example-full-configurations)
 -   [Todo](#todo)
 
 ## Logging
@@ -306,9 +319,7 @@ export class AppComponent implements OnInit {
         this.logger.clear();
 
         this.logger.css('text-transform: uppercase; font-weight: bold').debug('window current ', window);
-
         this.logger.css('color: red; text-decoration: underline; font-weight: bold').info('It is awesome logger');
-
         this.logger.debug({ a: 1 });
 
         this.logger.warn(setStyle);
@@ -510,3 +521,7 @@ export class AppComponent implements OnInit {
 -   [ ] Timers (decorator)
 -   [ ] Pre process output
 -   [ ] Format output console
+
+## Authors
+
+[Eleonora Zbarskaya](https://github.com/kingofferelden), [Ivanov Maxim](https://github.com/splincode)
