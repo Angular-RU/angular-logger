@@ -3,20 +3,6 @@
 > Lightweight and configurable Angular logger
 
  [![Build Status](https://travis-ci.org/Angular-RU/angular-logger.svg?branch=master)](https://travis-ci.org/Angular-RU/angular-logger) [![npm version](https://badge.fury.io/js/%40angular-ru%2Flogger.svg)](https://badge.fury.io/js/%40angular-ru%2Flogger) [![Coverage Status](https://coveralls.io/repos/github/Angular-RU/angular-logger/badge.svg?branch=develop)](https://coveralls.io/github/Angular-RU/angular-logger?branch=develop) [![npm-stat](https://img.shields.io/npm/dt/@angular-ru/logger.svg)](https://npm-stat.com/charts.html?package=%40angular-ru%2Flogger&from=2017-01-12)
- 
- ```typescript
-import { LoggerModule } from '@angular-ru/logger';
-...
-
-@NgModule({
-  imports: [
-     LoggerModule.forRoot()
-  ],
-  ...
-})
-export class AppModule {}
-```
-
 
 ## Motivation
 
@@ -39,6 +25,24 @@ setting of logging levels and convenient work with groups. Among other things, y
 -   [Todo](#todo)
 
 ## Logging
+
+ ```
+ $ npm install @angular-ru/logger --save
+ ```
+ 
+ 
+ ```typescript
+import { LoggerModule } from '@angular-ru/logger';
+...
+
+@NgModule({
+  imports: [
+     LoggerModule.forRoot()
+  ],
+  ...
+})
+export class AppModule {}
+```
 
 ![](https://habrastorage.org/webt/lq/a9/_s/lqa9_sp8gxkwax_sy6x9w3qf5ry.gif)
 
