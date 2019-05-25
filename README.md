@@ -44,6 +44,8 @@ import { LoggerModule } from '@angular-ru/logger';
 export class AppModule {}
 ```
 
+**Online examples**: https://stackblitz.com/github/Angular-RU/ng-logger
+
 ![](https://habrastorage.org/webt/lq/a9/_s/lqa9_sp8gxkwax_sy6x9w3qf5ry.gif)
 
 
