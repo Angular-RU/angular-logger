@@ -440,7 +440,7 @@ export class AppComponent implements OnInit {
 ### Example: decorators
 
 ```typescript
-import { LoggerService, Logger, Debug, Trace, Info, Warn, Error, Log, LogFn } from '@angular-ru/logger';
+import { LoggerService, Logger, Debug, Trace, Info, Warn, Error, Log, LogFn, Info } from '@angular-ru/logger';
 
 export class AppComponent {
     @Logger() public loggerInjection: LoggerService;
