@@ -18,7 +18,6 @@ import { LoggerModule } from '@angular-ru/logger';
  ...
 })
 export class AppModule {}
-```
 
 ## Motivation
 
@@ -43,6 +42,26 @@ setting of logging levels and convenient work with groups. Among other things, y
 *   [Todo](#todo)
 
 ## Logging
+
+ ```
+ $ npm install @angular-ru/logger --save
+ ```
+ 
+ 
+ ```typescript
+import { LoggerModule } from '@angular-ru/logger';
+...
+
+@NgModule({
+  imports: [
+     LoggerModule.forRoot()
+  ],
+  ...
+})
+export class AppModule {}
+```
+
+**Online examples**: https://stackblitz.com/github/Angular-RU/ng-logger
 
 ![](https://habrastorage.org/webt/lq/a9/_s/lqa9_sp8gxkwax_sy6x9w3qf5ry.gif)
 
