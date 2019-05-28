@@ -1,7 +1,7 @@
 import { ConsoleFake } from '../../../helpers/console-fake';
 import { TestBed } from '@angular/core/testing';
 import { LoggerModule } from '../src/lib/logger.module';
-import { ConsoleService } from '../src/lib/utils/console.service';
+import { ConsoleService } from '../src/lib/services/console.service';
 import { LoggerService } from '../src/lib/logger.service';
 import { LoggerLevel } from '../src/lib/logger.config';
 

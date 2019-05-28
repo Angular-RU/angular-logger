@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { LoggerFactory } from './utils/factory.service';
+import { LoggerFactory } from './services/factory.service';
 import { LoggerLevel } from './logger.config';
-import { ConsoleService } from './utils/console.service';
-import { GroupFactory } from './utils/group-factory.service';
-import { LogMethod, ObjectKeyMap, Pipeline } from './logger.interfaces';
-import { CssFactory } from './utils/css-factory.service';
-import { JsonFactory } from './utils/json-factory.service';
-import { ClipboardFactory } from './utils/clipboard-factory.service';
+import { ConsoleService } from './services/console.service';
+import { GroupFactory } from './services/group-factory.service';
+import { LogFn, ObjectKeyMap, Pipeline } from './logger.interfaces';
+import { CssFactory } from './services/css-factory.service';
+import { JsonFactory } from './services/json-factory.service';
+import { ClipboardFactory } from './services/clipboard-factory.service';
 
 @Injectable()
 export class LoggerService {
@@ -19,40 +19,40 @@ export class LoggerService {
         private readonly jsonFactory: JsonFactory
     ) {}
 
-    public get clear(): LogMethod {
+    public get clear(): LogFn {
         return this.console.instance.clear.bind(this.console.instance);
     }
 
-    public get table(): LogMethod {
+    public get table(): LogFn {
         return this.console.instance.table.bind(this.console.instance);
     }
 
-    public get log(): LogMethod {
-        return this.factory.createLogger<LogMethod>(LoggerLevel.LOG, this);
+    public get log(): LogFn {
+        return this.factory.createLogger<LogFn>(LoggerLevel.LOG, this);
     }
 
-    public get trace(): LogMethod {
-        return this.factory.createLogger<LogMethod>(LoggerLevel.TRACE, this);
+    public get trace(): LogFn {
+        return this.factory.createLogger<LogFn>(LoggerLevel.TRACE, this);
     }
 
-    public get assert(): LogMethod {
+    public get assert(): LogFn {
         return this.console.instance.assert.bind(this.console.instance);
     }
 
-    public get debug(): LogMethod {
-        return this.factory.createLogger<LogMethod>(LoggerLevel.DEBUG, this);
+    public get debug(): LogFn {
+        return this.factory.createLogger<LogFn>(LoggerLevel.DEBUG, this);
     }
 
-    public get info(): LogMethod {
-        return this.factory.createLogger<LogMethod>(LoggerLevel.INFO, this);
+    public get info(): LogFn {
+        return this.factory.createLogger<LogFn>(LoggerLevel.INFO, this);
     }
 
-    public get warn(): LogMethod {
-        return this.factory.createLogger<LogMethod>(LoggerLevel.WARN, this);
+    public get warn(): LogFn {
+        return this.factory.createLogger<LogFn>(LoggerLevel.WARN, this);
     }
 
-    public get error(): LogMethod {
-        return this.factory.createLogger<LogMethod>(LoggerLevel.ERROR, this);
+    public get error(): LogFn {
+        return this.factory.createLogger<LogFn>(LoggerLevel.ERROR, this);
     }
 
     public get level(): LoggerLevel {

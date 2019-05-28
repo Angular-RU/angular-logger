@@ -29,14 +29,14 @@ export class GroupFactory {
         }
     }
 
-    public group(title: string, pipeline: Pipeline, logger: LoggerService, level: LoggerLevel): void {
+    public group(title: string, pipeline: Pipeline, logger: LoggerService, level: LoggerLevel): any {
         const group: GroupMethod = this.console.instance.group.bind(this.console.instance);
-        this.createGroupLogger(group, title, pipeline, logger, level);
+        return this.createGroupLogger(group, title, pipeline, logger, level);
     }
 
-    public groupCollapsed(title: string, pipeline: Pipeline, logger: LoggerService, level: LoggerLevel): void {
+    public groupCollapsed(title: string, pipeline: Pipeline, logger: LoggerService, level: LoggerLevel): any {
         const groupCollapsed: GroupMethod = this.console.instance.groupCollapsed.bind(this.console.instance);
-        this.createGroupLogger(groupCollapsed, title, pipeline, logger, level);
+        return this.createGroupLogger(groupCollapsed, title, pipeline, logger, level);
     }
 
     private createGroupLogger(
@@ -45,7 +45,7 @@ export class GroupFactory {
         pipeline: Pipeline,
         logger: LoggerService,
         level: LoggerLevel
-    ): void {
+    ): any {
         const showGroup: boolean = this.console.minLevel <= level;
         if (showGroup) {
             this.executePipesGroup = true;
@@ -56,8 +56,9 @@ export class GroupFactory {
 
             groupType(label, lineStyle, title);
             if (pipeline) {
-                pipeline(logger);
+                const pipe: any = pipeline(logger);
                 this.close();
+                return pipe;
             }
         } else {
             this.executePipesGroup = false;
