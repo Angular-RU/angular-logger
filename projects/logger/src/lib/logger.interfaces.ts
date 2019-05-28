@@ -2,7 +2,7 @@ import { LoggerService } from './logger.service';
 import { LoggerLevel } from './logger.config';
 import { InjectionToken } from '@angular/core';
 
-export type Pipeline = (logger: LoggerService) => void;
+export type Pipeline = (logger: LoggerService) => any;
 
 export interface GroupMethods extends Function {
     group(label: string, pipeline?: Pipeline): LoggerService;
@@ -12,14 +12,16 @@ export interface GroupMethods extends Function {
 
 export type ConsoleOperation<T = any, P = any> = (message?: T, ...optionalParams: P[]) => void;
 export type PipeOperation = GroupMethods | ConsoleOperation;
-export type GroupMethod<T = any> = (groupTitle?: string, ...optionalParams: T[]) => void;
+export type GroupMethod<T = any> = (groupTitle?: string, ...optionalParams: T[]) => any;
 export type GroupFactoryMethod = (title: string, pipeline: Pipeline, logger: LoggerService, level: LoggerLevel) => void;
-export type LogMethod = GroupMethods & ConsoleOperation;
+export type LogFn = GroupMethods & ConsoleOperation;
 export type Arguments<T = any> = T[];
 
 export interface ObjectKeyMap<T = any> {
     [key: string]: T;
 }
+
+export type Callback<T = void> = (...args: any[]) => T;
 
 export type Descriptor<T = any> = PropertyDescriptor & ThisType<T>;
 
