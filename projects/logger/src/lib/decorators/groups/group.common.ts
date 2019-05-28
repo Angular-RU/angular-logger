@@ -14,8 +14,8 @@ export function groupDecoratorFactory(
     target: any
 ): any {
     let result: any;
-    const logger: LoggerService = LoggerModule.injector.get(LoggerService);
-    const groupFactory: GroupFactory = LoggerModule.injector.get(GroupFactory);
+    const logger: LoggerService = LoggerModule.logger;
+    const groupFactory: GroupFactory = LoggerModule.groupFactory;
     const groupMethod: GroupMethod = groupFactory[groupType].bind(groupFactory);
     const label: string = typeof title === 'string' ? title : title(...args);
 

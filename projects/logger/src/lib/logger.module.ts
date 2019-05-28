@@ -22,10 +22,18 @@ import { LoggerConfigurator } from './logger.options';
     providers: [LoggerService, LoggerFactory, ConsoleService, GroupFactory, CssFactory, JsonFactory, ClipboardFactory]
 })
 export class LoggerModule {
-    public static injector: Injector;
+    private static injector: Injector;
 
     constructor(injector: Injector) {
         LoggerModule.injector = injector;
+    }
+
+    public static get logger(): LoggerService {
+        return LoggerModule.injector.get(LoggerService);
+    }
+
+    public static get groupFactory(): GroupFactory {
+        return LoggerModule.injector.get(GroupFactory);
     }
 
     public static forRoot(config: Partial<LoggerOptions> = {}): ModuleWithProviders {

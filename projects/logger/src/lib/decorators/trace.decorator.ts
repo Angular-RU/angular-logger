@@ -1,5 +1,4 @@
 import { LogFn } from './../logger.interfaces';
-import { LoggerService } from './../logger.service';
 import { LoggerModule } from './../logger.module';
 
 export function Trace(): PropertyDecorator {
@@ -7,8 +6,7 @@ export function Trace(): PropertyDecorator {
         Object.defineProperty(target, propertyName, {
             configurable: false,
             get(): LogFn {
-                const logger: LoggerService = LoggerModule.injector.get(LoggerService);
-                return logger.trace;
+                return LoggerModule.logger.trace;
             }
         });
     };

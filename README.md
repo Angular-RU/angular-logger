@@ -443,7 +443,7 @@ export class AppComponent implements OnInit {
 import { LoggerService, Logger, Debug, Trace, Info, Warn, Error, Log, LogFn } from '@angular-ru/logger';
 
 export class AppComponent {
-    @Logger() public loggerInjection: LoggerService;
+    @Logger() public logger: LoggerService;
     @Trace() public trace: LogFn;
     @Debug() public debug: LogFn;
     @Info() public info: LogFn;
@@ -458,8 +458,8 @@ export class AppComponent {
     private readonly errorIsWork: string = 'error is worked';
 
     public showExample(): void {
-        this.loggerInjection.clear();
-        this.loggerInjection.log('log is worked');
+        this.logger.clear();
+        this.logger.log('log is worked');
         this.trace(this.traceIsWork, 1, { a: 1 });
         this.debug(this.debugIsWork, 2, console);
         this.info(this.infoIsWork, 3, Object);
@@ -477,16 +477,16 @@ export class AppComponent {
 import { LoggerService, Logger, LoggerLevel, Group } from '@angular-ru/logger';
 
 export class AppComponent {
-    @Logger() public loggerInjection: LoggerService;
+    @Logger() public logger: LoggerService;
 
     @Group('test title', LoggerLevel.WARN)
     private helloWorld(name: string): string {
-        this.loggerInjection.log('log only in group', name);
+        this.logger.log('log only in group', name);
         return 'hello world';
     }
 
     public showExample11(): void {
-        this.loggerInjection.log(this.helloWorld('Hello'));
+        this.logger.log(this.helloWorld('Hello'));
     }
 }
 ```
