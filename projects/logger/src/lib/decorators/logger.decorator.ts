@@ -1,5 +1,5 @@
 import { LoggerModule } from '../logger.module';
-import { LoggerService } from '@angular-ru/logger';
+import { LoggerService } from '../logger.service';
 
 export function Logger(): PropertyDecorator {
     return (target: any, propertyName: string): void => {
