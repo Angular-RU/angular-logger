@@ -1,6 +1,6 @@
 /* tslint:disable:no-duplicate-string */
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { LoggerLevel, LoggerService } from '@angular-ru/logger';
+import { Debug, Error, Group, Info, LogFn, Logger, LoggerLevel, LoggerService, Trace, Warn } from '@angular-ru/logger';
 import * as devtools from 'devtools-detect';
 
 @Component({
@@ -10,6 +10,13 @@ import * as devtools from 'devtools-detect';
     encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
+    @Logger() public loggerInjection: LoggerService;
+    @Trace() public trace: LogFn;
+    @Debug() public debug: LogFn;
+    @Info() public info: LogFn;
+    @Error() public error: LogFn;
+    @Warn() public warn: LogFn;
+
     public isLoaded: boolean;
     public devToolsIsOpen: boolean = devtools.isOpen;
 
@@ -30,23 +37,23 @@ export class AppComponent implements OnInit {
 
     public showExample1(): void {
         this.logger.clear();
-        this.logger.log('Example');
-        this.logger.trace(this.traceIsWork, 1, { a: 1 });
-        this.logger.debug(this.debugIsWork, 2, console);
-        this.logger.info(this.infoIsWork, 3, Object);
-        this.logger.warn(this.warnIsWork, 4, String);
-        this.logger.error(this.errorIsWork, 5, (2.55).toFixed());
+        this.loggerInjection.log('log is worked');
+        this.trace(this.traceIsWork, 1, { a: 1 });
+        this.debug(this.debugIsWork, 2, console);
+        this.info(this.infoIsWork, 3, Object);
+        this.warn(this.warnIsWork, 4, String);
+        this.error(this.errorIsWork, 5, (2.55).toFixed());
     }
 
     public showExample2(): void {
         this.logger.clear();
 
         this.logger.groupCollapsed('EXAMPLE 2: show stack', () => {
-            this.logger.trace(this.traceIsWork, 1, { a: 1 });
-            this.logger.debug(this.debugIsWork, 2, console);
-            this.logger.info(this.infoIsWork, 3, Object);
-            this.logger.warn(this.warnIsWork, 4, String);
-            this.logger.error(this.errorIsWork, 5, (2.55).toFixed());
+            this.trace(this.traceIsWork, 1, { a: 1 });
+            this.debug(this.debugIsWork, 2, console);
+            this.info(this.infoIsWork, 3, Object);
+            this.warn(this.warnIsWork, 4, String);
+            this.error(this.errorIsWork, 5, (2.55).toFixed());
         });
 
         this.logger.group(
@@ -118,10 +125,10 @@ export class AppComponent implements OnInit {
         this.logger.level = LoggerLevel.INFO;
 
         this.logger.log('log is working', 1, String);
-        this.logger.trace(this.traceIsWork, 4, String);
-        this.logger.debug(this.debugIsWork, 4, String);
-        this.logger.warn(this.warnIsWork, 4, String);
-        this.logger.error(this.errorIsWork, 5, (2.55).toFixed());
+        this.trace(this.traceIsWork, 4, String);
+        this.debug(this.debugIsWork, 4, String);
+        this.warn(this.warnIsWork, 4, String);
+        this.error(this.errorIsWork, 5, (2.55).toFixed());
 
         this.logger.level = LoggerLevel.ALL;
     }
@@ -132,27 +139,30 @@ export class AppComponent implements OnInit {
         this.logger.css('text-transform: uppercase; font-weight: bold').debug('window current ', window);
 
         this.logger.css('color: red; text-decoration: underline; font-weight: bold').info('It is awesome logger');
-        this.logger.debug({ a: 1 });
+        this.debug({ a: 1 });
 
-        this.logger.warn('logger.css(...) does not define a global format!');
-        this.logger.info('For global configuration, use the constructor parameters');
+        this.warn('logger.css(...) does not define a global format!');
+        this.info('For global configuration, use the constructor parameters');
     }
 
     public showExample6(): void {
         this.logger.clear();
+
         const jsonExample: object = {
             id: 1,
             hello: 'world'
         };
 
-        this.logger.debug('Classic output json', jsonExample);
+        this.debug('Classic output json', jsonExample);
 
         this.logger.log(...this.logger.prettyJSON(jsonExample));
     }
 
     public showExample7(): any {
         this.logger.clear();
+
         const example: string = 'test string';
+
         this.logger.log(example);
         this.logger.copy(example);
     }
@@ -161,7 +171,7 @@ export class AppComponent implements OnInit {
         this.logger.clear();
         this.logger.level = LoggerLevel.INFO;
 
-        this.logger.trace
+        this.trace
             .group('A')
             .pipe(
                 ({ trace }: LoggerService) => trace(this.traceIsWork),
@@ -220,7 +230,7 @@ export class AppComponent implements OnInit {
 
         this.logger.css('font-weight: normal; text-decoration: none; font-style: italic;').info(3.14);
         this.logger.css('font-weight: normal;').info(3.14);
-        this.logger.warn('global format with style!');
+        this.warn('global format with style!');
     }
 
     public showExample10(): void {
@@ -233,5 +243,29 @@ export class AppComponent implements OnInit {
             .log('\n   @Component({ .. })' + '\n   export class AppComponent { .. }    \n\n');
 
         this.logger.cssClass('bold line-through').debug('JavaScript sucks', 'JavaScript is the best');
+
+        this.logger.level = LoggerLevel.INFO;
+    }
+
+    @Group('test title', LoggerLevel.WARN)
+    private helloWorld(name: string): string {
+        this.logger.log('log only in group', name);
+        return 'hello world';
+    }
+
+    public showExample11(): void {
+        this.loggerInjection.clear();
+        this.logger.log(this.helloWorld('Max'));
+    }
+
+    @Group((name: string) => `Test group with ${name}`)
+    public method(name: string): string {
+        this.loggerInjection.log('group is worked');
+        return name;
+    }
+
+    public showExample12(): void {
+        this.loggerInjection.clear();
+        this.method('hello world');
     }
 }

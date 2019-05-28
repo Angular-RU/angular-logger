@@ -2,21 +2,23 @@
 
 > Lightweight and configurable Angular logger
 
- [![Build Status](https://travis-ci.org/Angular-RU/angular-logger.svg?branch=master)](https://travis-ci.org/Angular-RU/angular-logger) [![npm version](https://badge.fury.io/js/%40angular-ru%2Flogger.svg)](https://badge.fury.io/js/%40angular-ru%2Flogger) [![Coverage Status](https://coveralls.io/repos/github/Angular-RU/angular-logger/badge.svg?branch=develop)](https://coveralls.io/github/Angular-RU/angular-logger?branch=develop) [![npm-stat](https://img.shields.io/npm/dt/@Angular-RU/logger.svg)](https://npm-stat.com/charts.html?package=%40Angular-RU%2Flogger&from=2017-01-12)
- 
- ```typescript
+[![Build Status](https://travis-ci.org/Angular-RU/angular-logger.svg?branch=master)](https://travis-ci.org/Angular-RU/angular-logger)
+[![npm version](https://badge.fury.io/js/%40angular-ru%2Flogger.svg)](https://badge.fury.io/js/%40angular-ru%2Flogger)
+[![Coverage Status](https://coveralls.io/repos/github/Angular-RU/angular-logger/badge.svg?branch=develop)](https://coveralls.io/github/Angular-RU/angular-logger?branch=develop)
+[![npm-stat](https://img.shields.io/npm/dt/@Angular-RU/logger.svg)](https://npm-stat.com/charts.html?package=%40Angular-RU%2Flogger&from=2017-01-12)
+
+```typescript
 import { LoggerModule } from '@angular-ru/logger';
 ...
 
 @NgModule({
-  imports: [
-     LoggerModule.forRoot()
-  ],
-  ...
+ imports: [
+    LoggerModule.forRoot()
+ ],
+ ...
 })
 export class AppModule {}
 ```
-
 
 ## Motivation
 
@@ -25,7 +27,8 @@ setting of logging levels and convenient work with groups. Among other things, y
 (decorators).
 
 ## Table of contents
-* [Logging](#)
+
+-   [Logging](#)
     -   [Basic usage API `trace`, `debug`, `info`, `warn`, `error`](#example-basic-methods)
     -   [Groups, `groupCollapsed`, `collapsible`](#example-groups)
     -   [Nested groups (usage pipe method)](#example-nested-groups)
@@ -36,12 +39,12 @@ setting of logging levels and convenient work with groups. Among other things, y
     -   [Output pretty json `stringify`](#example-pretty-json)
     -   [Copy `json, object, text` to clipboard](#example-clipboard)
     -   [Configuration `Angular Logger`](#example-full-configurations)
--   [Todo](#todo)
+
+*   [Todo](#todo)
 
 ## Logging
 
 ![](https://habrastorage.org/webt/lq/a9/_s/lqa9_sp8gxkwax_sy6x9w3qf5ry.gif)
-
 
 ### Example: basic methods
 
@@ -393,7 +396,6 @@ export class AppComponent implements OnInit {
 }
 export class AppModule {}
 ```
- 
 
 ![](https://habrastorage.org/webt/d5/tm/aa/d5tmaaomjql5px_wkzxnodhacnk.png)
 
@@ -434,6 +436,84 @@ export class AppComponent implements OnInit {
 ```
 
 ![](https://habrastorage.org/webt/sd/uo/3a/sduo3ags-5rsnoanvxtckysresw.gif)
+
+### Example: decorators
+
+```typescript
+import { LoggerService, Logger, Debug, Trace, Info, Warn, Error, Log, LogFn } from '@angular-ru/logger';
+
+export class AppComponent {
+    @Logger() public loggerInjection: LoggerService;
+    @Trace() public trace: LogFn;
+    @Debug() public debug: LogFn;
+    @Info() public info: LogFn;
+    @Error() public error: LogFn;
+    @Warn() public warn: LogFn;
+    @Log() public log: LogFn;
+    
+    private readonly traceIsWork: string = 'trace is worked';
+    private readonly debugIsWork: string = 'debug is worked';
+    private readonly infoIsWork: string = 'info is worked';
+    private readonly warnIsWork: string = 'warn is worked';
+    private readonly errorIsWork: string = 'error is worked';
+
+    public showExample(): void {
+        this.loggerInjection.clear();
+        this.loggerInjection.log('log is worked');
+        this.trace(this.traceIsWork, 1, { a: 1 });
+        this.debug(this.debugIsWork, 2, console);
+        this.info(this.infoIsWork, 3, Object);
+        this.warn(this.warnIsWork, 4, String);
+        this.error(this.errorIsWork, 5, (2.55).toFixed());
+    }
+}
+```
+
+![](https://habrastorage.org/webt/fk/ar/a5/fkara5xhh75iz1q9_dales4cu9s.png)
+
+### Example: decorator groups
+
+```typescript
+import { LoggerService, Logger, LoggerLevel, Group } from '@angular-ru/logger';
+
+export class AppComponent {
+    @Logger() public loggerInjection: LoggerService;
+
+    @Group('test title', LoggerLevel.WARN)
+    private helloWorld(name: string): string {
+        this.loggerInjection.log('log only in group', name);
+        return 'hello world';
+    }
+
+    public showExample11(): void {
+        this.loggerInjection.log(this.helloWorld('Hello'));
+    }
+}
+```
+
+![](https://habrastorage.org/webt/na/bu/zw/nabuzwdhsanhy0sznh5tvwdu8es.png)
+
+### Example: decorator group with function title
+
+```typescript
+import { Log, LogFn, Group } from '@angular-ru/logger';
+
+export class AppComponent {
+    @Log() public log: LogFn;
+
+    @Group((name: string) => `Test group with ${name}`)
+    public method(name: string): string {
+        this.log('group is worked');
+        return name;
+    }
+
+    public showExample(): void {
+        this.method('hello world');
+    }
+}
+```
+
+![](https://habrastorage.org/webt/j9/mz/4v/j9mz4vbyhi0dg_8kr5wjmfwgiye.png)
 
 ### Example: full configurations
 
@@ -517,6 +597,7 @@ export class AppComponent implements OnInit {
 -   [x] Added css classes
 -   [x] Dependency Injection for Angular
 -   [x] Switch enable/disable default console output
+-   [x] Decorators
 -   [ ] Profiling (memory usage, sizeof, time execute)
 -   [ ] Timers (decorator)
 -   [ ] Pre process output
