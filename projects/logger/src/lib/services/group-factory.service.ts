@@ -39,13 +39,13 @@ export class GroupFactory {
         return this.createGroupLogger(groupCollapsed, title, pipeline, logger, level);
     }
 
-    private createGroupLogger(
+    private createGroupLogger<T = any>(
         groupType: GroupMethod,
         title: string,
         pipeline: Pipeline,
         logger: LoggerService,
         level: LoggerLevel
-    ): Pipeline {
+    ): Pipeline<T> {
         const showGroup: boolean = this.console.minLevel <= level;
         let pipeLineResult: any;
         if (showGroup) {
