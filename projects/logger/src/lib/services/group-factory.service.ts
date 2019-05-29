@@ -47,6 +47,7 @@ export class GroupFactory {
         level: LoggerLevel
     ): Pipeline {
         const showGroup: boolean = this.console.minLevel <= level;
+        let pipeLineResult: any;
         if (showGroup) {
             this.executePipesGroup = true;
             this.counterOpenedGroup++;
@@ -58,10 +59,11 @@ export class GroupFactory {
             if (pipeline) {
                 const pipe: any = pipeline(logger);
                 this.close();
-                return pipe;
+                pipeLineResult = pipe;
             }
         } else {
             this.executePipesGroup = false;
         }
+        return pipeLineResult;
     }
 }
