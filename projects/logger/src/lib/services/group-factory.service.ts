@@ -45,7 +45,7 @@ export class GroupFactory {
         pipeline: Pipeline,
         logger: LoggerService,
         level: LoggerLevel
-    ): any {
+    ): Pipeline {
         const showGroup: boolean = this.console.minLevel <= level;
         if (showGroup) {
             this.executePipesGroup = true;

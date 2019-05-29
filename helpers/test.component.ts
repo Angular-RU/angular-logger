@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
-import { LoggerService } from '../../src/lib/logger.service';
-import { Logger } from '../../src/lib/decorators/logger.decorator';
-import { Debug } from '../../src/lib/decorators/debug.decorator';
-import { Trace } from '../../src/lib/decorators/trace.decorator';
-import { Info } from '../../src/lib/decorators/info.decorator';
-import { Error } from '../../src/lib/decorators/error.decorator';
-import { Warn } from '../../src/lib/decorators/warn.decorator';
-import { Log } from '../../src/lib/decorators/log.decorator';
-import { Group } from '../../src/lib/decorators/groups/group.decorator';
-import { GroupCollapsed } from '../../src/lib/decorators/groups/group-collapsed.decorator';
-import { LoggerLevel } from '../../src/lib/logger.config';
+import { LoggerService } from '../projects/logger/src/lib/logger.service';
+import { Logger } from '../projects/logger/src/lib/decorators/logger.decorator';
+import { Debug } from '../projects/logger/src/lib/decorators/debug.decorator';
+import { Trace } from '../projects/logger/src/lib/decorators/trace.decorator';
+import { Info } from '../projects/logger/src/lib/decorators/info.decorator';
+import { Error } from '../projects/logger/src/lib/decorators/error.decorator';
+import { Warn } from '../projects/logger/src/lib/decorators/warn.decorator';
+import { Log } from '../projects/logger/src/lib/decorators/log.decorator';
+import { Group } from '../projects/logger/src/lib/decorators/groups/group.decorator';
+import { GroupCollapsed } from '../projects/logger/src/lib/decorators/groups/group-collapsed.decorator';
+import { LoggerLevel } from '../projects/logger/src/lib/logger.config';
 import { LogFn } from '@angular-ru/logger';
 
 @Component({
