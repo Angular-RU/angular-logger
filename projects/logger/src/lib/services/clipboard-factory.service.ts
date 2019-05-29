@@ -3,7 +3,7 @@ import { Clipboard, SetDataType } from '../logger.interfaces';
 
 @Injectable()
 export class ClipboardFactory implements Clipboard {
-    private readonly clipboardDepthSpaces: number = 4;
+    private readonly DEFAULT_DEPTH: number = 4;
     public get clipboardSetData(): SetDataType {
         const dataTransfer: DataTransfer = (window as any).clipboardData;
         return dataTransfer && dataTransfer.setData;
@@ -14,7 +14,7 @@ export class ClipboardFactory implements Clipboard {
     }
 
     public copyOnBuffer(data: any): boolean {
-        const text: string = typeof data !== 'string' ? JSON.stringify(data, null, this.clipboardDepthSpaces) : data;
+        const text: string = typeof data !== 'string' ? JSON.stringify(data, null, this.DEFAULT_DEPTH) : data;
         let isExec: boolean = false;
 
         if (this.clipboardSetData) {

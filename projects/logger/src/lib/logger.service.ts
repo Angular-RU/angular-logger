@@ -10,7 +10,7 @@ import { ClipboardFactory } from './services/clipboard-factory.service';
 
 @Injectable()
 export class LoggerService {
-  private readonly depthSpacesInPrettyJson: number = 2;
+  private readonly DEFAULT_DEPTH: number = 2;
     constructor(
         public readonly clipboard: ClipboardFactory,
         public readonly cssFactory: CssFactory,
@@ -114,7 +114,7 @@ export class LoggerService {
     }
 
     public prettyJSON(json: ObjectKeyMap): string[] {
-        return this.jsonFactory.colorsJSON(JSON.stringify(json, null, this.depthSpacesInPrettyJson));
+        return this.jsonFactory.colorsJSON(JSON.stringify(json, null, this.DEFAULT_DEPTH));
     }
 
     public cssClass(cssClassName: string): LoggerService {
