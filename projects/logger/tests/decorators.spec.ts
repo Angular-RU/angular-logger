@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ConsoleFake, TestLoggerLineType } from '../../../helpers/console-fake';
 import { LoggerModule } from '../src/lib/logger.module';
-import { MyTestComponent } from '../../../helpers/test.component';
+import { MyTestComponent } from './mocks/test.component';
 import { LoggerService } from '../src/lib/logger.service';
 
 describe('[TEST]: Decorator API', () => {

@@ -38,9 +38,6 @@ setting of logging levels and convenient work with groups. Among other things, y
     -   [Add css classes](#example-css-classes)
     -   [Output pretty json `stringify`](#example-pretty-json)
     -   [Copy `json, object, text` to clipboard](#example-clipboard)
-    -   [Basic decorators](#example-decorators)
-    -   [Decorator groups](#example-decorator-groups)
-    -   [Decorator groups with function title](#example-decorator-group-with-function-title)
     -   [Configuration `Angular Logger`](#example-full-configurations)
 
 *   [Todo](#todo)

@@ -2,7 +2,7 @@ import { LoggerService } from './logger.service';
 import { LoggerLevel } from './logger.config';
 import { InjectionToken } from '@angular/core';
 
-export type Pipeline<T = any> = (logger: LoggerService) => T;
+export type Pipeline = (logger: LoggerService) => any;
 
 export interface GroupMethods extends Function {
     group(label: string, pipeline?: Pipeline): LoggerService;
