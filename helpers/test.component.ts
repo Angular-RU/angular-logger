@@ -10,7 +10,7 @@ import { Log } from '../projects/logger/src/lib/decorators/log.decorator';
 import { Group } from '../projects/logger/src/lib/decorators/groups/group.decorator';
 import { GroupCollapsed } from '../projects/logger/src/lib/decorators/groups/group-collapsed.decorator';
 import { LoggerLevel } from '../projects/logger/src/lib/logger.config';
-import { LogFn } from '@angular-ru/logger';
+import { LogFn } from '../projects/logger/src/lib/logger.interfaces';
 
 @Component({
     selector: 'lib-hello-test',
