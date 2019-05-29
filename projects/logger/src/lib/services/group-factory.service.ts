@@ -39,7 +39,7 @@ export class GroupFactory {
         return this.createGroupLogger(groupCollapsed, title, pipeline, logger, level);
     }
 
-    private createGroupLogger<T = any>(
+    private createGroupLogger<T>(
         groupType: GroupMethod,
         title: string,
         pipeline: Pipeline,
