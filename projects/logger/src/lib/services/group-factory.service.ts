@@ -29,24 +29,25 @@ export class GroupFactory {
         }
     }
 
-    public group(title: string, pipeline: Pipeline, logger: LoggerService, level: LoggerLevel): any {
+    public group<T = any>(title: string, pipeline: Pipeline<T>, logger: LoggerService, level: LoggerLevel): T {
         const group: GroupMethod = this.console.instance.group.bind(this.console.instance);
-        return this.createGroupLogger(group, title, pipeline, logger, level);
+        return this.createGroupLogger<T>(group, title, pipeline, logger, level);
     }
 
-    public groupCollapsed(title: string, pipeline: Pipeline, logger: LoggerService, level: LoggerLevel): any {
+    public groupCollapsed<T = any>(title: string, pipeline: Pipeline<T>, logger: LoggerService, level: LoggerLevel): T {
         const groupCollapsed: GroupMethod = this.console.instance.groupCollapsed.bind(this.console.instance);
-        return this.createGroupLogger(groupCollapsed, title, pipeline, logger, level);
+        return this.createGroupLogger<T>(groupCollapsed, title, pipeline, logger, level);
     }
 
-    private createGroupLogger(
+    private createGroupLogger<T = any>(
         groupType: GroupMethod,
         title: string,
         pipeline: Pipeline,
         logger: LoggerService,
         level: LoggerLevel
-    ): any {
+    ): T {
         const showGroup: boolean = this.console.minLevel <= level;
+        let pipeLineResult: T;
         if (showGroup) {
             this.executePipesGroup = true;
             this.counterOpenedGroup++;
@@ -58,10 +59,12 @@ export class GroupFactory {
             if (pipeline) {
                 const pipe: any = pipeline(logger);
                 this.close();
-                return pipe;
+                pipeLineResult = pipe;
             }
         } else {
             this.executePipesGroup = false;
         }
+
+        return pipeLineResult;
     }
 }
