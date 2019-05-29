@@ -8,11 +8,11 @@ export class LoggerConfigurator implements LoggerOptions {
     public cssClassMap: object = {};
     public useLevelGroup: boolean = true;
     public labelColors: ObjectKeyMap<string> = {
-      [LoggerLevel.TRACE]: COLORS.TRACE,
-      [LoggerLevel.DEBUG]: COLORS.DEBUG,
-      [LoggerLevel.INFO]: COLORS.INFO,
-      [LoggerLevel.WARN]: COLORS.WARN,
-      [LoggerLevel.ERROR]: COLORS.ERROR
+        [LoggerLevel.TRACE]: COLORS.TRACE,
+        [LoggerLevel.DEBUG]: COLORS.DEBUG,
+        [LoggerLevel.INFO]: COLORS.INFO,
+        [LoggerLevel.WARN]: COLORS.WARN,
+        [LoggerLevel.ERROR]: COLORS.ERROR
     };
 
     public labelNames: ObjectKeyMap<string> = {
