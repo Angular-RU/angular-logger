@@ -17,12 +17,7 @@ export class TimerFactory {
         return result;
     }
 
-    public endTime(
-        info: TimerInfo,
-        level: LoggerLevel,
-        isMillisecond: boolean,
-        logger: LoggerService
-    ): void {
+    public endTime(info: TimerInfo, level: LoggerLevel, isMillisecond: boolean, logger: LoggerService): void {
         const canExecute: boolean = !(this.console.minLevel > level);
 
         if (canExecute) {
