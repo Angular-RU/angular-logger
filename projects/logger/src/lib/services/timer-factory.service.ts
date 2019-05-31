@@ -6,8 +6,8 @@ import { LoggerService } from '../../lib/logger.service';
 
 @Injectable()
 export class TimerFactory {
-    private DIGITS_TO_FIX: number = 4;
-    private SECOND: number = 1000;
+    private readonly DIGITS_TO_FIX: number = 4;
+    private readonly SECOND: number = 1000;
     constructor(private readonly console: ConsoleService) {}
 
     public startTime(title: string, level: LoggerLevel): TimerInfo | null {
