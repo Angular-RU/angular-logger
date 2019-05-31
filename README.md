@@ -47,20 +47,19 @@ setting of logging levels and convenient work with groups. Among other things, y
 
 ## Logging
 
- ```
- $ npm install @angular-ru/logger --save
- ```
- 
- 
- ```typescript
+```
+$ npm install @angular-ru/logger --save
+```
+
+```typescript
 import { LoggerModule } from '@angular-ru/logger';
 ...
 
 @NgModule({
-  imports: [
-     LoggerModule.forRoot()
-  ],
-  ...
+ imports: [
+    LoggerModule.forRoot()
+ ],
+ ...
 })
 export class AppModule {}
 ```
@@ -463,17 +462,17 @@ export class AppComponent implements OnInit {
 ### Example: decorators
 
 ```typescript
-import { LoggerService, Logger, Debug, Trace, Info, Warn, Error, Log, LogFn } from '@angular-ru/logger';
+import { LoggerService, Logger, DebugLog, TraceLog, InfoLog, WarnLog, ErrorLog, Log, LogFn } from '@angular-ru/logger';
 
 export class AppComponent {
     @Logger() public logger: LoggerService;
-    @Trace() public trace: LogFn;
-    @Debug() public debug: LogFn;
-    @Info() public info: LogFn;
-    @Error() public error: LogFn;
-    @Warn() public warn: LogFn;
+    @TraceLog() public trace: LogFn;
+    @DebugLog() public debug: LogFn;
+    @InfoLog() public info: LogFn;
+    @ErrorLog() public error: LogFn;
+    @WarnLog() public warn: LogFn;
     @Log() public log: LogFn;
-    
+
     private readonly traceIsWork: string = 'trace is worked';
     private readonly debugIsWork: string = 'debug is worked';
     private readonly infoIsWork: string = 'info is worked';
@@ -537,6 +536,30 @@ export class AppComponent {
 ```
 
 ![](https://habrastorage.org/webt/j9/mz/4v/j9mz4vbyhi0dg_8kr5wjmfwgiye.png)
+
+### Example: timer decorator
+
+```typescript
+import { Log, LogFn, TimerLog, LoggerLevel, LoggerService, Logger } from '@angular-ru/logger';
+export class AppComponent {
+    @Log() public log: LogFn;
+    @Logger() public logger: LoggerService;
+
+    @TimerLog('Test timer')
+    public showExample(): void {
+        this.logger.clear();
+        this.log('test log');
+    }
+
+    @TimerLog('Advanced timer', LoggerLevel.ERROR, false)
+    public showExample(): void {
+        this.logger.clear();
+        this.log('Advanced test log');
+    }
+}
+```
+
+![](https://habrastorage.org/webt/ur/zl/66/urzl66me9nixsnauhsfpge2tn0a.png)
 
 ### Example: full configurations
 
@@ -621,8 +644,8 @@ export class AppComponent implements OnInit {
 -   [x] Dependency Injection for Angular
 -   [x] Switch enable/disable default console output
 -   [x] Decorators
+-   [x] Timers (decorator)
 -   [ ] Profiling (memory usage, sizeof, time execute)
--   [ ] Timers (decorator)
 -   [ ] Pre process output
 -   [ ] Format output console
 
