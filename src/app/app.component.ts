@@ -1,7 +1,20 @@
 /* tslint:disable:no-duplicate-string */
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Debug, Error, Group, Info, LogFn, Logger, LoggerLevel, LoggerService, Trace, Warn } from '@angular-ru/logger';
+import {
+    DebugLog,
+    ErrorLog,
+    Group,
+    InfoLog,
+    LogFn,
+    Logger,
+    LoggerLevel,
+    LoggerService,
+    TimerLog,
+    TraceLog,
+    WarnLog
+} from '@angular-ru/logger';
 import * as devtools from 'devtools-detect';
+import { Log } from '../../projects/logger/src/lib/decorators/log.decorator';
 
 @Component({
     selector: 'app-root',
@@ -11,11 +24,12 @@ import * as devtools from 'devtools-detect';
 })
 export class AppComponent implements OnInit {
     @Logger() public loggerInjection: LoggerService;
-    @Trace() public trace: LogFn;
-    @Debug() public debug: LogFn;
-    @Info() public info: LogFn;
-    @Error() public error: LogFn;
-    @Warn() public warn: LogFn;
+    @TraceLog() public trace: LogFn;
+    @DebugLog() public debug: LogFn;
+    @InfoLog() public info: LogFn;
+    @ErrorLog() public error: LogFn;
+    @WarnLog() public warn: LogFn;
+    @Log() public log: LogFn;
 
     public isLoaded: boolean;
     public devToolsIsOpen: boolean = devtools.isOpen;
@@ -37,7 +51,7 @@ export class AppComponent implements OnInit {
 
     public showExample1(): void {
         this.logger.clear();
-        this.loggerInjection.log('log is worked');
+        this.log('log is worked');
         this.trace(this.traceIsWork, 1, { a: 1 });
         this.debug(this.debugIsWork, 2, console);
         this.info(this.infoIsWork, 3, Object);
@@ -261,6 +275,18 @@ export class AppComponent implements OnInit {
     public showExample12(): void {
         this.loggerInjection.clear();
         this.method('hello world');
+    }
+
+    @TimerLog('Test timer')
+    public showExample13(): void {
+        this.logger.clear();
+        this.log('test log');
+    }
+
+    @TimerLog('Advanced timer', LoggerLevel.WARN, false)
+    public showExample14(): void {
+        this.logger.clear();
+        this.log('Advanced test log');
     }
 
     @Group('test title', LoggerLevel.WARN)
