@@ -6,8 +6,8 @@ import { LoggerService } from '../../lib/logger.service';
 
 @Injectable()
 export class TimerFactory {
-    private digitsToFixed: number = 4;
-    private second: number = 1000;
+    private DIGITS_TO_FIX: number = 4;
+    private SECOND: number = 1000;
     constructor(private readonly console: ConsoleService) {}
 
     public startTime(title: string, level: LoggerLevel): TimerInfo | null {
@@ -23,8 +23,8 @@ export class TimerFactory {
         const canExecute: boolean = !(this.console.minLevel > level);
 
         if (canExecute) {
-            const msTime: number = parseFloat((performance.now() - info.startTime).toFixed(this.digitsToFixed));
-            const time: string = isMillisecond ? `${msTime}ms` : `${Math.floor(msTime / this.second)}s`;
+            const msTime: number = parseFloat((performance.now() - info.startTime).toFixed(this.DIGITS_TO_FIX));
+            const time: string = isMillisecond ? `${msTime}ms` : `${Math.floor(msTime / this.SECOND)}s`;
             const methodName: string = DEFAULT_METHODS[level];
             const logMethod: (...args: string[]) => void = logger[methodName];
             logMethod(`Timer: ${info.title}`, `took ${time} to execute`);
