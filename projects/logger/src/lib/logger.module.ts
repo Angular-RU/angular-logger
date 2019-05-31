@@ -17,9 +17,19 @@ import { CssFactory } from './services/css-factory.service';
 import { JsonFactory } from './services/json-factory.service';
 import { ClipboardFactory } from './services/clipboard-factory.service';
 import { LoggerConfigurator } from './logger.options';
+import { TimerFactory } from './services/timer-factory.service';
 
 @NgModule({
-    providers: [LoggerService, LoggerFactory, ConsoleService, GroupFactory, CssFactory, JsonFactory, ClipboardFactory]
+    providers: [
+        LoggerService,
+        LoggerFactory,
+        ConsoleService,
+        GroupFactory,
+        CssFactory,
+        JsonFactory,
+        ClipboardFactory,
+        TimerFactory
+    ]
 })
 export class LoggerModule {
     private static injector: Injector;

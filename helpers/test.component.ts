@@ -25,6 +25,9 @@ export class MyTestComponent implements OnInit {
     @Log() public log: LogFn;
 
     public count: number = 0;
+    public hook: string;
+    public doneHeavy: boolean;
+    public name: string = 'MockLoggerComponent';
 
     @Group('Test group')
     public print(val: string): string {
@@ -67,10 +70,6 @@ export class MyTestComponent implements OnInit {
         return name;
     }
 
-    public hook: string;
-    public doneHeavy: boolean;
-    public name: string = 'MockLoggerComponent';
-
     @Timer('mock:ngOnInit')
     public ngOnInit(): void {
         this.hook = 'ngOnInit';
@@ -87,16 +86,16 @@ export class MyTestComponent implements OnInit {
         this.logger.endTime(info);
     }
 
+    @Timer('badRequest', LoggerLevel.DEBUG, false)
+    public badRequest(): void {
+        throw new Error('error');
+    }
+
     private extracted(seconds: number, done: any): void {
         const e: number = new Date().getTime() + seconds * 1000;
         while (new Date().getTime() <= e) {
             this.doneHeavy = true;
         }
         done();
-    }
-
-    @Timer('badRequest', LoggerLevel.DEBUG, false)
-    public badRequest(): void {
-        throw new Error('error');
     }
 }

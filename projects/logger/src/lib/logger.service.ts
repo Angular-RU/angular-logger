@@ -133,6 +133,6 @@ export class LoggerService {
     }
 
     public endTime(info: TimerInfo, level: LoggerLevel = LoggerLevel.DEBUG, isMillisecond: boolean = true): void {
-        this.timerFactory.endTime(info, level, isMillisecond);
+        this.timerFactory.endTime(info, level, isMillisecond, this);
     }
 }
