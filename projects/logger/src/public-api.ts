@@ -13,4 +13,5 @@ export * from './lib/decorators/info.decorator';
 export * from './lib/decorators/error.decorator';
 export * from './lib/decorators/warn.decorator';
 export * from './lib/decorators/groups/group.decorator';
+export * from './lib/decorators/timer.decorator';
 export * from './lib/decorators/groups/group-collapsed.decorator';

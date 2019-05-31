@@ -1,8 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ConsoleFake, TestLoggerLineType } from '../../../helpers/console-fake';
 import { LoggerModule } from '../src/lib/logger.module';
-import { MyTestComponent } from '../../../helpers/test.component';
 import { LoggerService } from '../src/lib/logger.service';
+import { MyTestComponent } from '../../../helpers/test.component';
+import { LoggerLevel } from '../src/lib/logger.config';
 
 describe('[TEST]: Decorator API', () => {
     let logger: LoggerService;
@@ -32,7 +33,7 @@ describe('[TEST]: Decorator API', () => {
     });
 
     it('Logger decorator should correct work', () => {
-        component.loggerInjection.log('Hello world');
+        component.logger.log('Hello world');
         expect(fakeConsole.stack()).toEqual(fakeConsole.createStack({ [TestLoggerLineType.LOG]: ['Hello world'] }));
     });
 
@@ -117,5 +118,37 @@ describe('[TEST]: Decorator API', () => {
                 { group_end: [] }
             )
         );
+    });
+
+    it('timer invoke', () => {
+        logger.level = LoggerLevel.ALL;
+        component.ngOnInit();
+        expect(fakeConsole.stack().includes('Timer: mock:ngOnInit')).toEqual(true);
+    });
+
+    it('can not execute', () => {
+        logger.level = LoggerLevel.ERROR;
+        component.ngOnInit();
+        expect(fakeConsole.stack()).toEqual(fakeConsole.createStack());
+    });
+
+    it('query by second timer', (done: any) => {
+        component.longQueryBySecond(3, done);
+        expect(fakeConsole.stack()).toEqual(
+            fakeConsole.createStack({ info: ['Timer: longQueryBySecond', 'took 3s to execute'] })
+        );
+    });
+
+    it('query by ms timer', (done: any) => {
+        component.longQueryBySecondMs(3, done);
+        expect(fakeConsole.stack().includes('Timer: longQueryBySecondMs')).toEqual(true);
+    });
+
+    it('should correct work with errors', () => {
+        try {
+            component.badRequest();
+        } catch (e) {
+            expect(e.message).toEqual('error');
+        }
     });
 });

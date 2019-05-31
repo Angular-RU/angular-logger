@@ -3,10 +3,11 @@ import { LoggerFactory } from './services/factory.service';
 import { LoggerLevel } from './logger.config';
 import { ConsoleService } from './services/console.service';
 import { GroupFactory } from './services/group-factory.service';
-import { LogFn, ObjectKeyMap, Pipeline } from './logger.interfaces';
+import { LogFn, ObjectKeyMap, Pipeline, TimerInfo } from './logger.interfaces';
 import { CssFactory } from './services/css-factory.service';
 import { JsonFactory } from './services/json-factory.service';
 import { ClipboardFactory } from './services/clipboard-factory.service';
+import { TimerFactory } from './services/timer-factory.service';
 
 @Injectable()
 export class LoggerService {
@@ -17,7 +18,8 @@ export class LoggerService {
         private readonly console: ConsoleService,
         private readonly factory: LoggerFactory,
         private readonly groupFactory: GroupFactory,
-        private readonly jsonFactory: JsonFactory
+        private readonly jsonFactory: JsonFactory,
+        private readonly timerFactory: TimerFactory
     ) {}
 
     public get clear(): LogFn {
@@ -124,5 +126,13 @@ export class LoggerService {
 
     public copy(example: any): boolean {
         return this.clipboard.copyOnBuffer(example);
+    }
+
+    public startTime(title: string, level: LoggerLevel = LoggerLevel.DEBUG): TimerInfo | null {
+        return this.timerFactory.startTime(title, level);
+    }
+
+    public endTime(info: TimerInfo, level: LoggerLevel = LoggerLevel.DEBUG, isMillisecond: boolean = true): void {
+        this.timerFactory.endTime(info, level, isMillisecond, this);
     }
 }

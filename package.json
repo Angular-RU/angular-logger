@@ -30,6 +30,7 @@
         "@angular/router": "~7.2.0",
         "core-js": "^2.5.4",
         "devtools-detect": "^3.0.0",
+        "lint-staged": "^7.3.0",
         "rxjs": "~6.3.3",
         "tslib": "^1.9.0",
         "zone.js": "~0.8.26"
@@ -48,7 +49,7 @@
         "husky": "^2.3.0",
         "jasmine-core": "~2.99.1",
         "jasmine-spec-reporter": "~4.2.1",
-        "jest": "24.0.0",
+        "jest": "^24.8.0",
         "jest-cli": "^24.8.0",
         "jest-preset-angular": "^7.1.0",
         "karma": "~4.0.0",

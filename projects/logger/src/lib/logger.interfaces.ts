@@ -10,6 +10,11 @@ export interface GroupMethods extends Function {
     groupCollapsed(label: string, pipeline?: Pipeline): LoggerService;
 }
 
+export interface TimerInfo {
+    title: string;
+    startTime: number;
+}
+
 export type ConsoleOperation<T = any, P = any> = (message?: T, ...optionalParams: P[]) => void;
 export type PipeOperation = GroupMethods | ConsoleOperation;
 export type GroupMethod<T = any> = (groupTitle?: string, ...optionalParams: T[]) => any;
@@ -57,3 +62,10 @@ export interface Clipboard {
 }
 
 export type SetDataType = (format: string, data: string) => void | boolean;
+
+export type TimerLevels =
+    | LoggerLevel.TRACE
+    | LoggerLevel.DEBUG
+    | LoggerLevel.INFO
+    | LoggerLevel.WARN
+    | LoggerLevel.ERROR;

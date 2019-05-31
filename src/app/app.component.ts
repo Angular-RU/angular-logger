@@ -247,12 +247,6 @@ export class AppComponent implements OnInit {
         this.logger.level = LoggerLevel.INFO;
     }
 
-    @Group('test title', LoggerLevel.WARN)
-    private helloWorld(name: string): string {
-        this.logger.log('log only in group', name);
-        return 'hello world';
-    }
-
     public showExample11(): void {
         this.loggerInjection.clear();
         this.logger.log(this.helloWorld('Max'));
@@ -267,5 +261,11 @@ export class AppComponent implements OnInit {
     public showExample12(): void {
         this.loggerInjection.clear();
         this.method('hello world');
+    }
+
+    @Group('test title', LoggerLevel.WARN)
+    private helloWorld(name: string): string {
+        this.logger.log('log only in group', name);
+        return 'hello world';
     }
 }

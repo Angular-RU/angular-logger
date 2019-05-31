@@ -19,5 +19,6 @@ module.exports = {
     },
     bail: true,
     collectCoverage: true,
-    modulePathIgnorePatterns: ['<rootDir>/dist/']
+    modulePathIgnorePatterns: ['<rootDir>/dist/'],
+    modulePaths: ['<rootDir>']
 };
