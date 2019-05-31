@@ -4,6 +4,8 @@ import { InjectionToken } from '@angular/core';
 
 export type Pipeline<T = any> = (logger: LoggerService) => T;
 
+export type Fn<T = any, U = any> = (...args: T[]) => U;
+
 export interface GroupMethods extends Function {
     group(label: string, pipeline?: Pipeline): LoggerService;
 
