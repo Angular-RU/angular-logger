@@ -1,9 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ConsoleFake, TestLoggerLineType } from '../../../helpers/console-fake';
 import { LoggerModule } from '../src/lib/logger.module';
 import { LoggerService } from '../src/lib/logger.service';
 import { MyTestComponent } from '../../../helpers/test.component';
 import { LoggerLevel } from '../src/lib/logger.config';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 describe('[TEST]: Decorator API', () => {
     let logger: LoggerService;
@@ -123,7 +123,7 @@ describe('[TEST]: Decorator API', () => {
     it('timer invoke', () => {
         logger.level = LoggerLevel.ALL;
         component.ngOnInit();
-        expect(fakeConsole.stack().includes('Timer: mock:ngOnInit')).toEqual(true);
+        expect(fakeConsole.stack().includes('TimerLog: mock:ngOnInit')).toEqual(true);
     });
 
     it('can not execute', () => {
@@ -135,13 +135,13 @@ describe('[TEST]: Decorator API', () => {
     it('query by second timer', (done: any) => {
         component.longQueryBySecond(3, done);
         expect(fakeConsole.stack()).toEqual(
-            fakeConsole.createStack({ info: ['Timer: longQueryBySecond', 'took 3s to execute'] })
+            fakeConsole.createStack({ info: ['TimerLog: longQueryBySecond', 'took 3s to execute'] })
         );
     });
 
     it('query by ms timer', (done: any) => {
         component.longQueryBySecondMs(3, done);
-        expect(fakeConsole.stack().includes('Timer: longQueryBySecondMs')).toEqual(true);
+        expect(fakeConsole.stack().includes('TimerLog: longQueryBySecondMs')).toEqual(true);
     });
 
     it('should correct work with errors', () => {
