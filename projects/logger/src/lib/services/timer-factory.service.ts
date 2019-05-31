@@ -27,7 +27,7 @@ export class TimerFactory {
             const time: string = isMillisecond ? `${msTime}ms` : `${Math.floor(msTime / this.SECONDS)}s`;
             const methodName: string = DEFAULT_METHODS[level];
             const logMethod: (...args: string[]) => void = logger[methodName];
-            logMethod(`Timer: ${info.title}`, `took ${time} to execute`);
+            logMethod(`TimerLog: ${info.title}`, `took ${time} to execute`);
         }
     }
 }

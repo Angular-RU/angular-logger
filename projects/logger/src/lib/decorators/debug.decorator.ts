@@ -1,7 +1,7 @@
 import { LogFn } from './../logger.interfaces';
 import { LoggerModule } from './../logger.module';
 
-export function Debug(): PropertyDecorator {
+export function DebugLog(): PropertyDecorator {
     return (target: any, propertyName: string): void => {
         Object.defineProperty(target, propertyName, {
             configurable: false,

@@ -2,7 +2,7 @@ import { LoggerLevel } from '../logger.config';
 import { Fn, TimerInfo, TimerLevels } from '../logger.interfaces';
 import { LoggerModule } from '../logger.module';
 
-export function Timer(title: string, level: TimerLevels = LoggerLevel.DEBUG, isMillisecond: boolean = true): any {
+export function TimerLog(title: string, level: TimerLevels = LoggerLevel.DEBUG, isMillisecond: boolean = true): any {
     return (_target: any, _key: string, descriptor: PropertyDescriptor): PropertyDescriptor => {
         let result: any;
         const method: Fn = descriptor.value;
