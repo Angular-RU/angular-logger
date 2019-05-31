@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { DEFAULT_METHODS, LoggerLevel } from '../../lib/logger.config';
 import { ConsoleService } from './console.service';
 import { TimerInfo } from '../../lib/logger.interfaces';
-import { LoggerService } from '@angular-ru/logger';
+import { LoggerService } from '../../lib/logger.service';
 
 @Injectable()
 export class TimerFactory {
