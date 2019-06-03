@@ -18,7 +18,7 @@ export enum TestLoggerGroupType {
 }
 
 export class ConsoleFake implements Console {
-  // tslint:disable-next-line:no-any
+    // tslint:disable-next-line:no-any
     public Console: any;
     private _stack: ObjectKeyMap[] = [];
 
