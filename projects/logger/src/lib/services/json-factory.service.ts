@@ -12,7 +12,7 @@ export class JsonFactory {
 
     public colorsJSON(json: string): string[] {
         const arr: string[] = [];
-        json = json.replace(this.lexerTypeFinder, (match: any) => {
+        json = json.replace(this.lexerTypeFinder, (match: string) => {
             let style: string = this._number;
             if (/^"/.test(match)) {
                 if (/:$/.test(match)) {

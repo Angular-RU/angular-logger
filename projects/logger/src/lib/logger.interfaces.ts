@@ -24,8 +24,16 @@ export type GroupFactoryMethod = (title: string, pipeline: Pipeline, logger: Log
 export type LogFn = GroupMethods & ConsoleOperation;
 export type Arguments<T = unknown> = T[];
 
-export interface ObjectKeyMap<T = any> {
+export interface ObjectKeyMap<T = Any> {
     [key: string]: T;
+}
+
+export type Any = any; // NOSONAR
+
+export type DecoratorMethod = (target: Any, key: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
+
+export interface ClipboardData {
+    setData: (type: string, value: string) => void | boolean;
 }
 
 export type Callback<T = void> = (...args: T[]) => T;
@@ -57,9 +65,11 @@ export interface ConsoleServiceInterface {
 }
 
 export interface Clipboard {
-    copyOnBuffer(data: unknown): boolean;
     readonly clipboardSetData: SetDataType;
     readonly queryCommandCopy: boolean;
+
+    copyOnBuffer(data: unknown): boolean;
+
     textAreaSelectData(value: string): boolean;
 }
 

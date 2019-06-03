@@ -25,10 +25,10 @@ export class LoggerFactory {
 
     public createLogger<T>(level: LoggerLevel, logger: LoggerService): T {
         const args: Arguments = this.getArgumentsByType(level);
-        const method: any = DEFAULT_METHODS[level];
+        const methodName: string = DEFAULT_METHODS[level];
 
         const operation: Operation =
-            this.console.minLevel <= level ? this.console.instance[method].bind(...args) : this.console.noop;
+            this.console.minLevel <= level ? this.console.instance[methodName].bind(...args) : this.console.noop;
 
         const pipeOperation: PipeOperation = this.useLevelGroup
             ? this.defineLevelGroups(level, operation, logger)
@@ -39,6 +39,7 @@ export class LoggerFactory {
 
     private defineLevelGroups(level: LoggerLevel, operation: Operation, logger: LoggerService): Operation {
         const { GROUP, GROUP_COLLAPSED }: typeof GroupLevel = GroupLevel;
+
 
         Object.defineProperties(operation, {
             [GROUP]: this.setGroupMethod(GROUP, level, logger),

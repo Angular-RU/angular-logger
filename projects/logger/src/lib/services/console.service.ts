@@ -1,12 +1,13 @@
 import { Inject, Injectable } from '@angular/core';
 import { COLORS, LABELS, LoggerLevel } from '../logger.config';
 import {
-    CONSOLE_API,
-    ConsoleOperation,
-    ConsoleServiceInterface,
-    LABEL_COLORS,
-    LABEL_NAMES,
-    MIN_LEVEL
+  Any,
+  CONSOLE_API,
+  ConsoleOperation,
+  ConsoleServiceInterface,
+  LABEL_COLORS,
+  LABEL_NAMES,
+  MIN_LEVEL
 } from '../logger.interfaces';
 
 @Injectable()
@@ -16,7 +17,7 @@ export class ConsoleService implements ConsoleServiceInterface {
 
     constructor(
         @Inject(MIN_LEVEL) public readonly level: LoggerLevel,
-        @Inject(CONSOLE_API) public readonly consoleApi: any,
+        @Inject(CONSOLE_API) public readonly consoleApi: Any,
         @Inject(LABEL_NAMES) public labelNames: LABELS[],
         @Inject(LABEL_COLORS) public labelColors: COLORS[]
     ) {

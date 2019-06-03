@@ -1,12 +1,19 @@
 import { Injectable } from '@angular/core';
-import { Clipboard, SetDataType } from '../logger.interfaces';
+import { Clipboard, ClipboardData, SetDataType } from '../logger.interfaces';
+
+declare global {
+    interface Window {
+        clipboardData: ClipboardData;
+    }
+}
+declare const window: Window;
 
 @Injectable()
 export class ClipboardFactory implements Clipboard {
     private readonly DEFAULT_DEPTH: number = 4;
     public get clipboardSetData(): SetDataType {
-        const dataTransfer: DataTransfer = (window as any).clipboardData;
-        return dataTransfer && dataTransfer.setData;
+        const clipboardData: ClipboardData = window.clipboardData;
+        return clipboardData && clipboardData.setData;
     }
 
     public get queryCommandCopy(): boolean {
