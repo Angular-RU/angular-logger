@@ -551,7 +551,7 @@ export class AppComponent {
         this.log('test log');
     }
 
-    @TimerLog('Advanced timer', LoggerLevel.ERROR, false)
+    @TimerLog('Advanced timer', LoggerLevel.WARN, false)
     public showExample(): void {
         this.logger.clear();
         this.log('Advanced test log');

@@ -86,7 +86,7 @@ export class ConsoleFake implements Console {
         const stackObject: ObjectKeyMap = JSON.parse(stack);
         const stackList: string[] = [];
 
-        stackObject.forEach((line: any) => {
+        stackObject.forEach((line: string[]) => {
             for (const levelLog in line) {
                 if (line.hasOwnProperty(levelLog)) {
                     stackList.push(line[levelLog]);

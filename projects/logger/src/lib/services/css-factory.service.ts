@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
-import { CSS_CLASS_MAP, LABEL_COLORS, LINE_STYLE } from '../logger.interfaces';
-import { LoggerLevel } from '../logger.config';
+import { CSS_CLASS_MAP, LABEL_COLORS, LINE_STYLE, ObjectKeyMap } from '../logger.interfaces';
+import { COLORS, LoggerLevel } from '../logger.config';
 
 @Injectable()
 export class CssFactory {
@@ -8,8 +8,8 @@ export class CssFactory {
 
     constructor(
         @Inject(LINE_STYLE) public readonly globalLineStyle: string,
-        @Inject(LABEL_COLORS) public readonly labelColors: any,
-        @Inject(CSS_CLASS_MAP) public readonly cssClassMap: any
+        @Inject(LABEL_COLORS) public readonly labelColors: COLORS[],
+        @Inject(CSS_CLASS_MAP) public readonly cssClassMap: ObjectKeyMap
     ) {}
 
     public get style(): string {

@@ -66,7 +66,7 @@ export class LoggerService {
         this.console.minLevel = level;
     }
 
-    public getCurrentLineStyle(): any {
+    public getCurrentLineStyle(): string {
         return this.cssFactory.style;
     }
 
@@ -124,7 +124,7 @@ export class LoggerService {
         return this;
     }
 
-    public copy(example: any): boolean {
+    public copy(example: unknown): boolean {
         return this.clipboard.copyOnBuffer(example);
     }
 

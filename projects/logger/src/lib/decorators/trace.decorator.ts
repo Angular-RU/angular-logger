@@ -1,8 +1,9 @@
 import { LogFn } from './../logger.interfaces';
 import { LoggerModule } from './../logger.module';
+import { Type } from '@angular/core';
 
 export function TraceLog(): PropertyDecorator {
-    return (target: any, propertyName: string): void => {
+    return (target: Type<unknown>, propertyName: string): void => {
         Object.defineProperty(target, propertyName, {
             configurable: false,
             get(): LogFn {
