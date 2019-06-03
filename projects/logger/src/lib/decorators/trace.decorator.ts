@@ -7,7 +7,7 @@ export function TraceLog(): PropertyDecorator {
         Object.defineProperty(target, propertyName, {
             configurable: false,
             get(): LogFn {
-                return LoggerModule.logger.trace;
+                return LoggerModule.logger().trace;
             }
         });
     };

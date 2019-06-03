@@ -18,6 +18,7 @@ export enum TestLoggerGroupType {
 }
 
 export class ConsoleFake implements Console {
+  // tslint:disable-next-line:no-any
     public Console: any;
     private _stack: ObjectKeyMap[] = [];
 
@@ -40,7 +41,7 @@ export class ConsoleFake implements Console {
         }
     }
 
-    public table(data: any): void {
+    public table(data: unknown): void {
         this._stack.push({ [TestLoggerLineType.TABLE]: [data] });
     }
 
@@ -100,7 +101,7 @@ export class ConsoleFake implements Console {
         const stackList: string[] = this.stackList(this.stack(0));
         const stackOptionsList: ObjectKeyMap = [];
 
-        stackList.forEach((line: any) => {
+        stackList.forEach((line: string) => {
             stackOptionsList.push({
                 label: String(line[0]).replace('%c', ''),
                 styles: this.parseCssString(line[usageNext ? 2 : 1])

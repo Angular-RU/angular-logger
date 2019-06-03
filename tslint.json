@@ -102,6 +102,7 @@
             }
         ],
         "no-arg": true,
+        "no-any": true,
         "no-console": [true, "log", "debug", "info", "time", "timeEnd", "trace"],
         "no-construct": true,
         "no-debugger": true,

@@ -1,4 +1,5 @@
 import { Injector, ModuleWithProviders, NgModule } from '@angular/core';
+
 import { LoggerService } from './logger.service';
 import { LoggerFactory } from './services/factory.service';
 import { ConsoleService } from './services/console.service';
@@ -31,18 +32,20 @@ import { TimerFactory } from './services/timer-factory.service';
         TimerFactory
     ]
 })
+
+// @dynamic
 export class LoggerModule {
-    private static injector: Injector;
+    private static injector: Injector = undefined;
 
     constructor(injector: Injector) {
         LoggerModule.injector = injector;
     }
 
-    public static get logger(): LoggerService {
+    public static logger(): LoggerService {
         return LoggerModule.injector.get(LoggerService);
     }
 
-    public static get groupFactory(): GroupFactory {
+    public static groupFactory(): GroupFactory {
         return LoggerModule.injector.get(GroupFactory);
     }
 

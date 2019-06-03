@@ -1,7 +1,8 @@
+import { Type } from '@angular/core';
+
 import { GroupLevel, LoggerLevel } from '../../logger.config';
 import { groupDecoratorFactory } from './group.common';
 import { Any, Callback, DecoratorMethod } from '../../logger.interfaces';
-import { Type } from '@angular/core';
 
 export function GroupCollapsed(
     title: string | Callback<string>,

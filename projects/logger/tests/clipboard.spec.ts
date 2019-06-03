@@ -10,7 +10,7 @@ describe('[TEST]: Check clipboard', () => {
     const fakeConsole: Console & ConsoleFake = new ConsoleFake();
     const textarea: Partial<HTMLTextAreaElement> = {
         textContent: null,
-        style: {} as any,
+        style: {} as CSSStyleDeclaration,
         select: (): void => {}
     };
 
@@ -28,7 +28,7 @@ describe('[TEST]: Check clipboard', () => {
 
     beforeEach(() => {
         buffer = null;
-        (window as any).clipboardData = null;
+        window.clipboardData = null;
         document.queryCommandSupported = null;
         textarea.textContent = null;
         document.execCommand = null;

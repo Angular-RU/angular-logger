@@ -1,7 +1,8 @@
+import { Type } from '@angular/core';
+
 import { GroupLevel, LoggerLevel } from '../../logger.config';
 import { groupDecoratorFactory } from './group.common';
 import { Any, Callback, DecoratorMethod } from '../../logger.interfaces';
-import { Type } from '@angular/core';
 
 export function Group(title: string | Callback<string>, level: LoggerLevel = LoggerLevel.INFO): DecoratorMethod {
     return (_target: Type<unknown>, _key: string, descriptor: PropertyDescriptor): PropertyDescriptor => {

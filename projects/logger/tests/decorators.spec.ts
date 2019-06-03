@@ -4,6 +4,7 @@ import { LoggerService } from '../src/lib/logger.service';
 import { MyTestComponent } from '../../../helpers/test.component';
 import { LoggerLevel } from '../src/lib/logger.config';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Fn } from '@angular-ru/logger';
 
 describe('[TEST]: Decorator API', () => {
     let logger: LoggerService;
@@ -132,14 +133,14 @@ describe('[TEST]: Decorator API', () => {
         expect(fakeConsole.stack()).toEqual(fakeConsole.createStack());
     });
 
-    it('query by second timer', (done: any) => {
+    it('query by second timer', (done: Fn) => {
         component.longQueryBySecond(3, done);
         expect(fakeConsole.stack()).toEqual(
             fakeConsole.createStack({ info: ['TimerLog: longQueryBySecond', 'took 3s to execute'] })
         );
     });
 
-    it('query by ms timer', (done: any) => {
+    it('query by ms timer', (done: Fn) => {
         component.longQueryBySecondMs(3, done);
         expect(fakeConsole.stack().includes('TimerLog: longQueryBySecondMs')).toEqual(true);
     });

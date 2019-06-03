@@ -7,7 +7,7 @@ export function WarnLog(): PropertyDecorator {
         Object.defineProperty(target, propertyName, {
             configurable: false,
             get(): LogFn {
-                return LoggerModule.logger.warn;
+                return LoggerModule.logger().warn;
             }
         });
     };

@@ -7,7 +7,7 @@ export function ErrorLog(): PropertyDecorator {
         Object.defineProperty(target, propertyName, {
             configurable: false,
             get(): LogFn {
-                return LoggerModule.logger.error;
+                return LoggerModule.logger().error;
             }
         });
     };
