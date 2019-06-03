@@ -1,7 +1,9 @@
 import { LoggerOptions, ObjectKeyMap } from './logger.interfaces';
 import { COLORS, LABELS, LoggerLevel } from './logger.config';
+import { Injectable } from '@angular/core';
 
-export class LoggerConfigurator implements LoggerOptions {
+@Injectable()
+export class LoggerOptionsImpl implements LoggerOptions {
     public instance: Console = console;
     public minLevel: LoggerLevel = LoggerLevel.ALL;
     public globalLineStyle: string = '';
@@ -24,6 +26,6 @@ export class LoggerConfigurator implements LoggerOptions {
     };
 
     public options(config: Partial<LoggerOptions>): LoggerOptions {
-        return { ...new LoggerConfigurator(), ...config };
+        return Object.assign(new LoggerOptionsImpl(), config);
     }
 }

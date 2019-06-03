@@ -15,7 +15,7 @@ export function TimerLog(
         descriptor.value = function(...args: Any[]): PropertyDescriptor {
             const info: TimerInfo | null = LoggerModule.logger().startTime(title, level);
             result = method.apply(this, args);
-            LoggerModule.logger().endTime(info, level, isMillisecond);
+          LoggerModule.logger().endTime(info, level, isMillisecond);
             return result;
         };
         return descriptor;

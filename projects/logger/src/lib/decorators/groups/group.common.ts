@@ -1,10 +1,9 @@
 import { Type } from '@angular/core';
-
-import { LoggerModule } from '../../logger.module';
 import { LoggerService } from '../../logger.service';
-import { LoggerLevel, GroupLevel } from '../../logger.config';
+import { GroupLevel, LoggerLevel } from '../../logger.config';
 import { Any, Callback, Fn, GroupMethod } from '../../logger.interfaces';
 import { GroupFactory } from '../../services/group-factory.service';
+import { LoggerModule } from '../../logger.module';
 
 export function groupDecoratorFactory(
     level: LoggerLevel,

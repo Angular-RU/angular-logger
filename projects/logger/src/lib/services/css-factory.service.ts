@@ -1,16 +1,13 @@
 import { Inject, Injectable } from '@angular/core';
-import { CSS_CLASS_MAP, LABEL_COLORS, LINE_STYLE, ObjectKeyMap } from '../logger.interfaces';
-import { COLORS, LoggerLevel } from '../logger.config';
+import { LOGGER_OPTIONS } from '../logger.interfaces';
+import { LoggerLevel } from '../logger.config';
+import { LoggerOptionsImpl } from '../logger.options';
 
 @Injectable()
 export class CssFactory {
     private lineStyle: string;
 
-    constructor(
-        @Inject(LINE_STYLE) public readonly globalLineStyle: string,
-        @Inject(LABEL_COLORS) public readonly labelColors: COLORS[],
-        @Inject(CSS_CLASS_MAP) public readonly cssClassMap: ObjectKeyMap
-    ) {}
+    constructor(@Inject(LOGGER_OPTIONS) private options: LoggerOptionsImpl) {}
 
     public get style(): string {
         const style: string = this.localStyle;
@@ -23,7 +20,7 @@ export class CssFactory {
     }
 
     private get globalStyles(): string {
-        return this.globalLineStyle ? `${this.globalLineStyle};` : '';
+        return this.options.globalLineStyle ? `${this.options.globalLineStyle};` : '';
     }
 
     private get localStyle(): string {
@@ -31,7 +28,7 @@ export class CssFactory {
     }
 
     public getStyleLabel(level: LoggerLevel): string {
-        const color: string = this.labelColors[level];
+        const color: string = this.options.labelColors[level];
         return `color: ${color}; font-weight: bold`;
     }
 
@@ -40,7 +37,7 @@ export class CssFactory {
         const styles: string[] = [];
 
         classList.forEach((className: string) => {
-            const style: string = this.cssClassMap[className];
+            const style: string = this.options.cssClassMap[className];
             if (style) {
                 styles.push(style);
             }

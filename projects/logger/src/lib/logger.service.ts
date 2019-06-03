@@ -1,13 +1,14 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { LoggerFactory } from './services/factory.service';
 import { LoggerLevel } from './logger.config';
 import { ConsoleService } from './services/console.service';
 import { GroupFactory } from './services/group-factory.service';
-import { LogFn, ObjectKeyMap, Pipeline, TimerInfo } from './logger.interfaces';
+import { LogFn, LOGGER_OPTIONS, ObjectKeyMap, Pipeline, TimerInfo } from './logger.interfaces';
 import { CssFactory } from './services/css-factory.service';
 import { JsonFactory } from './services/json-factory.service';
 import { ClipboardFactory } from './services/clipboard-factory.service';
 import { TimerFactory } from './services/timer-factory.service';
+import { LoggerOptionsImpl } from './logger.options';
 
 @Injectable()
 export class LoggerService {
@@ -19,7 +20,8 @@ export class LoggerService {
         private readonly factory: LoggerFactory,
         private readonly groupFactory: GroupFactory,
         private readonly jsonFactory: JsonFactory,
-        private readonly timerFactory: TimerFactory
+        private readonly timerFactory: TimerFactory,
+        @Inject(LOGGER_OPTIONS) private options: LoggerOptionsImpl
     ) {}
 
     public get clear(): LogFn {
@@ -75,11 +77,11 @@ export class LoggerService {
     }
 
     public setLabels(labels: ObjectKeyMap<string>): void {
-        this.console.labelNames = { ...this.console.labelNames, ...labels };
+        this.options.labelNames = { ...this.options.labelNames, ...labels };
     }
 
     public setColors(colors: ObjectKeyMap<string>): void {
-        this.console.labelColors = { ...this.console.labelColors, ...colors };
+        this.options.labelColors = { ...this.options.labelColors, ...colors };
     }
 
     public pipe(...pipelines: Pipeline[]): LoggerService {
