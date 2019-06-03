@@ -17,7 +17,7 @@ import { LoggerService } from '../logger.service';
 @Injectable()
 export class LoggerFactory {
     constructor(
-        @Inject(USE_LEVEL_GROUP) private readonly useLevelGroup: any,
+        @Inject(USE_LEVEL_GROUP) private readonly useLevelGroup: string,
         private readonly console: ConsoleService,
         private readonly cssFactory: CssFactory,
         private readonly groupFactory: GroupFactory
@@ -25,7 +25,7 @@ export class LoggerFactory {
 
     public createLogger<T>(level: LoggerLevel, logger: LoggerService): T {
         const args: Arguments = this.getArgumentsByType(level);
-        const method: string = DEFAULT_METHODS[level];
+        const method: any = DEFAULT_METHODS[level];
 
         const operation: Operation =
             this.console.minLevel <= level ? this.console.instance[method].bind(...args) : this.console.noop;
@@ -34,7 +34,7 @@ export class LoggerFactory {
             ? this.defineLevelGroups(level, operation, logger)
             : operation;
 
-        return (pipeOperation as any) as T;
+        return (pipeOperation as unknown) as T;
     }
 
     private defineLevelGroups(level: LoggerLevel, operation: Operation, logger: LoggerService): Operation {

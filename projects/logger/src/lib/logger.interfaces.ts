@@ -2,9 +2,9 @@ import { LoggerService } from './logger.service';
 import { LoggerLevel } from './logger.config';
 import { InjectionToken } from '@angular/core';
 
-export type Pipeline<T = any> = (logger: LoggerService) => T;
+export type Pipeline<T = unknown> = (logger: LoggerService) => T;
 
-export type Fn<T = any, U = any> = (...args: T[]) => U;
+export type Fn<T = unknown, U = unknown> = (...args: T[]) => U;
 
 export interface GroupMethods extends Function {
     group(label: string, pipeline?: Pipeline): LoggerService;
@@ -17,20 +17,20 @@ export interface TimerInfo {
     startTime: number;
 }
 
-export type ConsoleOperation<T = any, P = any> = (message?: T, ...optionalParams: P[]) => void;
+export type ConsoleOperation<T = unknown, P = unknown> = (message?: T, ...optionalParams: P[]) => void;
 export type PipeOperation = GroupMethods | ConsoleOperation;
-export type GroupMethod<T = any> = (groupTitle?: string, ...optionalParams: T[]) => any;
+export type GroupMethod<T = unknown> = (groupTitle?: string, ...optionalParams: T[]) => unknown;
 export type GroupFactoryMethod = (title: string, pipeline: Pipeline, logger: LoggerService, level: LoggerLevel) => void;
 export type LogFn = GroupMethods & ConsoleOperation;
-export type Arguments<T = any> = T[];
+export type Arguments<T = unknown> = T[];
 
 export interface ObjectKeyMap<T = any> {
     [key: string]: T;
 }
 
-export type Callback<T = void> = (...args: any[]) => T;
+export type Callback<T = void> = (...args: T[]) => T;
 
-export type Descriptor<T = any> = PropertyDescriptor & ThisType<T>;
+export type Descriptor<T = unknown> = PropertyDescriptor & ThisType<T>;
 
 export interface LoggerOptions {
     instance: Console;

@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { ConsoleService } from './console.service';
 import { GroupMethod, LABEL_NAMES, Pipeline } from '../logger.interfaces';
 import { LoggerService } from '../logger.service';
-import { LoggerLevel } from '../logger.config';
+import { LABELS, LoggerLevel } from '../logger.config';
 import { CssFactory } from './css-factory.service';
 
 @Injectable()
@@ -11,7 +11,7 @@ export class GroupFactory {
     private counterOpenedGroup: number = 0;
 
     constructor(
-        @Inject(LABEL_NAMES) public labelNames: any,
+        @Inject(LABEL_NAMES) public labelNames: LABELS[],
         private readonly console: ConsoleService,
         private readonly cssFactory: CssFactory
     ) {}
@@ -29,17 +29,22 @@ export class GroupFactory {
         }
     }
 
-    public group<T = any>(title: string, pipeline: Pipeline<T>, logger: LoggerService, level: LoggerLevel): T {
+    public group<T = unknown>(title: string, pipeline: Pipeline<T>, logger: LoggerService, level: LoggerLevel): T {
         const group: GroupMethod = this.console.instance.group.bind(this.console.instance);
         return this.createGroupLogger<T>(group, title, pipeline, logger, level);
     }
 
-    public groupCollapsed<T = any>(title: string, pipeline: Pipeline<T>, logger: LoggerService, level: LoggerLevel): T {
+    public groupCollapsed<T = unknown>(
+        title: string,
+        pipeline: Pipeline<T>,
+        logger: LoggerService,
+        level: LoggerLevel
+    ): T {
         const groupCollapsed: GroupMethod = this.console.instance.groupCollapsed.bind(this.console.instance);
         return this.createGroupLogger<T>(groupCollapsed, title, pipeline, logger, level);
     }
 
-    private createGroupLogger<T = any>(
+    private createGroupLogger<T = unknown>(
         groupType: GroupMethod,
         title: string,
         pipeline: Pipeline,

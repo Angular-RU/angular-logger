@@ -13,7 +13,7 @@ export class ClipboardFactory implements Clipboard {
         return document.queryCommandSupported && document.queryCommandSupported('copy');
     }
 
-    public copyOnBuffer(data: any): boolean {
+    public copyOnBuffer(data: unknown): boolean {
         const text: string = typeof data !== 'string' ? JSON.stringify(data, null, this.DEFAULT_DEPTH) : data;
         let isExec: boolean = false;
 
