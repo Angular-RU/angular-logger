@@ -28,6 +28,7 @@ export interface ObjectKeyMap<T = Any> {
     [key: string]: T;
 }
 
+// tslint:disable-next-line:no-any
 export type Any = any; // NOSONAR
 
 export type DecoratorMethod = (target: Any, key: string, descriptor: PropertyDescriptor) => PropertyDescriptor;

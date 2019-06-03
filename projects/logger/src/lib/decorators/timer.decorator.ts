@@ -1,7 +1,8 @@
+import { Type } from '@angular/core';
+
 import { LoggerLevel } from '../logger.config';
 import { Any, DecoratorMethod, Fn, TimerInfo, TimerLevels } from '../logger.interfaces';
 import { LoggerModule } from '../logger.module';
-import { Type } from '@angular/core';
 
 export function TimerLog(
     title: string,
@@ -12,9 +13,9 @@ export function TimerLog(
         let result: PropertyDescriptor;
         const method: Fn = descriptor.value;
         descriptor.value = function(...args: Any[]): PropertyDescriptor {
-            const info: TimerInfo | null = LoggerModule.logger.startTime(title, level);
+            const info: TimerInfo | null = LoggerModule.logger().startTime(title, level);
             result = method.apply(this, args);
-            LoggerModule.logger.endTime(info, level, isMillisecond);
+            LoggerModule.logger().endTime(info, level, isMillisecond);
             return result;
         };
         return descriptor;

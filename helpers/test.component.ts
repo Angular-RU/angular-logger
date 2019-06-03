@@ -10,7 +10,7 @@ import { Log } from '../projects/logger/src/lib/decorators/log.decorator';
 import { Group } from '../projects/logger/src/lib/decorators/groups/group.decorator';
 import { GroupCollapsed } from '../projects/logger/src/lib/decorators/groups/group-collapsed.decorator';
 import { LoggerLevel } from '../projects/logger/src/lib/logger.config';
-import { LogFn, TimerInfo } from '../projects/logger/src/lib/logger.interfaces';
+import { Fn, LogFn, TimerInfo } from '../projects/logger/src/lib/logger.interfaces';
 import { TimerLog } from '../projects/logger/src/lib/decorators/timer.decorator';
 
 // noinspection AngularMissingOrInvalidDeclarationInModule
@@ -76,11 +76,11 @@ export class MyTestComponent implements OnInit {
     }
 
     @TimerLog('longQueryBySecond', LoggerLevel.INFO, false)
-    public longQueryBySecond(seconds: number, done: any): void {
+    public longQueryBySecond(seconds: number, done: Fn): void {
         this.extracted(seconds, done);
     }
 
-    public longQueryBySecondMs(seconds: number, done: any): void {
+    public longQueryBySecondMs(seconds: number, done: Fn): void {
         const info: TimerInfo = this.logger.startTime('longQueryBySecondMs');
         this.extracted(seconds, done);
         this.logger.endTime(info);
@@ -91,7 +91,7 @@ export class MyTestComponent implements OnInit {
         throw new Error('error');
     }
 
-    private extracted(seconds: number, done: any): void {
+    private extracted(seconds: number, done: Fn): void {
         const e: number = new Date().getTime() + seconds * 1000;
         while (new Date().getTime() <= e) {
             this.doneHeavy = true;

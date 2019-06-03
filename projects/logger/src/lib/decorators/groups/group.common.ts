@@ -1,10 +1,10 @@
+import { Type } from '@angular/core';
+
 import { LoggerModule } from '../../logger.module';
 import { LoggerService } from '../../logger.service';
 import { LoggerLevel, GroupLevel } from '../../logger.config';
 import { Any, Callback, Fn, GroupMethod } from '../../logger.interfaces';
-
 import { GroupFactory } from '../../services/group-factory.service';
-import { Type } from '@angular/core';
 
 export function groupDecoratorFactory(
     level: LoggerLevel,
@@ -15,8 +15,8 @@ export function groupDecoratorFactory(
     target: Type<unknown>
 ): unknown {
     let result: unknown;
-    const logger: LoggerService = LoggerModule.logger;
-    const groupFactory: GroupFactory = LoggerModule.groupFactory;
+    const logger: LoggerService = LoggerModule.logger();
+    const groupFactory: GroupFactory = LoggerModule.groupFactory();
     const groupMethod: GroupMethod = groupFactory[groupType].bind(groupFactory);
     const label: string = typeof title === 'string' ? title : title(...args);
 

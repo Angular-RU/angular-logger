@@ -17,12 +17,12 @@
         "lib": ["dom", "es2018"]
     },
     "angularCompilerOptions": {
-        "fullTemplateTypeCheck": false,
         "annotateForClosureCompiler": true,
+        "skipTemplateCodegen": true,
+        "strictMetadataEmit": true,
+        "fullTemplateTypeCheck": true,
         "strictInjectionParameters": true,
-        "skipTemplateCodegen": false,
-        "preserveWhitespaces": true,
-        "skipMetadataEmit": false
+        "enableResourceInlining": true
     },
     "exclude": ["**/*.spec.ts"]
 }

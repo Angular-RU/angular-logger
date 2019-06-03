@@ -172,7 +172,7 @@ export class AppComponent implements OnInit {
         this.logger.log(...this.logger.prettyJSON(jsonExample));
     }
 
-    public showExample7(): any {
+    public showExample7(): void {
         this.logger.clear();
 
         const example: string = 'test string';
@@ -181,7 +181,7 @@ export class AppComponent implements OnInit {
         this.logger.copy(example);
     }
 
-    public showExample8(): any {
+    public showExample8(): void {
         this.logger.clear();
         this.logger.level = LoggerLevel.INFO;
 
