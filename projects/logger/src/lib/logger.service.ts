@@ -21,7 +21,7 @@ export class LoggerService {
         private readonly groupFactory: GroupFactory,
         private readonly jsonFactory: JsonFactory,
         private readonly timerFactory: TimerFactory,
-        @Inject(LOGGER_OPTIONS) private options: LoggerOptionsImpl
+        @Inject(LOGGER_OPTIONS) private readonly options: LoggerOptionsImpl
     ) {}
 
     public get clear(): LogFn {

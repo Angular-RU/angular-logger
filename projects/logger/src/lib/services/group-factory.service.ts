@@ -10,8 +10,7 @@ export class GroupFactory {
     public executePipesGroup: boolean;
     private counterOpenedGroup: number = 0;
 
-    constructor(private readonly console: ConsoleService, private readonly cssFactory: CssFactory) {
-    }
+    constructor(private readonly console: ConsoleService, private readonly cssFactory: CssFactory) {}
 
     public close(): void {
         if (this.executePipesGroup) {

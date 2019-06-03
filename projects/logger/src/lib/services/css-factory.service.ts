@@ -7,7 +7,7 @@ import { LoggerOptionsImpl } from '../logger.options';
 export class CssFactory {
     private lineStyle: string;
 
-    constructor(@Inject(LOGGER_OPTIONS) private options: LoggerOptionsImpl) {}
+    constructor(@Inject(LOGGER_OPTIONS) private readonly options: LoggerOptionsImpl) {}
 
     public get style(): string {
         const style: string = this.localStyle;

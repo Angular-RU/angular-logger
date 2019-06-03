@@ -8,7 +8,7 @@ export class ConsoleService implements ConsoleServiceInterface {
     public instance: Console;
     public minLevel: LoggerLevel;
 
-    constructor(@Inject(LOGGER_OPTIONS) private options: LoggerOptionsImpl) {
+    constructor(@Inject(LOGGER_OPTIONS) private readonly options: LoggerOptionsImpl) {
         this.minLevel = options.minLevel;
         this.instance = options.instance;
     }

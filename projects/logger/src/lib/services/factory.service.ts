@@ -18,7 +18,7 @@ import { LoggerOptionsImpl } from '../logger.options';
 @Injectable()
 export class LoggerFactory {
     constructor(
-        @Inject(LOGGER_OPTIONS) private options: LoggerOptionsImpl,
+        @Inject(LOGGER_OPTIONS) private readonly options: LoggerOptionsImpl,
         private readonly console: ConsoleService,
         private readonly cssFactory: CssFactory,
         private readonly groupFactory: GroupFactory
