@@ -1,7 +1,7 @@
 import { LoggerModule } from '../../logger.module';
 import { LoggerService } from '../../logger.service';
 import { LoggerLevel, GroupLevel } from '../../logger.config';
-import { Callback, GroupMethod } from '../../logger.interfaces';
+import { Any, Callback, Fn, GroupMethod } from '../../logger.interfaces';
 
 import { GroupFactory } from '../../services/group-factory.service';
 import { Type } from '@angular/core';
@@ -9,9 +9,9 @@ import { Type } from '@angular/core';
 export function groupDecoratorFactory(
     level: LoggerLevel,
     groupType: GroupLevel,
-    method: any,
+    method: Fn,
     title: string | Callback<string>,
-    args: any[],
+    args: Any[],
     target: Type<unknown>
 ): unknown {
     let result: unknown;

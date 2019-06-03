@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { ConsoleService } from './console.service';
-import { GroupMethod, LABEL_NAMES, Pipeline } from '../logger.interfaces';
+import { Any, GroupMethod, LABEL_NAMES, Pipeline } from '../logger.interfaces';
 import { LoggerService } from '../logger.service';
 import { LABELS, LoggerLevel } from '../logger.config';
 import { CssFactory } from './css-factory.service';
@@ -62,9 +62,9 @@ export class GroupFactory {
 
             groupType(label, lineStyle, title);
             if (pipeline) {
-                const pipe: any = pipeline(logger);
+                const result: Any = pipeline(logger);
                 this.close();
-                pipeLineResult = pipe;
+                pipeLineResult = result;
             }
         } else {
             this.executePipesGroup = false;
