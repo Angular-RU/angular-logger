@@ -40,7 +40,6 @@ export class LoggerFactory {
     private defineLevelGroups(level: LoggerLevel, operation: Operation, logger: LoggerService): Operation {
         const { GROUP, GROUP_COLLAPSED }: typeof GroupLevel = GroupLevel;
 
-
         Object.defineProperties(operation, {
             [GROUP]: this.setGroupMethod(GROUP, level, logger),
             [GROUP_COLLAPSED]: this.setGroupMethod(GROUP_COLLAPSED, level, logger)

@@ -1,13 +1,13 @@
 import { Inject, Injectable } from '@angular/core';
 import { COLORS, LABELS, LoggerLevel } from '../logger.config';
 import {
-  Any,
-  CONSOLE_API,
-  ConsoleOperation,
-  ConsoleServiceInterface,
-  LABEL_COLORS,
-  LABEL_NAMES,
-  MIN_LEVEL
+    Any,
+    CONSOLE_API,
+    ConsoleOperation,
+    ConsoleServiceInterface,
+    LABEL_COLORS,
+    LABEL_NAMES,
+    MIN_LEVEL
 } from '../logger.interfaces';
 
 @Injectable()
