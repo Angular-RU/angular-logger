@@ -53,13 +53,7 @@ export interface LoggerOptions {
     options?(config: Partial<LoggerOptions>): LoggerOptions;
 }
 
-export const CONSOLE_API: InjectionToken<string> = new InjectionToken<string>('CONSOLE_API');
-export const MIN_LEVEL: InjectionToken<string> = new InjectionToken<string>('MIN_LEVEL');
-export const LINE_STYLE: InjectionToken<string> = new InjectionToken<string>('LINE_STYLE');
-export const CSS_CLASS_MAP: InjectionToken<string> = new InjectionToken<string>('CSS_CLASS_MAP');
-export const USE_LEVEL_GROUP: InjectionToken<string> = new InjectionToken<string>('USE_LEVEL_GROUP');
-export const LABEL_COLORS: InjectionToken<string> = new InjectionToken<string>('LABEL_COLORS');
-export const LABEL_NAMES: InjectionToken<string> = new InjectionToken<string>('LABEL_NAMES');
+export const LOGGER_OPTIONS: InjectionToken<string> = new InjectionToken<string>('LOGGER_OPTIONS');
 
 export interface ConsoleServiceInterface {
     getTemplateWithoutLabel(): string;

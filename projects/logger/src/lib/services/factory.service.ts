@@ -6,18 +6,19 @@ import {
     ConsoleOperation as Operation,
     Descriptor,
     GroupFactoryMethod,
+    LOGGER_OPTIONS,
     Pipeline,
-    PipeOperation,
-    USE_LEVEL_GROUP
+    PipeOperation
 } from '../logger.interfaces';
 import { CssFactory } from './css-factory.service';
 import { GroupFactory } from './group-factory.service';
 import { LoggerService } from '../logger.service';
+import { LoggerOptionsImpl } from '../logger.options';
 
 @Injectable()
 export class LoggerFactory {
     constructor(
-        @Inject(USE_LEVEL_GROUP) private readonly useLevelGroup: string,
+        @Inject(LOGGER_OPTIONS) private readonly options: LoggerOptionsImpl,
         private readonly console: ConsoleService,
         private readonly cssFactory: CssFactory,
         private readonly groupFactory: GroupFactory
@@ -30,7 +31,7 @@ export class LoggerFactory {
         const operation: Operation =
             this.console.minLevel <= level ? this.console.instance[methodName].bind(...args) : this.console.noop;
 
-        const pipeOperation: PipeOperation = this.useLevelGroup
+        const pipeOperation: PipeOperation = this.options.useLevelGroup
             ? this.defineLevelGroups(level, operation, logger)
             : operation;
 
