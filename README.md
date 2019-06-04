@@ -462,7 +462,7 @@ export class AppComponent implements OnInit {
 ### Example: decorators
 
 ```typescript
-import { LoggerService, Logger, DebugLog, TraceLog, InfoLog, WarnLog, ErrorLog, Log, LogFn } from '@angular-ru/logger';
+import { LoggerService, Logger, DebugLog, TraceLog, InfoLog, WarnLog, ErrorLog, LoggerLog, LogFn } from '@angular-ru/logger';
 
 export class AppComponent {
     @Logger() public logger: LoggerService;
@@ -471,7 +471,7 @@ export class AppComponent {
     @InfoLog() public info: LogFn;
     @ErrorLog() public error: LogFn;
     @WarnLog() public warn: LogFn;
-    @Log() public log: LogFn;
+    @LoggerLog() public log: LogFn;
 
     private readonly traceIsWork: string = 'trace is worked';
     private readonly debugIsWork: string = 'debug is worked';
@@ -518,10 +518,10 @@ export class AppComponent {
 ### Example: decorator group with function title
 
 ```typescript
-import { Log, LogFn, Group } from '@angular-ru/logger';
+import { LoggerLog, LogFn, Group } from '@angular-ru/logger';
 
 export class AppComponent {
-    @Log() public log: LogFn;
+    @LoggerLog() public log: LogFn;
 
     @Group((name: string) => `Test group with ${name}`)
     public method(name: string): string {
@@ -540,9 +540,9 @@ export class AppComponent {
 ### Example: timer decorator
 
 ```typescript
-import { Log, LogFn, TimerLog, LoggerLevel, LoggerService, Logger } from '@angular-ru/logger';
+import { LoggerLog, LogFn, TimerLog, LoggerLevel, LoggerService, Logger } from '@angular-ru/logger';
 export class AppComponent {
-    @Log() public log: LogFn;
+    @LoggerLog() public log: LogFn;
     @Logger() public logger: LoggerService;
 
     @TimerLog('Test timer')

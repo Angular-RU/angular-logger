@@ -6,7 +6,7 @@ import { TraceLog } from '../projects/logger/src/lib/decorators/trace.decorator'
 import { InfoLog } from '../projects/logger/src/lib/decorators/info.decorator';
 import { ErrorLog } from '../projects/logger/src/lib/decorators/error.decorator';
 import { WarnLog } from '../projects/logger/src/lib/decorators/warn.decorator';
-import { Log } from '../projects/logger/src/lib/decorators/log.decorator';
+import { LoggerLog } from '../projects/logger/src/lib/decorators/log.decorator';
 import { Group } from '../projects/logger/src/lib/decorators/groups/group.decorator';
 import { GroupCollapsed } from '../projects/logger/src/lib/decorators/groups/group-collapsed.decorator';
 import { LoggerLevel } from '../projects/logger/src/lib/logger.config';
@@ -22,7 +22,7 @@ export class MyTestComponent implements OnInit {
     @InfoLog() public info: LogFn;
     @ErrorLog() public error: LogFn;
     @WarnLog() public warn: LogFn;
-    @Log() public log: LogFn;
+    @LoggerLog() public log: LogFn;
 
     public count: number = 0;
     public hook: string;

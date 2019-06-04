@@ -3,7 +3,7 @@ import { LoggerService } from '../../logger.service';
 import { GroupLevel, LoggerLevel } from '../../logger.config';
 import { Any, Callback, Fn, GroupMethod } from '../../logger.interfaces';
 import { GroupFactory } from '../../services/group-factory.service';
-import { LoggerModule } from '../../logger.module';
+import { LoggerInjector } from '../../logger.injector';
 
 export function groupDecoratorFactory(
     level: LoggerLevel,
@@ -14,8 +14,8 @@ export function groupDecoratorFactory(
     target: Type<unknown>
 ): unknown {
     let result: unknown;
-    const logger: LoggerService = LoggerModule.logger();
-    const groupFactory: GroupFactory = LoggerModule.groupFactory();
+    const logger: LoggerService = LoggerInjector.getInjector().get<LoggerService>(LoggerService);
+    const groupFactory: GroupFactory = LoggerInjector.getInjector().get<GroupFactory>(GroupFactory);
     const groupMethod: GroupMethod = groupFactory[groupType].bind(groupFactory);
     const label: string = typeof title === 'string' ? title : title(...args);
 

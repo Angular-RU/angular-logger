@@ -24,8 +24,4 @@ export class LoggerOptionsImpl implements LoggerOptions {
         [LoggerLevel.WARN]: LABELS.WARN,
         [LoggerLevel.ERROR]: LABELS.ERROR
     };
-
-    public options(config: Partial<LoggerOptions>): LoggerOptions {
-        return Object.assign(new LoggerOptionsImpl(), config);
-    }
 }
