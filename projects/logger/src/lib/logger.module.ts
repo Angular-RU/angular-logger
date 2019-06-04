@@ -1,4 +1,4 @@
-import { InjectionToken, Injector, ModuleWithProviders, NgModule } from '@angular/core';
+import { InjectionToken, ModuleWithProviders, NgModule, Self } from '@angular/core';
 
 import { LoggerService } from './logger.service';
 import { LoggerFactory } from './services/factory.service';
@@ -10,6 +10,7 @@ import { JsonFactory } from './services/json-factory.service';
 import { ClipboardFactory } from './services/clipboard-factory.service';
 import { TimerFactory } from './services/timer-factory.service';
 import { LoggerOptionsImpl } from './logger.options';
+import { LoggerInjector } from './logger.injector';
 
 @NgModule({
     providers: [
@@ -20,24 +21,14 @@ import { LoggerOptionsImpl } from './logger.options';
         CssFactory,
         JsonFactory,
         ClipboardFactory,
-        TimerFactory
+        TimerFactory,
+        LoggerInjector
     ]
 })
 export class LoggerModule {
-    public static injector: Injector = undefined;
     private static readonly ROOT_OPTIONS: InjectionToken<string> = new InjectionToken<string>('ROOT_OPTIONS');
 
-    constructor(injector: Injector) {
-        LoggerModule.injector = injector;
-    }
-
-    public static logger(): LoggerService {
-        return LoggerModule.injector.get(LoggerService);
-    }
-
-    public static groupFactory(): GroupFactory {
-        return LoggerModule.injector.get(GroupFactory);
-    }
+    constructor(@Self() public loggerInjector: LoggerInjector) {}
 
     public static forRoot(config: Partial<LoggerOptions> = {}): ModuleWithProviders {
         return {
@@ -56,7 +47,7 @@ export class LoggerModule {
         };
     }
 
-    private static loggerConfigFactory(config: Partial<LoggerOptions>): unknown {
-        return new LoggerOptionsImpl().options(config);
+    private static loggerConfigFactory(config: Partial<LoggerOptions>): LoggerOptionsImpl {
+        return Object.assign(new LoggerOptionsImpl(), config);
     }
 }

@@ -8,13 +8,13 @@ import {
     LogFn,
     Logger,
     LoggerLevel,
+    Log,
     LoggerService,
     TimerLog,
     TraceLog,
     WarnLog
 } from '@angular-ru/logger';
 import * as devtools from 'devtools-detect';
-import { Log } from '../../projects/logger/src/lib/decorators/log.decorator';
 
 @Component({
     selector: 'app-root',

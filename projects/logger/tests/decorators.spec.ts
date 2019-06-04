@@ -4,7 +4,7 @@ import { LoggerService } from '../src/lib/logger.service';
 import { MyTestComponent } from '../../../helpers/test.component';
 import { LoggerLevel } from '../src/lib/logger.config';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Fn } from '@angular-ru/logger';
+import { Fn } from '../src/lib/logger.interfaces';
 
 describe('[TEST]: Decorator API', () => {
     let logger: LoggerService;
