@@ -8,7 +8,7 @@ import {
     LogFn,
     Logger,
     LoggerLevel,
-    LoggerLog,
+    Log,
     LoggerService,
     TimerLog,
     TraceLog,
@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
     @InfoLog() public info: LogFn;
     @ErrorLog() public error: LogFn;
     @WarnLog() public warn: LogFn;
-    @LoggerLog() public log: LogFn;
+    @Log() public log: LogFn;
 
     public isLoaded: boolean;
     public devToolsIsOpen: boolean = devtools.isOpen;

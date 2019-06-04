@@ -4,7 +4,7 @@ import { LogFn } from './../logger.interfaces';
 import { LoggerInjector } from '../logger.injector';
 import { LoggerService } from '../logger.service';
 
-export function LoggerLog(): PropertyDecorator {
+export function Log(): PropertyDecorator {
     return (target: Type<unknown>, propertyName: string): void => {
         Object.defineProperty(target, propertyName, {
             configurable: false,
