@@ -13,6 +13,15 @@ import { LoggerLevel } from '../projects/logger/src/lib/logger.config';
 import { Fn, LogFn, TimerInfo } from '../projects/logger/src/lib/logger.interfaces';
 import { TimerLog } from '../projects/logger/src/lib/decorators/timer.decorator';
 
+interface HttpDebugInterface {
+    method: string;
+    url: string;
+    queryParams: string;
+    data: unknown;
+    body: unknown;
+    errorData: unknown;
+}
+
 // noinspection AngularMissingOrInvalidDeclarationInModule
 @Component({ selector: 'lib-hello-test', template: '' })
 export class MyTestComponent implements OnInit {
@@ -68,6 +77,17 @@ export class MyTestComponent implements OnInit {
     public method(name: string): string {
         this.logger.log('group is worked');
         return name;
+    }
+
+    @Group((options: Partial<HttpDebugInterface>) => MyTestComponent.getUrlInfo(options))
+    public hello(name: string): string {
+        this.logger.log('group is worked');
+        return name;
+    }
+
+    public static getUrlInfo({ method, url, queryParams }: Partial<HttpDebugInterface>): string {
+        const params: string = queryParams ? `?${queryParams}` : '';
+        return `[${method}] - ${url}${params}`;
     }
 
     @TimerLog('mock:ngOnInit')

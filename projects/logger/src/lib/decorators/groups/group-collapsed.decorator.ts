@@ -5,7 +5,7 @@ import { groupDecoratorFactory } from './group.common';
 import { Any, Callback, DecoratorMethod } from '../../logger.interfaces';
 
 export function GroupCollapsed(
-    title: string | Callback<string>,
+    title: string | Callback<Any>,
     level: LoggerLevel = LoggerLevel.INFO
 ): DecoratorMethod {
     return (_target: Type<unknown>, _key: string, descriptor: PropertyDescriptor): PropertyDescriptor => {
