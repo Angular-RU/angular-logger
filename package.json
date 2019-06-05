@@ -28,6 +28,7 @@
         "@angular/platform-browser": "~8.0.0",
         "@angular/platform-browser-dynamic": "~8.0.0",
         "@angular/router": "~8.0.0",
+        "core-decorators": "^0.20.0",
         "core-js": "^2.5.4",
         "devtools-detect": "^3.0.0",
         "lint-staged": "^7.3.0",

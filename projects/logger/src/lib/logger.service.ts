@@ -9,10 +9,13 @@ import { JsonFactory } from './services/json-factory.service';
 import { ClipboardFactory } from './services/clipboard-factory.service';
 import { TimerFactory } from './services/timer-factory.service';
 import { LoggerOptionsImpl } from './logger.options';
+import { autobind } from './decorators/autobind.decorator';
 
+@autobind
 @Injectable()
 export class LoggerService {
     private readonly DEFAULT_DEPTH: number = 2;
+
     constructor(
         public readonly clipboard: ClipboardFactory,
         public readonly cssFactory: CssFactory,
