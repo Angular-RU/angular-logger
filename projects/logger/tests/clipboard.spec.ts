@@ -80,8 +80,8 @@ describe('[TEST]: Check clipboard', () => {
 
         const JsonValue: ObjectKeyMap = { a: 1, b: [1, 2, 3] };
         const isExec: boolean = LoggerInjector.getInjector()
-          .get<LoggerService>(LoggerService)
-          .copy(JsonValue);
+            .get<LoggerService>(LoggerService)
+            .copy(JsonValue);
 
         expect(isExec).toEqual(false);
         expect(buffer).toEqual(null);
