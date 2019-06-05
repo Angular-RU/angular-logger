@@ -17,8 +17,8 @@ export class LoggerService {
     private readonly DEFAULT_DEPTH: number = 2;
 
     constructor(
-        public readonly clipboard: ClipboardFactory,
-        public readonly cssFactory: CssFactory,
+        private readonly clipboard: ClipboardFactory,
+        private readonly cssFactory: CssFactory,
         private readonly console: ConsoleService,
         private readonly factory: LoggerFactory,
         private readonly groupFactory: GroupFactory,

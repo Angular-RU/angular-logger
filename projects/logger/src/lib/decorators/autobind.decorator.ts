@@ -40,7 +40,7 @@ function bind(fn: Fn, context: Any): Fn {
     }
 }
 
-const getOwnKeys: Any = getOwnPropertySymbols
+const getOwnKeys: Fn<Any, Any> = getOwnPropertySymbols
     ? function(object: ObjectKeyMap): string[] {
           return getOwnPropertyNames(object).concat(getOwnPropertySymbols(object));
       }
@@ -82,22 +82,14 @@ function autobindMethod(target: Any, key: Any, { value: fn, configurable, enumer
         enumerable,
 
         get(): Fn {
-            // Class.prototype.key lookup
-            // Someone accesses the property directly on the prototype on which it is
-            // actually defined on, i.e. Class.prototype.hasOwnProperty(key)
             if (this === target) {
                 return fn;
             }
 
-            // Class.prototype.key lookup
-            // Someone accesses the property directly on a prototype but it was found
-            // up the chain, not defined directly on it
-            // i.e. Class.prototype.hasOwnProperty(key) == false && key in Class.prototype
             if (this.constructor !== constructor && getPrototypeOf(this).constructor === constructor) {
                 return fn;
             }
 
-            // Autobound method calling super.sameMethod() which is also autobound and so on.
             if (this.constructor !== constructor && key in this.constructor.prototype) {
                 return getBoundSuper(this, fn);
             }
@@ -107,7 +99,7 @@ function autobindMethod(target: Any, key: Any, { value: fn, configurable, enumer
             defineProperty(this, key, {
                 configurable: true,
                 writable: true,
-                // NOT enumerable when it's a bound method
+
                 enumerable: false,
                 value: boundFn
             });
@@ -123,7 +115,7 @@ function handle(args: Any[]): Fn {
         return autobindClass(args[0]);
     } else {
         // @ts-ignore
-      return autobindMethod(...args);
+        return autobindMethod(...args);
     }
 }
 
@@ -142,7 +134,7 @@ function createDefaultSetter(key: Any): Fn {
         Object.defineProperty(this, key, {
             configurable: true,
             writable: true,
-            // IS enumerable when reassigned by the outside word
+
             enumerable: true,
             value: newValue
         });
