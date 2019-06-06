@@ -184,4 +184,9 @@ describe('[TEST]: Execute method by Level', () => {
         logger.table(data);
         expect(fakeConsole.stack(0)).toEqual(fakeConsole.createStack({ [TestLoggerLineType.TABLE]: [data] }));
     });
+
+    it('should be equals reference context (this)', () => {
+        const { pipe }: LoggerService = logger;
+        expect(pipe() === logger).toEqual(true);
+    });
 });

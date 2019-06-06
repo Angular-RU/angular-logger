@@ -3,7 +3,6 @@ import { ConsoleFake } from '../../../helpers/console-fake';
 import { TestBed } from '@angular/core/testing';
 import { LoggerModule } from '../src/lib/logger.module';
 import { ObjectKeyMap } from '../src/lib/logger.interfaces';
-import { LoggerInjector } from '../src/lib/logger.injector';
 
 describe('[TEST]: Check clipboard', () => {
     let logger: LoggerService;
@@ -67,9 +66,7 @@ describe('[TEST]: Check clipboard', () => {
         });
 
         const JsonValue: ObjectKeyMap = { a: 1, b: [1, 2, 3] };
-        const isExec: boolean = LoggerInjector.getInjector()
-            .get<LoggerService>(LoggerService)
-            .copy(JsonValue);
+        const isExec: boolean = logger.copy(JsonValue);
 
         expect(isExec).toEqual(true);
         expect(buffer).toEqual(JSON.stringify(JsonValue, null, 4));
@@ -79,9 +76,7 @@ describe('[TEST]: Check clipboard', () => {
         createMockQueryCommands(textarea);
 
         const JsonValue: ObjectKeyMap = { a: 1, b: [1, 2, 3] };
-        const isExec: boolean = LoggerInjector.getInjector()
-            .get<LoggerService>(LoggerService)
-            .copy(JsonValue);
+        const isExec: boolean = logger.copy(JsonValue);
 
         expect(isExec).toEqual(false);
         expect(buffer).toEqual(null);
