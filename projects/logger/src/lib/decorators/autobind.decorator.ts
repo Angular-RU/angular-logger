@@ -6,35 +6,39 @@ function bind(fn: Fn, context: Any): Fn {
     return fn.bind(context);
 }
 
-function getOwnKeys(descs: ObjectKeyMap): string[] {
-    return getOwnPropertyNames(descs).concat(getOwnPropertySymbols(descs));
+function getOwnKeys(descriptors: ObjectKeyMap): string[] {
+    return getOwnPropertyNames(descriptors).concat(getOwnPropertySymbols(descriptors));
 }
 
-function autobindClass(klass: ObjectKeyMap): Any {
-    const descs: ObjectKeyMap = getOwnPropertyDescriptors(klass.prototype);
-    const keys: Any = getOwnKeys(descs);
+function autoBindClass(target: ObjectKeyMap): Any {
+    const descriptors: ObjectKeyMap = getOwnPropertyDescriptors(target.prototype);
+    const keys: string[] = getOwnKeys(descriptors);
 
     for (let i: number = 0, l: number = keys.length; i < l; i++) {
         const key: string = keys[i];
-        const desc: Any = descs[key];
+        const descriptor: Any = descriptors[key];
 
-        if (typeof desc.value !== 'function' || key === 'constructor') {
+        if (typeof descriptor.value !== 'function' || key === 'constructor') {
             continue;
         }
 
-        defineProperty(klass.prototype, key, autobindMethod(klass.prototype, key, desc));
+        defineProperty(target.prototype, key, autoBindMethod(target.prototype, key, descriptor));
     }
 }
 
-function getOwnPropertyDescriptors(obj: ObjectKeyMap): ObjectKeyMap {
-    const descs: ObjectKeyMap = {};
+function getOwnPropertyDescriptors(target: ObjectKeyMap): ObjectKeyMap {
+    const descriptors: ObjectKeyMap = {};
 
-    getOwnKeys(obj).forEach((key: Any) => (descs[key] = getOwnPropertyDescriptor(obj, key)));
+    getOwnKeys(target).forEach((key: string) => (descriptors[key] = getOwnPropertyDescriptor(target, key)));
 
-    return descs;
+    return descriptors;
 }
 
-function autobindMethod(target: Any, key: Any, { value: fn, configurable, enumerable }: Any): PropertyDescriptor {
+function autoBindMethod(
+    target: ObjectKeyMap,
+    key: string,
+    { value: fn, configurable, enumerable }: Any
+): PropertyDescriptor {
     return {
         configurable,
         enumerable,
@@ -60,16 +64,16 @@ function autobindMethod(target: Any, key: Any, { value: fn, configurable, enumer
     };
 }
 
-function handle(args: Any[]): Fn {
+function handle(args: Any[]): Any {
     if (args.length === 1) {
-        return autobindClass(args[0]);
+        return autoBindClass(args[0]);
     } else {
         // @ts-ignore
-        return autobindMethod(...args);
+        return autoBindMethod(...args);
     }
 }
 
-export function autobind(...args: Any[]): Any {
+export function autoBind(...args: Any[]): Any {
     if (args.length === 0) {
         return function(...argsClass: Any[]): Fn {
             return handle(argsClass);

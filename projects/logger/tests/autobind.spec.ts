@@ -1,10 +1,9 @@
-import { autobind } from '../src/lib/decorators/autobind.decorator';
+import { autoBind } from '../src/lib/decorators/autobind.decorator';
 
-describe('@autobind', () => {
-    let barCount: number;
+describe('@autoBind', () => {
 
     class Foo {
-        @autobind
+        @autoBind
         public getFoo(): this {
             return this;
         }
@@ -13,18 +12,16 @@ describe('@autobind', () => {
             return this;
         }
 
-        @autobind
+        @autoBind
         public onlyOnFoo(): this {
             return this;
         }
     }
 
     class Bar extends Foo {
-        @autobind()
+        @autoBind()
         public getFoo(): this {
             const foo: this = super.getFoo();
-            barCount++;
-            console.log(barCount);
             return foo;
         }
 
@@ -32,7 +29,7 @@ describe('@autobind', () => {
             return super.getFoo;
         }
 
-        @autobind
+        @autoBind
         public onlyOnBar(): this {
             return this;
         }
