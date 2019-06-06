@@ -20,8 +20,7 @@ describe('@autoBind', () => {
     class Bar extends Foo {
         @autoBind()
         public getFoo(): this {
-            const foo: this = super.getFoo();
-            return foo;
+            return super.getFoo();
         }
 
         public getSuperMethod_getFoo(): () => this {
