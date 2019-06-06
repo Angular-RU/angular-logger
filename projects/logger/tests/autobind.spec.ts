@@ -1,7 +1,6 @@
 import { autoBind } from '../src/lib/decorators/autobind.decorator';
 
 describe('@autoBind', () => {
-
     class Foo {
         @autoBind
         public getFoo(): this {
