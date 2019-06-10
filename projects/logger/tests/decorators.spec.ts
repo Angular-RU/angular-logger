@@ -2,9 +2,9 @@ import { ConsoleFake, TestLoggerLineType } from '../../../helpers/console-fake';
 import { LoggerModule } from '../src/lib/logger.module';
 import { LoggerService } from '../src/lib/logger.service';
 import { MyTestComponent } from '../../../helpers/test.component';
-import { LoggerLevel } from '../src/lib/logger.config';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Fn } from '../src/lib/logger.interfaces';
+import { LoggerLevel } from '../src/lib/interfaces/logger.external';
+import { Fn } from '../src/lib/interfaces/logger.internal';
 
 describe('[TEST]: Decorator API', () => {
     let logger: LoggerService;

@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
-import { LoggerLevel } from '../logger.config';
-import { ConsoleOperation, ConsoleServiceInterface, LOGGER_OPTIONS } from '../logger.interfaces';
 import { LoggerOptionsImpl } from '../logger.options';
+import { ConsoleOperation, LOGGER_OPTIONS, LoggerLevel } from '../interfaces/logger.external';
+import { ConsoleServiceInterface } from '../interfaces/logger.internal';
 
 @Injectable()
 export class ConsoleService implements ConsoleServiceInterface {

@@ -1,15 +1,15 @@
 import { Inject, Injectable } from '@angular/core';
 import { LoggerFactory } from './services/factory.service';
-import { LoggerLevel } from './logger.config';
 import { ConsoleService } from './services/console.service';
 import { GroupFactory } from './services/group-factory.service';
-import { LogFn, LOGGER_OPTIONS, ObjectKeyMap, Pipeline, TimerInfo } from './logger.interfaces';
 import { CssFactory } from './services/css-factory.service';
 import { JsonFactory } from './services/json-factory.service';
 import { ClipboardFactory } from './services/clipboard-factory.service';
 import { TimerFactory } from './services/timer-factory.service';
 import { LoggerOptionsImpl } from './logger.options';
 import { autoBind } from './decorators/autobind.decorator';
+import { LogFn, LOGGER_OPTIONS, LoggerLevel, Pipeline, TimerInfo } from './interfaces/logger.external';
+import { ObjectKeyMap } from './interfaces/logger.internal';
 
 @autoBind
 @Injectable()

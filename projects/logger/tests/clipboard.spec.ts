@@ -2,7 +2,7 @@ import { LoggerService } from '../src/lib/logger.service';
 import { ConsoleFake } from '../../../helpers/console-fake';
 import { TestBed } from '@angular/core/testing';
 import { LoggerModule } from '../src/lib/logger.module';
-import { ObjectKeyMap } from '../src/lib/logger.interfaces';
+import { ObjectKeyMap } from '../src/lib/interfaces/logger.internal';
 
 describe('[TEST]: Check clipboard', () => {
     let logger: LoggerService;

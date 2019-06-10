@@ -1,11 +1,11 @@
 {
   "name": "@angular-ru/logger",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "license": "MIT",
   "homepage": "https://github.com/Angular-RU/angular-logger",
   "repository": "https://github.com/Angular-RU/angular-logger",
   "peerDependencies": {
-    "@angular/common": "^7.2.0",
-    "@angular/core": "^7.2.0"
+    "@angular/common": ">=7.0.0",
+    "@angular/core": ">=7.0.0"
   }
 }

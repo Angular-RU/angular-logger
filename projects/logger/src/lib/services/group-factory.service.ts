@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ConsoleService } from './console.service';
-import { Any, GroupMethod, Pipeline } from '../logger.interfaces';
 import { LoggerService } from '../logger.service';
-import { LoggerLevel } from '../logger.config';
 import { CssFactory } from './css-factory.service';
+import { Any } from '../interfaces/logger.internal';
+import { GroupMethod, LoggerLevel, Pipeline } from '../interfaces/logger.external';
 
 @Injectable()
 export class GroupFactory {

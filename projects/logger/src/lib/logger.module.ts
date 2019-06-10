@@ -3,7 +3,6 @@ import { InjectionToken, ModuleWithProviders, NgModule, Self } from '@angular/co
 import { LoggerService } from './logger.service';
 import { LoggerFactory } from './services/factory.service';
 import { ConsoleService } from './services/console.service';
-import { LOGGER_OPTIONS, LoggerOptions } from './logger.interfaces';
 import { GroupFactory } from './services/group-factory.service';
 import { CssFactory } from './services/css-factory.service';
 import { JsonFactory } from './services/json-factory.service';
@@ -11,6 +10,7 @@ import { ClipboardFactory } from './services/clipboard-factory.service';
 import { TimerFactory } from './services/timer-factory.service';
 import { LoggerOptionsImpl } from './logger.options';
 import { LoggerInjector } from './logger.injector';
+import { LOGGER_OPTIONS, LoggerOptions } from './interfaces/logger.external';
 
 @NgModule({
     providers: [

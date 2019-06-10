@@ -1,4 +1,5 @@
-import { ObjectKeyMap } from './logger.interfaces';
+import { LoggerLevel } from './interfaces/logger.external';
+import { ObjectKeyMap } from './interfaces/logger.internal';
 
 export enum LABELS {
     TRACE = '[TRACE]:',
@@ -14,22 +15,6 @@ export enum COLORS {
     INFO = '#000000',
     WARN = '#FF6419',
     ERROR = '#F1062D'
-}
-
-export enum LoggerLevel {
-    ALL = 1,
-    TRACE,
-    DEBUG,
-    INFO,
-    LOG,
-    WARN,
-    ERROR,
-    OFF
-}
-
-export enum GroupLevel {
-    GROUP = 'group',
-    GROUP_COLLAPSED = 'groupCollapsed'
 }
 
 export const DEFAULT_METHODS: ObjectKeyMap = {

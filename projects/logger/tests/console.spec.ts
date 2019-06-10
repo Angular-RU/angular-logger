@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { LoggerModule } from '../src/lib/logger.module';
 import { ConsoleService } from '../src/lib/services/console.service';
 import { LoggerService } from '../src/lib/logger.service';
-import { LoggerLevel } from '../src/lib/logger.config';
+import { LoggerLevel } from '../src/lib/interfaces/logger.external';
 
 describe('[TEST]: ConsoleService', () => {
     let consoleInternal: ConsoleService;

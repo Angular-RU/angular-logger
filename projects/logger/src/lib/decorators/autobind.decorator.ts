@@ -1,4 +1,5 @@
-import { Any, Fn, ObjectKeyMap } from '../logger.interfaces';
+
+import { Any, Fn, ObjectKeyMap } from '../interfaces/logger.internal';
 
 const { defineProperty, getOwnPropertyDescriptor, getOwnPropertyNames, getOwnPropertySymbols }: ObjectKeyMap = Object;
 
