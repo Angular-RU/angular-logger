@@ -2,9 +2,9 @@ import { TestBed } from '@angular/core/testing';
 import { LoggerModule } from '../src/lib/logger.module';
 import { LoggerService } from '../src/lib/logger.service';
 import { ConsoleFake } from '../../../helpers/console-fake';
-import { LoggerLevel } from '../src/lib/logger.config';
 import { CUSTOM_COLORS, CUSTOM_LABELS } from '../../../helpers/custom-colors.enum';
-import { ObjectKeyMap } from '../src/lib/logger.interfaces';
+import { LoggerLevel } from '../src/lib/interfaces/logger.external';
+import { ObjectKeyMap } from '../src/lib/interfaces/logger.internal';
 
 describe('[TEST]: Check global style', () => {
     let logger: LoggerService;

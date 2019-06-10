@@ -1,19 +1,20 @@
 import { Inject, Injectable } from '@angular/core';
-import { DEFAULT_METHODS, GroupLevel, LoggerLevel } from '../logger.config';
+import { DEFAULT_METHODS } from '../logger.config';
 import { ConsoleService } from './console.service';
-import {
-    Arguments,
-    ConsoleOperation as Operation,
-    Descriptor,
-    GroupFactoryMethod,
-    LOGGER_OPTIONS,
-    Pipeline,
-    PipeOperation
-} from '../logger.interfaces';
 import { CssFactory } from './css-factory.service';
 import { GroupFactory } from './group-factory.service';
 import { LoggerService } from '../logger.service';
 import { LoggerOptionsImpl } from '../logger.options';
+import {
+    ConsoleOperation as Operation,
+    GroupFactoryMethod,
+    GroupLevel,
+    LOGGER_OPTIONS,
+    LoggerLevel,
+    Pipeline,
+    PipeOperation
+} from '../interfaces/logger.external';
+import { Arguments, Descriptor } from '../interfaces/logger.internal';
 
 @Injectable()
 export class LoggerFactory {

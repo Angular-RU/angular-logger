@@ -1,9 +1,9 @@
 import { Type } from '@angular/core';
 
-import { LoggerLevel } from '../logger.config';
-import { Any, DecoratorMethod, Fn, TimerInfo, TimerLevels } from '../logger.interfaces';
 import { LoggerInjector } from '../logger.injector';
 import { LoggerService } from '../logger.service';
+import { Any, DecoratorMethod, Fn } from '../interfaces/logger.internal';
+import { LoggerLevel, TimerInfo, TimerLevels } from '../interfaces/logger.external';
 
 export function TimerLog(
     title: string,

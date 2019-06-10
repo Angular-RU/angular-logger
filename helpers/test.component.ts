@@ -9,9 +9,9 @@ import { WarnLog } from '../projects/logger/src/lib/decorators/warn.decorator';
 import { Log } from '../projects/logger/src/lib/decorators/log.decorator';
 import { Group } from '../projects/logger/src/lib/decorators/groups/group.decorator';
 import { GroupCollapsed } from '../projects/logger/src/lib/decorators/groups/group-collapsed.decorator';
-import { LoggerLevel } from '../projects/logger/src/lib/logger.config';
-import { Fn, LogFn, TimerInfo } from '../projects/logger/src/lib/logger.interfaces';
 import { TimerLog } from '../projects/logger/src/lib/decorators/timer.decorator';
+import { LogFn, LoggerLevel, TimerInfo } from '../projects/logger/src/lib/interfaces/logger.external';
+import { Fn } from '../projects/logger/src/lib/interfaces/logger.internal';
 
 interface HttpDebugInterface {
     method: string;

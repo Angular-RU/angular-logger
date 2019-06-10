@@ -1,7 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
-import { LOGGER_OPTIONS } from '../logger.interfaces';
-import { LoggerLevel } from '../logger.config';
 import { LoggerOptionsImpl } from '../logger.options';
+import { LOGGER_OPTIONS, LoggerLevel } from '../interfaces/logger.external';
 
 @Injectable()
 export class CssFactory {

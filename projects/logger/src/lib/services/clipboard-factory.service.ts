@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Clipboard, ClipboardData, SetDataType } from '../logger.interfaces';
+import { Clipboard, ClipboardData, SetDataType } from '../interfaces/logger.internal';
 
 declare global {
     interface Window {

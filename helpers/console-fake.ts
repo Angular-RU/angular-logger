@@ -1,4 +1,4 @@
-import { ObjectKeyMap } from '../projects/logger/src/lib/logger.interfaces';
+import { ObjectKeyMap } from '../projects/logger/src/lib/interfaces/logger.internal';
 
 export enum TestLoggerLineType {
     TABLE = 'table',
