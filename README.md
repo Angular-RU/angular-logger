@@ -561,10 +561,48 @@ export class AppComponent {
 
 ![](https://habrastorage.org/webt/ur/zl/66/urzl66me9nixsnauhsfpge2tn0a.png)
 
+### Example: format output
+
+```typescript
+import { LoggerModule, NgModule, FormatOutput } from '@angular-ru/logger';
+
+@NgModule({
+    //..
+    imports: [
+        LoggerModule.forRoot({
+            format(label: string, labelStyle: string): FormatOutput {
+                const date = new Date().toLocaleString('ru-RU').replace(',', '');
+                const customLabel: string = `${date} ${label}`;
+                return { label: customLabel, style: labelStyle };
+            }
+        })
+    ]
+})
+export class AppModule {}
+```
+
+```typescript
+import { LoggerService, OnInit } from '@angular-ru/logger';
+
+export class AppComponent implements OnInit {
+    constructor(private readonly logger: LoggerService) {}
+
+    public ngOnInit(): void {
+        this.logger.trace('trace is worked', 1, { a: 1 });
+        this.logger.debug('debug is worked', 2, {});
+        this.logger.info('info is worked', 3, Object);
+        this.logger.warn('warn is worked', 4, String);
+        this.logger.error('error is worked', 5, (2.55).toFixed());
+    }
+}
+```
+
+![](https://habrastorage.org/webt/pi/gi/ax/pigiax25o6qapoen_9wjoy4jdio.png)
+
 ### Example: full configurations
 
 ```typescript
-import { LoggerModule } from '@angular-ru/logger';
+import { LoggerModule, NgModule, LoggerLevel } from '@angular-ru/logger';
 
 @NgModule({
     // ..
@@ -645,9 +683,7 @@ export class AppComponent implements OnInit {
 -   [x] Switch enable/disable default console output
 -   [x] Decorators
 -   [x] Timers (decorator)
--   [ ] Profiling (memory usage, sizeof, time execute)
--   [ ] Pre process output
--   [ ] Format output console
+-   [x] Format output console
 
 ## Authors
 

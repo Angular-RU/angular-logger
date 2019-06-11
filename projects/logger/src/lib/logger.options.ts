@@ -1,6 +1,6 @@
 import { COLORS, LABELS } from './logger.config';
 import { Injectable } from '@angular/core';
-import { LoggerLevel, LoggerOptions } from './interfaces/logger.external';
+import { FormatOutput, LoggerLevel, LoggerOptions } from './interfaces/logger.external';
 import { ObjectKeyMap } from './interfaces/logger.internal';
 
 @Injectable()
@@ -25,4 +25,8 @@ export class LoggerOptionsImpl implements LoggerOptions {
         [LoggerLevel.WARN]: LABELS.WARN,
         [LoggerLevel.ERROR]: LABELS.ERROR
     };
+
+    public format(label: string, style: string): FormatOutput {
+        return { label: `${label}`, style };
+    }
 }

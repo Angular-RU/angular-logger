@@ -3,7 +3,7 @@ import { LoggerModule } from '../src/lib/logger.module';
 import { LoggerService } from '../src/lib/logger.service';
 import { ConsoleFake } from '../../../helpers/console-fake';
 import { CUSTOM_COLORS, CUSTOM_LABELS } from '../../../helpers/custom-colors.enum';
-import { LoggerLevel } from '../src/lib/interfaces/logger.external';
+import { FormatOutput, LoggerLevel } from '../src/lib/interfaces/logger.external';
 import { ObjectKeyMap } from '../src/lib/interfaces/logger.internal';
 
 describe('[TEST]: Check global style', () => {
@@ -34,6 +34,10 @@ describe('[TEST]: Check global style', () => {
                         [LoggerLevel.INFO]: CUSTOM_COLORS.INFO,
                         [LoggerLevel.WARN]: CUSTOM_COLORS.WARN,
                         [LoggerLevel.ERROR]: CUSTOM_COLORS.ERROR
+                    },
+                    format(label: string, labelStyle: string): FormatOutput {
+                        const customLabel: string = `${label}`;
+                        return { label: customLabel, style: labelStyle };
                     }
                 })
             ]

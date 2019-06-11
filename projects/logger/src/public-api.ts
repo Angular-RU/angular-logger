@@ -15,7 +15,4 @@ export * from './lib/decorators/warn.decorator';
 export * from './lib/decorators/groups/group.decorator';
 export * from './lib/decorators/timer.decorator';
 export * from './lib/decorators/groups/group-collapsed.decorator';
-export { LogFn } from './lib/interfaces/logger.external';
-export { ConsoleOperation } from './lib/interfaces/logger.external';
-export { GroupLevel } from './lib/interfaces/logger.external';
-export { LoggerLevel } from './lib/interfaces/logger.external';
+export * from './lib/interfaces/logger.external';

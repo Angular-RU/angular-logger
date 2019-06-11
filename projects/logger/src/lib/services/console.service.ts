@@ -8,7 +8,7 @@ export class ConsoleService implements ConsoleServiceInterface {
     public instance: Console;
     public minLevel: LoggerLevel;
 
-    constructor(@Inject(LOGGER_OPTIONS) private readonly options: LoggerOptionsImpl) {
+    constructor(@Inject(LOGGER_OPTIONS) public readonly options: LoggerOptionsImpl) {
         this.minLevel = options.minLevel;
         this.instance = options.instance;
     }
@@ -25,12 +25,12 @@ export class ConsoleService implements ConsoleServiceInterface {
         return ((): void => {}) as ConsoleOperation;
     }
 
-    public getTemplateLabel(level: LoggerLevel): string {
-        return `%c${this.options.labelNames[level]}`;
+    public getTemplateLabel(text: string): string {
+        return `%c${text}`;
     }
 
-    public getFormatTemplateLabel(level: LoggerLevel): string {
-        return `%c${this.options.labelNames[level]} %c%s`;
+    public getFormatTemplateLabel(text: string): string {
+        return `%c${text} %c%s`;
     }
 
     public getTemplateWithoutLabel(): string {

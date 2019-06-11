@@ -1,16 +1,21 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { ConsoleService } from './console.service';
 import { LoggerService } from '../logger.service';
 import { CssFactory } from './css-factory.service';
-import { Any } from '../interfaces/logger.internal';
-import { GroupMethod, LoggerLevel, Pipeline } from '../interfaces/logger.external';
+import { Any, ObjectKeyMap } from '../interfaces/logger.internal';
+import { GroupMethod, LOGGER_OPTIONS, LoggerLevel, Pipeline } from '../interfaces/logger.external';
+import { LoggerOptionsImpl } from '../logger.options';
 
 @Injectable()
 export class GroupFactory {
     public executePipesGroup: boolean;
     private counterOpenedGroup: number = 0;
 
-    constructor(private readonly console: ConsoleService, private readonly cssFactory: CssFactory) {}
+    constructor(
+        private readonly console: ConsoleService,
+        private readonly cssFactory: CssFactory,
+        @Inject(LOGGER_OPTIONS) public readonly options: LoggerOptionsImpl
+    ) {}
 
     public close(): void {
         if (this.executePipesGroup) {
@@ -53,10 +58,10 @@ export class GroupFactory {
             this.executePipesGroup = true;
             this.counterOpenedGroup++;
 
-            const label: string = this.console.getTemplateLabel(level);
             const lineStyle: string = this.cssFactory.getStyleLabel(level);
+            const { formatLabel, formatStyle }: ObjectKeyMap<string> = this.getLabel(LoggerLevel[level], lineStyle);
 
-            groupType(label, lineStyle, title);
+            groupType(`%c${formatLabel}`, formatStyle, title);
             if (pipeline) {
                 const result: Any = pipeline(logger);
                 this.close();
@@ -67,5 +72,9 @@ export class GroupFactory {
         }
 
         return pipeLineResult;
+    }
+
+    private getLabel(level: string, style: string): ObjectKeyMap {
+        return this.options.format(level, style);
     }
 }
