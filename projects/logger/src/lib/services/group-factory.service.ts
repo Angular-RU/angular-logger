@@ -2,8 +2,8 @@ import { Inject, Injectable } from '@angular/core';
 import { ConsoleService } from './console.service';
 import { LoggerService } from '../logger.service';
 import { CssFactory } from './css-factory.service';
-import { Any, ObjectKeyMap } from '../interfaces/logger.internal';
-import { GroupMethod, LOGGER_OPTIONS, LoggerLevel, Pipeline } from '../interfaces/logger.external';
+import { Any } from '../interfaces/logger.internal';
+import { FormatOutput, GroupMethod, LOGGER_OPTIONS, LoggerLevel, Pipeline } from '../interfaces/logger.external';
 import { LoggerOptionsImpl } from '../logger.options';
 
 @Injectable()
@@ -59,7 +59,10 @@ export class GroupFactory {
             this.counterOpenedGroup++;
 
             const lineStyle: string = this.cssFactory.getStyleLabel(level);
-            const { formatLabel, formatStyle }: ObjectKeyMap<string> = this.getLabel(LoggerLevel[level], lineStyle);
+            const { label: formatLabel, style: formatStyle }: FormatOutput = this.getLabel(
+                LoggerLevel[level],
+                lineStyle
+            );
 
             groupType(`%c${formatLabel}`, formatStyle, title);
             if (pipeline) {
@@ -74,7 +77,7 @@ export class GroupFactory {
         return pipeLineResult;
     }
 
-    private getLabel(level: string, style: string): ObjectKeyMap {
+    private getLabel(level: string, style: string): FormatOutput {
         return this.options.format(level, style);
     }
 }
