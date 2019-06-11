@@ -19,6 +19,11 @@ export type TimerLevels =
     | LoggerLevel.ERROR;
 export type LogFn = GroupMethods & ConsoleOperation;
 
+export interface FormatOutput {
+    label: string;
+    style: string;
+}
+
 export enum LoggerLevel {
     ALL = 1,
     TRACE,
@@ -54,6 +59,8 @@ export interface LoggerOptions {
     useLevelGroup: boolean;
     labelColors: ObjectKeyMap;
     labelNames: ObjectKeyMap;
+
+    format?(label: string, style: string): FormatOutput;
 
     options?(config: Partial<LoggerOptions>): LoggerOptions;
 }

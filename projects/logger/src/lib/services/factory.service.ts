@@ -14,7 +14,7 @@ import {
     Pipeline,
     PipeOperation
 } from '../interfaces/logger.external';
-import { Arguments, Descriptor } from '../interfaces/logger.internal';
+import { Arguments, Descriptor, ObjectKeyMap } from '../interfaces/logger.internal';
 
 @Injectable()
 export class LoggerFactory {
@@ -70,10 +70,16 @@ export class LoggerFactory {
         const withLabel: boolean = level !== LoggerLevel.LOG;
 
         if (withLabel) {
+            const { label: formatLabel, style }: ObjectKeyMap = this.options.format(
+                this.options.labelNames[level],
+                styleLabel
+            );
             if (lineStyle) {
-                args.push(this.console.getFormatTemplateLabel(level), styleLabel, lineStyle);
+                const label: string = this.console.getFormatTemplateLabel(formatLabel);
+                args.push(label, style, lineStyle);
             } else {
-                args.push(this.console.getTemplateLabel(level), styleLabel);
+                const label: string = this.console.getTemplateLabel(formatLabel);
+                args.push(label, style);
             }
         } else if (lineStyle) {
             args.push(this.console.getTemplateWithoutLabel(), lineStyle);

@@ -2,11 +2,11 @@ import { LoggerLevel } from './interfaces/logger.external';
 import { ObjectKeyMap } from './interfaces/logger.internal';
 
 export enum LABELS {
-    TRACE = '[TRACE]:',
-    DEBUG = '[DEBUG]:',
-    INFO = '[INFO]:',
-    WARN = '[WARN]:',
-    ERROR = '[ERROR]:'
+    TRACE = 'TRACE',
+    DEBUG = 'DEBUG',
+    INFO = 'INFO',
+    WARN = 'WARN',
+    ERROR = 'ERROR'
 }
 
 export enum COLORS {
