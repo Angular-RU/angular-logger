@@ -27,6 +27,6 @@ export class LoggerOptionsImpl implements LoggerOptions {
     };
 
     public format(label: string, style: string): FormatOutput {
-        return { label: `${label}`, style };
+        return { label: `[${label}]:`, style };
     }
 }
