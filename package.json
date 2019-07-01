@@ -30,7 +30,7 @@
         "@angular/router": "~8.0.3",
         "core-js": "^3.1.4",
         "devtools-detect": "^3.0.0",
-        "lint-staged": "^8.2.1",
+        "lint-staged": "^9.0.0",
         "rxjs": "~6.5.2",
         "tslib": "^1.10.0",
         "zone.js": "~0.9.1"
