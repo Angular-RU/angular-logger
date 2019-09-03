@@ -31,7 +31,7 @@
         "core-js": "^3.2.1",
         "devtools-detect": "^3.0.0",
         "lint-staged": "^9.2.5",
-        "rxjs": "~6.5.2",
+        "rxjs": "~6.5.3",
         "tslib": "^1.10.0",
         "zone.js": "~0.10.2"
     },
