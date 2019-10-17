@@ -52,7 +52,7 @@
         "jest": "^24.9.0",
         "jest-cli": "^24.9.0",
         "jest-preset-angular": "^7.1.1",
-        "karma": "~4.3.0",
+        "karma": "~4.4.0",
         "karma-chrome-launcher": "~2.2.0",
         "karma-coverage-istanbul-reporter": "~2.1.0",
         "karma-jasmine": "~1.1.2",
