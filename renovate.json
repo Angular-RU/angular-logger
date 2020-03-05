@@ -1,34 +1,20 @@
 {
-  "rangeStrategy": "bump",
-  "separateMajorMinor": false,
-  "timezone": "UTC",
-  "baseBranches": ["master"],
-  "ignoreDeps": ["@types/node"],
-  "packageFiles": ["package.json"],
-  "major": {
-    "devDependencies": {
-      "enabled": false
-    }
-  },
-  "automerge": true,
-  "packageRules": [
-    {
-      "extends": ["monorepo:angular", "monorepo:angularcli"],
-      "groupName": "@angular",
-      "schedule": ["before 3:00am every 2nd week of the month"]
+    "automerge": false,
+    "rangeStrategy": "bump",
+    "packageFiles": ["package.json"],
+    "groupName": "all dependencies",
+    "separateMajorMinor": false,
+    "groupSlug": "all",
+    "major": {
+        "dependencies": { "enabled": false },
+        "devDependencies": { "enabled": false }
     },
-    {
-      "packageNames": ["typescript"],
-      "groupName": "typescript",
-      "updateTypes": "patch",
-      "schedule": ["before 3:00am every 2nd week of the month"]
-    },
-    {
-      "packagePatterns": ["*"],
-      "excludePackageNames": ["typescript"],
-      "groupName": "all dependencies",
-      "groupSlug": "all",
-      "schedule": ["after 4:00am every 2nd week of the month"]
-    }
-  ]
+    "packageRules": [
+        {
+            "packagePatterns": ["*"],
+            "excludePackagePatterns": ["^@angular/", "^@angular-devkit/"],
+            "groupName": "all dependencies",
+            "groupSlug": "all-dependencies"
+        }
+    ]
 }
