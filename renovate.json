@@ -12,9 +12,15 @@
     "packageRules": [
         {
             "packagePatterns": ["*"],
-            "excludePackagePatterns": ["^@angular/", "^@angular-devkit/"],
+            "excludePackagePatterns": ["^@angular/", "^@angular-devkit/", "typescript"],
             "groupName": "all dependencies",
             "groupSlug": "all-dependencies"
+        },
+        {
+            "packagePatterns": ["typescript"],
+            "groupName": "typescript",
+            "updateTypes": "patch",
+            "schedule": ["before 3:00am every 2nd week of the month"]
         }
     ]
 }
