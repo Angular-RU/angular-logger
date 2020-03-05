@@ -1,5 +1,5 @@
 {
-    "automerge": false,
+    "automerge": true,
     "rangeStrategy": "bump",
     "packageFiles": ["package.json"],
     "groupName": "all dependencies",
