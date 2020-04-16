@@ -59,7 +59,7 @@
         "karma-jasmine-html-reporter": "^0.2.2",
         "ng-packagr": "^5.7.1",
         "prettier": "^1.19.1",
-        "protractor": "~5.4.3",
+        "protractor": "~5.4.4",
         "ts-node": "^7.0.1",
         "tsickle": ">=0.38.1",
         "tslib": "^1.11.1",
