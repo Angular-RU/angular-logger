@@ -32,7 +32,7 @@
         "devtools-detect": "^3.0.0",
         "lint-staged": "^9.5.0",
         "rxjs": "~6.5.5",
-        "tslib": "^1.11.1",
+        "tslib": "^1.11.2",
         "zone.js": "~0.10.3"
     },
     "devDependencies": {
@@ -62,7 +62,7 @@
         "protractor": "~5.4.4",
         "ts-node": "^7.0.1",
         "tsickle": ">=0.38.1",
-        "tslib": "^1.11.1",
+        "tslib": "^1.11.2",
         "tslint": "~5.20.1",
         "tslint-eslint-rules": "^5.4.0",
         "tslint-sonarts": "^1.9.0",
