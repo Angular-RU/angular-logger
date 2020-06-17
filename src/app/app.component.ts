@@ -70,24 +70,18 @@ export class AppComponent implements OnInit {
             this.error(this.errorIsWork, 5, (2.55).toFixed());
         });
 
-        this.logger.group(
-            'Show trace in opened group',
-            ({ trace }: LoggerService): void => {
-                for (let i: number = 0; i < 20; i++) {
-                    trace(this.traceIsWork, i);
-                }
+        this.logger.group('Show trace in opened group', ({ trace }: LoggerService): void => {
+            for (let i: number = 0; i < 20; i++) {
+                trace(this.traceIsWork, i);
             }
-        );
+        });
 
         this.logger
-            .groupCollapsed(
-                'Show trace in collapsed group',
-                ({ debug }: LoggerService): void => {
-                    for (let i: number = 0; i < 15; i++) {
-                        debug(this.traceIsWork, i);
-                    }
+            .groupCollapsed('Show trace in collapsed group', ({ debug }: LoggerService): void => {
+                for (let i: number = 0; i < 15; i++) {
+                    debug(this.traceIsWork, i);
                 }
-            )
+            })
             .closeAll();
     }
 

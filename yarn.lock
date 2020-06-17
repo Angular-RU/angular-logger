@@ -119,6 +119,13 @@
     "@angular-devkit/core" "8.3.27"
     rxjs "6.4.0"
 
+"@angular-ru/prettier-config@^12.19.1":
+  version "12.19.1"
+  resolved "https://registry.yarnpkg.com/@angular-ru/prettier-config/-/prettier-config-12.19.1.tgz#48faf051b77d7a34e39b04d9c4c473f05765f4c2"
+  integrity sha512-j57yPLe7HFkOnrMPtglIFFEZ4f1CPJjuWuwwAEgTwfIJcUpMHjiVXD1CjgZCcLeg8cJ7Eo4jR45s/bDSx6D8wA==
+  dependencies:
+    prettier "2.0.5"
+
 "@angular-ru/tsconfig@^12.19.1":
   version "12.19.1"
   resolved "https://registry.yarnpkg.com/@angular-ru/tsconfig/-/tsconfig-12.19.1.tgz#489bea7b796970184f47a90790953f1d76618ff4"
@@ -7760,6 +7767,11 @@ prepend-http@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/prepend-http/-/prepend-http-2.0.0.tgz#e92434bfa5ea8c19f41cdfd401d741a3c819d897"
   integrity sha1-6SQ0v6XqjBn0HN/UAddBo8gZ2Jc=
+
+prettier@2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.0.5.tgz#d6d56282455243f2f92cc1716692c08aa31522d4"
+  integrity sha512-7PtVymN48hGcO4fGjybyBSIWDsLU4H4XlvOHfq91pz9kkGlonzwTfYkaIEwiRg/dAJF9YlbsduBAgtYLi+8cFg==
 
 prettier@^1.19.1:
   version "1.19.1"

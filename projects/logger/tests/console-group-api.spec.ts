@@ -54,12 +54,9 @@ describe('[TEST]: Check work in groups', () => {
     });
 
     it(`Show classic group`, () => {
-        logger.group(
-            'group label',
-            ({ trace }: LoggerService): void => {
-                trace(traceIsWork, 1, { a: 1 });
-            }
-        );
+        logger.group('group label', ({ trace }: LoggerService): void => {
+            trace(traceIsWork, 1, { a: 1 });
+        });
 
         expect(fakeConsole.stack()).toEqual(
             fakeConsole.createStack(

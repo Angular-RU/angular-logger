@@ -1,11 +1,11 @@
 {
-  "name": "@angular-ru/logger",
-  "version": "1.11.0",
-  "license": "MIT",
-  "homepage": "https://github.com/Angular-RU/angular-logger",
-  "repository": "https://github.com/Angular-RU/angular-logger",
-  "peerDependencies": {
-    "@angular/common": ">=7.0.0",
-    "@angular/core": ">=7.0.0"
-  }
+    "name": "@angular-ru/logger",
+    "version": "1.11.0",
+    "license": "MIT",
+    "homepage": "https://github.com/Angular-RU/angular-logger",
+    "repository": "https://github.com/Angular-RU/angular-logger",
+    "peerDependencies": {
+        "@angular/common": ">=7.0.0",
+        "@angular/core": ">=7.0.0"
+    }
 }

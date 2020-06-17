@@ -179,7 +179,10 @@ describe('[TEST]: Execute method by Level', () => {
     });
 
     it(`Table`, () => {
-        const data: ObjectKeyMap = [{ name: 'Yusuf', age: 26 }, { age: 34, name: 'Chen' }];
+        const data: ObjectKeyMap = [
+            { name: 'Yusuf', age: 26 },
+            { age: 34, name: 'Chen' }
+        ];
 
         logger.table(data);
         expect(fakeConsole.stack(0)).toEqual(fakeConsole.createStack({ [TestLoggerLineType.TABLE]: [data] }));
