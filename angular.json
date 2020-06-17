@@ -3,23 +3,23 @@
     "version": 1,
     "newProjectRoot": "projects",
     "projects": {
-        "ngx-logger": {
+        "integration": {
             "root": "",
-            "sourceRoot": "src",
+            "prefix": "",
+            "sourceRoot": "integration",
             "projectType": "application",
-            "prefix": "app",
             "schematics": {},
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "outputPath": "dist/ngx-logger",
-                        "index": "src/index.html",
-                        "main": "src/main.ts",
-                        "polyfills": "src/polyfills.ts",
-                        "tsConfig": "src/tsconfig.app.json",
-                        "assets": ["src/favicon.ico", "src/assets"],
-                        "styles": ["src/styles.css"],
+                        "outputPath": "dist/integration",
+                        "index": "integration/app/index.html",
+                        "main": "integration/app/main.ts",
+                        "polyfills": "integration/app/polyfills.ts",
+                        "tsConfig": "integration/app/tsconfig.app.json",
+                        "assets": ["integration/app/favicon.ico", "integration/app/assets"],
+                        "styles": ["integration/app/styles.css"],
                         "scripts": [],
                         "es5BrowserSupport": true
                     },
@@ -27,8 +27,8 @@
                         "production": {
                             "fileReplacements": [
                                 {
-                                    "replace": "src/environments/environment.ts",
-                                    "with": "src/environments/environment.prod.ts"
+                                    "replace": "integration/app/src/environments/environment.ts",
+                                    "with": "integration/app/src/environments/environment.prod.ts"
                                 }
                             ],
                             "optimization": true,
@@ -53,51 +53,31 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
-                        "browserTarget": "ngx-logger:build"
+                        "browserTarget": "integration:build"
                     },
                     "configurations": {
                         "production": {
-                            "browserTarget": "ngx-logger:build:production"
+                            "browserTarget": "integration:build:production"
                         }
-                    }
-                },
-                "extract-i18n": {
-                    "builder": "@angular-devkit/build-angular:extract-i18n",
-                    "options": {
-                        "browserTarget": "ngx-logger:build"
-                    }
-                },
-                "lint": {
-                    "builder": "@angular-devkit/build-angular:tslint",
-                    "options": {
-                        "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
-                        "exclude": ["**/node_modules/**"]
                     }
                 }
             }
         },
         "logger": {
-            "root": "projects/logger",
-            "sourceRoot": "projects/logger/src",
+            "root": "",
+            "prefix": "",
+            "sourceRoot": "",
             "projectType": "library",
-            "prefix": "lib",
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-ng-packagr:build",
                     "options": {
-                        "tsConfig": "projects/logger/tsconfig.lib.json",
-                        "project": "projects/logger/ng-package.json"
-                    }
-                },
-                "lint": {
-                    "builder": "@angular-devkit/build-angular:tslint",
-                    "options": {
-                        "tsConfig": ["projects/logger/tsconfig.lib.json", "projects/logger/tsconfig.spec.json"],
-                        "exclude": ["**/node_modules/**"]
+                        "tsConfig": "lib/tsconfig.lib.json",
+                        "project": "lib/ng-package.json"
                     }
                 }
             }
         }
     },
-    "defaultProject": "ngx-logger"
+    "defaultProject": "logger"
 }

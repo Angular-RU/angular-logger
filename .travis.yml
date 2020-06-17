@@ -8,6 +8,7 @@ install:
 script:
   - npm run lint
   - npm test
-  - npm run build
+  - npm run build:lib
+  - npm run build:app
 after_success:
   - npm run coverage
