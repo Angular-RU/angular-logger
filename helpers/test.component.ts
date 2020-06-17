@@ -25,17 +25,17 @@ interface HttpDebugInterface {
 // noinspection AngularMissingOrInvalidDeclarationInModule
 @Component({ selector: 'lib-hello-test', template: '' })
 export class MyTestComponent implements OnInit {
-    @Logger() public logger: LoggerService;
-    @TraceLog() public trace: LogFn;
-    @DebugLog() public debug: LogFn;
-    @InfoLog() public info: LogFn;
-    @ErrorLog() public error: LogFn;
-    @WarnLog() public warn: LogFn;
-    @Log() public log: LogFn;
+    @Logger() public logger!: LoggerService;
+    @TraceLog() public trace!: LogFn;
+    @DebugLog() public debug!: LogFn;
+    @InfoLog() public info!: LogFn;
+    @ErrorLog() public error!: LogFn;
+    @WarnLog() public warn!: LogFn;
+    @Log() public log!: LogFn;
 
     public count: number = 0;
-    public hook: string;
-    public doneHeavy: boolean;
+    public hook: string | null = null;
+    public doneHeavy: boolean = false;
     public name: string = 'MockLoggerComponent';
 
     @Group('Test group')
@@ -101,7 +101,7 @@ export class MyTestComponent implements OnInit {
     }
 
     public longQueryBySecondMs(seconds: number, done: Fn): void {
-        const info: TimerInfo = this.logger.startTime('longQueryBySecondMs');
+        const info: TimerInfo | null = this.logger.startTime('longQueryBySecondMs');
         this.extracted(seconds, done);
         this.logger.endTime(info);
     }

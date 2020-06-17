@@ -4,7 +4,7 @@ import { LOGGER_OPTIONS, LoggerLevel } from '../interfaces/logger.external';
 
 @Injectable()
 export class CssFactory {
-    private lineStyle: string;
+    private lineStyle: string | null = null;
 
     constructor(@Inject(LOGGER_OPTIONS) private readonly options: LoggerOptionsImpl) {}
 
@@ -36,7 +36,7 @@ export class CssFactory {
         const styles: string[] = [];
 
         classList.forEach((className: string) => {
-            const style: string = this.options.cssClassMap[className];
+            const style: string | undefined = this.options.cssClassMap[className];
             if (style) {
                 styles.push(style);
             }

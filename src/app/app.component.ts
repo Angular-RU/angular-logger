@@ -23,15 +23,15 @@ import * as devtools from 'devtools-detect';
     encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
-    @Logger() public loggerInjection: LoggerService;
-    @TraceLog() public trace: LogFn;
-    @DebugLog() public debug: LogFn;
-    @InfoLog() public info: LogFn;
-    @ErrorLog() public error: LogFn;
-    @WarnLog() public warn: LogFn;
-    @Log() public log: LogFn;
+    @Logger() public loggerInjection!: LoggerService;
+    @TraceLog() public trace!: LogFn;
+    @DebugLog() public debug!: LogFn;
+    @InfoLog() public info!: LogFn;
+    @ErrorLog() public error!: LogFn;
+    @WarnLog() public warn!: LogFn;
+    @Log() public log!: LogFn;
 
-    public isLoaded: boolean;
+    public isLoaded: boolean = false;
     public devToolsIsOpen: boolean = devtools.isOpen;
 
     private readonly traceIsWork: string = 'trace is worked';

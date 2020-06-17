@@ -8,7 +8,7 @@ export class LoggerOptionsImpl implements LoggerOptions {
     public instance: Console = console;
     public minLevel: LoggerLevel = LoggerLevel.ALL;
     public globalLineStyle: string = '';
-    public cssClassMap: object = {};
+    public cssClassMap: ObjectKeyMap = {};
     public useLevelGroup: boolean = true;
     public labelColors: ObjectKeyMap<string> = {
         [LoggerLevel.TRACE]: COLORS.TRACE,

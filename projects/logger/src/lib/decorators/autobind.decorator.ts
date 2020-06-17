@@ -84,7 +84,7 @@ export function autoBind(...args: Any[]): Any {
 }
 
 function createDefaultSetter(key: Any): Fn {
-    return function set(newValue: unknown): unknown {
+    return function set(this: any, newValue: unknown): unknown {
         Object.defineProperty(this, key, {
             configurable: true,
             writable: true,

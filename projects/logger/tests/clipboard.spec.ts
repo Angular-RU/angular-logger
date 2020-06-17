@@ -6,7 +6,7 @@ import { ObjectKeyMap } from '../src/lib/interfaces/logger.internal';
 
 describe('[TEST]: Check clipboard', () => {
     let logger: LoggerService;
-    let buffer: string = null;
+    let buffer: string | null = null;
     const fakeConsole: Console & ConsoleFake = new ConsoleFake();
     const textarea: Partial<HTMLTextAreaElement> = {
         textContent: null,
@@ -28,10 +28,10 @@ describe('[TEST]: Check clipboard', () => {
 
     beforeEach(() => {
         buffer = null;
-        window.clipboardData = null;
-        document.queryCommandSupported = null;
-        textarea.textContent = null;
-        document.execCommand = null;
+        window.clipboardData = null!;
+        document.queryCommandSupported = null!;
+        textarea.textContent = null!;
+        document.execCommand = null!;
     });
 
     it(`Copy is security and save data local memory`, () => {
@@ -60,7 +60,7 @@ describe('[TEST]: Check clipboard', () => {
         Object.defineProperty(document, 'execCommand', {
             writable: true,
             value: (): void | boolean => {
-                buffer = textarea.textContent;
+                buffer = textarea.textContent!;
                 return true;
             }
         });
@@ -107,7 +107,7 @@ function createMockQueryCommands(textareaRef: Partial<HTMLTextAreaElement>): voi
 
     Object.defineProperty(document, 'createElement', {
         writable: true,
-        value: (elementName: string): Partial<HTMLTextAreaElement> => {
+        value: (elementName: string): Partial<HTMLTextAreaElement> | any => {
             if (elementName === 'textarea') {
                 return textareaRef;
             }

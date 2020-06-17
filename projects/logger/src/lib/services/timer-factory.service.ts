@@ -11,7 +11,7 @@ export class TimerFactory {
     constructor(private readonly console: ConsoleService) {}
 
     public startTime(title: string, level: LoggerLevel): TimerInfo | null {
-        let result: TimerInfo = null;
+        let result: TimerInfo | null = null;
         const canExecute: boolean = !(this.console.minLevel > level);
         if (canExecute) {
             result = { startTime: performance.now(), title };
@@ -26,7 +26,7 @@ export class TimerFactory {
             const msTime: number = parseFloat((performance.now() - info.startTime).toFixed(this.DIGITS_TO_FIX));
             const time: string = isMillisecond ? `${msTime}ms` : `${Math.floor(msTime / this.SECONDS)}s`;
             const methodName: string = DEFAULT_METHODS[level];
-            const logMethod: (...args: string[]) => void = logger[methodName];
+            const logMethod: (...args: string[]) => void = (logger as any)[methodName];
             logMethod(`TimerLog: ${info.title}`, `took ${time} to execute`);
         }
     }

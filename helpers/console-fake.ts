@@ -23,7 +23,7 @@ export class ConsoleFake implements Console {
     private _stack: ObjectKeyMap[] = [];
 
     public log(...args: string[]): void {
-        args.unshift(null, null);
+        args.unshift(null!, null!);
         this._stack.push({ [TestLoggerLineType.LOG]: args });
     }
 
@@ -74,8 +74,8 @@ export class ConsoleFake implements Console {
         history.forEach((line: object, index: number) => {
             for (const arg in line) {
                 if (line.hasOwnProperty(arg)) {
-                    const isArray: boolean = Array.isArray(line[arg]);
-                    history[index] = { [arg]: isArray ? line[arg].slice(withoutLabel) : line[arg] };
+                    const isArray: boolean = Array.isArray((line as any)[arg]);
+                    history[index] = { [arg]: isArray ? (line as any)[arg].slice(withoutLabel) : (line as any)[arg] };
                 }
             }
         });

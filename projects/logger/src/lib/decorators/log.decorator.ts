@@ -1,11 +1,9 @@
-import { Type } from '@angular/core';
-
 import { LoggerInjector } from '../logger.injector';
 import { LoggerService } from '../logger.service';
 import { LogFn } from '../interfaces/logger.external';
 
 export function Log(): PropertyDecorator {
-    return (target: Type<unknown>, propertyName: string): void => {
+    return (target: unknown, propertyName: string | symbol): void => {
         Object.defineProperty(target, propertyName, {
             configurable: false,
             get(): LogFn {

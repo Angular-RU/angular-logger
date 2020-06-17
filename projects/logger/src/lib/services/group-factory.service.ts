@@ -8,7 +8,7 @@ import { LoggerOptionsImpl } from '../logger.options';
 
 @Injectable()
 export class GroupFactory {
-    public executePipesGroup: boolean;
+    public executePipesGroup: boolean = false;
     private counterOpenedGroup: number = 0;
 
     constructor(
@@ -30,14 +30,14 @@ export class GroupFactory {
         }
     }
 
-    public group<T = unknown>(title: string, pipeline: Pipeline<T>, logger: LoggerService, level: LoggerLevel): T {
+    public group<T>(title: string, pipeline: Pipeline<T> | undefined, logger: LoggerService, level: LoggerLevel): T {
         const group: GroupMethod = this.console.instance.group.bind(this.console.instance);
         return this.createGroupLogger<T>(group, title, pipeline, logger, level);
     }
 
     public groupCollapsed<T = unknown>(
         title: string,
-        pipeline: Pipeline<T>,
+        pipeline: Pipeline<T> | undefined,
         logger: LoggerService,
         level: LoggerLevel
     ): T {
@@ -48,12 +48,13 @@ export class GroupFactory {
     private createGroupLogger<T = unknown>(
         groupType: GroupMethod,
         title: string,
-        pipeline: Pipeline,
+        pipeline: Pipeline | undefined,
         logger: LoggerService,
         level: LoggerLevel
     ): T {
         const showGroup: boolean = this.console.minLevel <= level;
         let pipeLineResult: T;
+
         if (showGroup) {
             this.executePipesGroup = true;
             this.counterOpenedGroup++;
@@ -74,7 +75,7 @@ export class GroupFactory {
             this.executePipesGroup = false;
         }
 
-        return pipeLineResult;
+        return pipeLineResult!;
     }
 
     private getLabel(level: string, style: string): FormatOutput {

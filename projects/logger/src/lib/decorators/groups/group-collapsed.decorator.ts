@@ -1,7 +1,7 @@
 import { Type } from '@angular/core';
 
 import { groupDecoratorFactory } from './group.common';
-import { Any, Callback, DecoratorMethod } from '../../interfaces/logger.internal';
+import { Any, Callback, DecoratorMethod, Fn } from "../../interfaces/logger.internal";
 import { GroupLevel, LoggerLevel } from '../../interfaces/logger.external';
 
 export function GroupCollapsed(title: string | Callback<Any>, level: LoggerLevel = LoggerLevel.INFO): DecoratorMethod {
@@ -9,7 +9,7 @@ export function GroupCollapsed(title: string | Callback<Any>, level: LoggerLevel
         const method: Callback = descriptor.value;
 
         descriptor.value = function(...args: Any[]): unknown {
-            return groupDecoratorFactory(level, GroupLevel.GROUP_COLLAPSED, method, title, args, this);
+            return groupDecoratorFactory(level, GroupLevel.GROUP_COLLAPSED, method as Fn, title, args, this as any);
         };
 
         return descriptor;

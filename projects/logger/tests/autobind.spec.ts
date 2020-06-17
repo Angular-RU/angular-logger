@@ -43,7 +43,7 @@ describe('@autoBind', () => {
     it('sets the correct instance descriptor options when bound', function(): void {
         const foo: Foo = new Foo();
         const { getFoo }: Foo = foo;
-        const desc: PropertyDescriptor = Object.getOwnPropertyDescriptor(foo, 'getFoo');
+        const desc: PropertyDescriptor = Object.getOwnPropertyDescriptor(foo, 'getFoo') as PropertyDescriptor;
 
         expect(desc.configurable).toEqual(true);
         expect(desc.enumerable).toEqual(false);

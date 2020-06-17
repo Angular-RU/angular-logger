@@ -7,6 +7,7 @@
         "start": "ng serve",
         "copy-readme": "ts-node --project tsconfig.tools.json ./tools/copy-readme",
         "build": "ng build logger && npm run copy-readme",
+        "build:app": "ng build",
         "build.meta": "echo 'prebuild'",
         "test": "jest --config ./jest.app.config.js --coverage",
         "lint": "ng lint",
@@ -36,8 +37,9 @@
         "zone.js": "~0.10.3"
     },
     "devDependencies": {
-        "@angular-devkit/build-angular": "^0.901.5",
-        "@angular-devkit/build-ng-packagr": "~0.901.5",
+        "@angular-ru/tsconfig": "^12.19.1",
+        "@angular-devkit/build-angular": "^0.803.27",
+        "@angular-devkit/build-ng-packagr": "~0.803.27",
         "@angular/cli": "~8.3.21",
         "@angular/compiler-cli": "~8.2.14",
         "@angular/language-service": "~8.2.14",

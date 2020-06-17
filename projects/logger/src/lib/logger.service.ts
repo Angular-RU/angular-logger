@@ -28,11 +28,11 @@ export class LoggerService {
     ) {}
 
     public get clear(): LogFn {
-        return this.console.instance.clear.bind(this.console.instance);
+        return this.console.instance.clear.bind(this.console.instance) as LogFn;
     }
 
     public get table(): LogFn {
-        return this.console.instance.table.bind(this.console.instance);
+        return this.console.instance.table.bind(this.console.instance) as LogFn;
     }
 
     public get log(): LogFn {
@@ -44,7 +44,7 @@ export class LoggerService {
     }
 
     public get assert(): LogFn {
-        return this.console.instance.assert.bind(this.console.instance);
+        return this.console.instance.assert.bind(this.console.instance) as LogFn;
     }
 
     public get debug(): LogFn {
@@ -137,7 +137,13 @@ export class LoggerService {
         return this.timerFactory.startTime(title, level);
     }
 
-    public endTime(info: TimerInfo, level: LoggerLevel = LoggerLevel.DEBUG, isMillisecond: boolean = true): void {
-        this.timerFactory.endTime(info, level, isMillisecond, this);
+    public endTime(
+        info: TimerInfo | null,
+        level: LoggerLevel = LoggerLevel.DEBUG,
+        isMillisecond: boolean = true
+    ): void {
+        if (info) {
+            this.timerFactory.endTime(info, level, isMillisecond, this);
+        }
     }
 }

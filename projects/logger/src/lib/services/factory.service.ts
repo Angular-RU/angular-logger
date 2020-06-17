@@ -30,7 +30,9 @@ export class LoggerFactory {
         const methodName: string = DEFAULT_METHODS[level];
 
         const operation: Operation =
-            this.console.minLevel <= level ? this.console.instance[methodName].bind(...args) : this.console.noop;
+            this.console.minLevel <= level
+                ? (this.console.instance as any)[methodName].bind(...args)
+                : this.console.noop;
 
         const pipeOperation: PipeOperation = this.options.useLevelGroup
             ? this.defineLevelGroups(level, operation, logger)

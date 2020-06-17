@@ -49,7 +49,12 @@ export interface TimerInfo {
 
 export type PipeOperation = GroupMethods | ConsoleOperation;
 export type GroupMethod<T = unknown> = (groupTitle?: string, ...optionalParams: T[]) => unknown;
-export type GroupFactoryMethod = (title: string, pipeline: Pipeline, logger: LoggerService, level: LoggerLevel) => void;
+export type GroupFactoryMethod = (
+    title: string,
+    pipeline: Pipeline | undefined,
+    logger: LoggerService,
+    level: LoggerLevel
+) => void;
 
 export interface LoggerOptions {
     instance: Console;

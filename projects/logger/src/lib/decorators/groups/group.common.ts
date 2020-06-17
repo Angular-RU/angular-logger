@@ -16,7 +16,7 @@ export function groupDecoratorFactory(
     let result: unknown;
     const logger: LoggerService = LoggerInjector.getInjector().get<LoggerService>(LoggerService);
     const groupFactory: GroupFactory = LoggerInjector.getInjector().get<GroupFactory>(GroupFactory);
-    const groupMethod: GroupMethod = groupFactory[groupType].bind(groupFactory);
+    const groupMethod: GroupMethod = groupFactory[groupType].bind(groupFactory) as GroupMethod;
     const label: string = typeof title === 'string' ? title : title(...args);
 
     groupMethod(label, null, logger, level);

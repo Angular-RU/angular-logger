@@ -17,10 +17,12 @@ export function TimerLog(
             const info: TimerInfo | null = LoggerInjector.getInjector()
                 .get<LoggerService>(LoggerService)
                 .startTime(title, level);
-            result = method.apply(this, args);
+
+            result = method.apply(this, args) as PropertyDescriptor;
+
             LoggerInjector.getInjector()
                 .get<LoggerService>(LoggerService)
-                .endTime(info, level, isMillisecond);
+                .endTime(info!, level, isMillisecond);
             return result;
         };
         return descriptor;
