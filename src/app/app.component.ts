@@ -1,19 +1,20 @@
+/* eslint-disable */
 /* tslint:disable:no-duplicate-string */
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {
     DebugLog,
     ErrorLog,
     Group,
     InfoLog,
+    Log,
     LogFn,
     Logger,
     LoggerLevel,
-    Log,
     LoggerService,
     TimerLog,
     TraceLog,
     WarnLog
 } from '@angular-ru/logger';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import * as devtools from 'devtools-detect';
 
 @Component({

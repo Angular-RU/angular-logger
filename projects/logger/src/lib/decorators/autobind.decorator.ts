@@ -29,11 +29,14 @@ function autoBindClass(target: ObjectKeyMap): Any {
 function getOwnPropertyDescriptors(target: ObjectKeyMap): ObjectKeyMap {
     const descriptors: ObjectKeyMap = {};
 
-    getOwnKeys(target).forEach((key: string) => (descriptors[key] = getOwnPropertyDescriptor(target, key)));
+    getOwnKeys(target).forEach((key: string): void => {
+        descriptors[key] = getOwnPropertyDescriptor(target, key);
+    });
 
     return descriptors;
 }
 
+// eslint-disable-next-line max-lines-per-function
 function autoBindMethod(
     target: ObjectKeyMap,
     key: string,
@@ -68,6 +71,7 @@ function handle(args: Any[]): Any {
     if (args.length === 1) {
         return autoBindClass(args[0]);
     } else {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         return autoBindMethod(...args);
     }
@@ -84,7 +88,7 @@ export function autoBind(...args: Any[]): Any {
 }
 
 function createDefaultSetter(key: Any): Fn {
-    return function set(this: any, newValue: unknown): unknown {
+    return function set(this: Any, newValue: unknown): unknown {
         Object.defineProperty(this, key, {
             configurable: true,
             writable: true,

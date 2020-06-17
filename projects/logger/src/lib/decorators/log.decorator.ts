@@ -1,6 +1,6 @@
+import { LogFn } from '../interfaces/logger.external';
 import { LoggerInjector } from '../logger.injector';
 import { LoggerService } from '../logger.service';
-import { LogFn } from '../interfaces/logger.external';
 
 export function Log(): PropertyDecorator {
     return (target: unknown, propertyName: string | symbol): void => {

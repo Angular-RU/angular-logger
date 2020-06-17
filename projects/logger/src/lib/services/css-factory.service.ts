@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
-import { LoggerOptionsImpl } from '../logger.options';
+
 import { LOGGER_OPTIONS, LoggerLevel } from '../interfaces/logger.external';
+import { LoggerOptionsImpl } from '../logger.options';
 
 @Injectable()
 export class CssFactory {
@@ -35,7 +36,7 @@ export class CssFactory {
         const classList: string[] = cssClassName.split(/\s+/g);
         const styles: string[] = [];
 
-        classList.forEach((className: string) => {
+        classList.forEach((className: string): void => {
             const style: string | undefined = this.options.cssClassMap[className];
             if (style) {
                 styles.push(style);

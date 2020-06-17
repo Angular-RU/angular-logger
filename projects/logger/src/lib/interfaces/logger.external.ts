@@ -1,5 +1,6 @@
-import { LoggerService } from '../logger.service';
 import { InjectionToken } from '@angular/core';
+
+import { LoggerService } from '../logger.service';
 import { ObjectKeyMap } from './logger.internal';
 
 export type ConsoleOperation<T = unknown, P = unknown> = (message?: T, ...optionalParams: P[]) => void;
@@ -24,6 +25,7 @@ export interface FormatOutput {
     style: string;
 }
 
+// eslint-disable-next-line no-restricted-syntax
 export enum LoggerLevel {
     ALL = 1,
     TRACE,
@@ -35,6 +37,7 @@ export enum LoggerLevel {
     OFF
 }
 
+// eslint-disable-next-line no-restricted-syntax
 export enum GroupLevel {
     GROUP = 'group',
     GROUP_COLLAPSED = 'groupCollapsed'

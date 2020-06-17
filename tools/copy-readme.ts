@@ -1,5 +1,5 @@
+import { createReadStream, createWriteStream, existsSync } from 'fs';
 import { join } from 'path';
-import { existsSync, createReadStream, createWriteStream } from 'fs';
 
 import { name } from '../package.json';
 
@@ -13,8 +13,8 @@ function copyReadmeAfterSuccessfulBuild(): void {
 
     createReadStream(path)
         .pipe(createWriteStream(join(__dirname, `../dist/${name}/README.md`)))
-        .on('finish', () => {
-            // tslint:disable-next-line:no-console
+        .on('finish', (): void => {
+            // eslint-disable-next-line no-console
             console.info(`Successfully copied README.md into dist/${name} folder!`);
         });
 }

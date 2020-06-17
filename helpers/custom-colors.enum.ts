@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/naming-convention,no-restricted-syntax
 export enum CUSTOM_COLORS {
     TRACE = 'BlueViolet',
     DEBUG = 'CornflowerBlue',
@@ -6,6 +7,7 @@ export enum CUSTOM_COLORS {
     ERROR = 'Crimson'
 }
 
+// eslint-disable-next-line no-restricted-syntax,@typescript-eslint/naming-convention
 export enum CUSTOM_LABELS {
     TRACE = 'trace:',
     DEBUG = 'debug:',

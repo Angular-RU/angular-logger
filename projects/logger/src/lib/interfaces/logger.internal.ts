@@ -1,4 +1,4 @@
-// tslint:disable-next-line:no-any
+// eslint-disable-next-line
 export type Any = any; // NOSONAR
 export type Fn<T = unknown, U = unknown> = (...args: T[]) => U;
 export type Arguments<T = unknown> = T[];

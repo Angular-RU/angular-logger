@@ -1,7 +1,8 @@
-import { COLORS, LABELS } from './logger.config';
 import { Injectable } from '@angular/core';
+
 import { FormatOutput, LoggerLevel, LoggerOptions } from './interfaces/logger.external';
 import { ObjectKeyMap } from './interfaces/logger.internal';
+import { COLORS, LABELS } from './logger.config';
 
 @Injectable()
 export class LoggerOptionsImpl implements LoggerOptions {

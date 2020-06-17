@@ -1,5 +1,5 @@
-import { LoggerService } from '../logger.service';
 import { LoggerInjector } from '../logger.injector';
+import { LoggerService } from '../logger.service';
 
 export function Logger(): PropertyDecorator {
     return (target: unknown, propertyName: string | symbol): void => {

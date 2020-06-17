@@ -1,21 +1,23 @@
 import { Inject, Injectable } from '@angular/core';
-import { LoggerFactory } from './services/factory.service';
-import { ConsoleService } from './services/console.service';
-import { GroupFactory } from './services/group-factory.service';
-import { CssFactory } from './services/css-factory.service';
-import { JsonFactory } from './services/json-factory.service';
-import { ClipboardFactory } from './services/clipboard-factory.service';
-import { TimerFactory } from './services/timer-factory.service';
-import { LoggerOptionsImpl } from './logger.options';
+
 import { autoBind } from './decorators/autobind.decorator';
 import { LogFn, LOGGER_OPTIONS, LoggerLevel, Pipeline, TimerInfo } from './interfaces/logger.external';
 import { ObjectKeyMap } from './interfaces/logger.internal';
+import { LoggerOptionsImpl } from './logger.options';
+import { ClipboardFactory } from './services/clipboard-factory.service';
+import { ConsoleService } from './services/console.service';
+import { CssFactory } from './services/css-factory.service';
+import { LoggerFactory } from './services/factory.service';
+import { GroupFactory } from './services/group-factory.service';
+import { JsonFactory } from './services/json-factory.service';
+import { TimerFactory } from './services/timer-factory.service';
 
 @autoBind
 @Injectable()
 export class LoggerService {
     private readonly DEFAULT_DEPTH: number = 2;
 
+    // eslint-disable-next-line max-params
     constructor(
         private readonly clipboard: ClipboardFactory,
         private readonly cssFactory: CssFactory,
@@ -89,7 +91,7 @@ export class LoggerService {
 
     public pipe(...pipelines: Pipeline[]): LoggerService {
         if (this.groupFactory.executePipesGroup) {
-            pipelines.forEach((pipeline: Pipeline) => pipeline(this));
+            pipelines.forEach((pipeline: Pipeline): unknown => pipeline(this));
         }
 
         return this;

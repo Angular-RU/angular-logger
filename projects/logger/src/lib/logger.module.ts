@@ -1,16 +1,16 @@
 import { InjectionToken, ModuleWithProviders, NgModule, Self } from '@angular/core';
 
-import { LoggerService } from './logger.service';
-import { LoggerFactory } from './services/factory.service';
-import { ConsoleService } from './services/console.service';
-import { GroupFactory } from './services/group-factory.service';
-import { CssFactory } from './services/css-factory.service';
-import { JsonFactory } from './services/json-factory.service';
-import { ClipboardFactory } from './services/clipboard-factory.service';
-import { TimerFactory } from './services/timer-factory.service';
-import { LoggerOptionsImpl } from './logger.options';
-import { LoggerInjector } from './logger.injector';
 import { LOGGER_OPTIONS, LoggerOptions } from './interfaces/logger.external';
+import { LoggerInjector } from './logger.injector';
+import { LoggerOptionsImpl } from './logger.options';
+import { LoggerService } from './logger.service';
+import { ClipboardFactory } from './services/clipboard-factory.service';
+import { ConsoleService } from './services/console.service';
+import { CssFactory } from './services/css-factory.service';
+import { LoggerFactory } from './services/factory.service';
+import { GroupFactory } from './services/group-factory.service';
+import { JsonFactory } from './services/json-factory.service';
+import { TimerFactory } from './services/timer-factory.service';
 
 @NgModule({
     providers: [

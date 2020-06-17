@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
+
 import { DEFAULT_METHODS } from '../../lib/logger.config';
-import { ConsoleService } from './console.service';
 import { LoggerService } from '../../lib/logger.service';
 import { LoggerLevel, TimerInfo } from '../interfaces/logger.external';
+import { Any } from '../interfaces/logger.internal';
+import { ConsoleService } from './console.service';
 
 @Injectable()
 export class TimerFactory {
@@ -19,15 +21,20 @@ export class TimerFactory {
         return result;
     }
 
+    // eslint-disable-next-line max-params
     public endTime(info: TimerInfo, level: LoggerLevel, isMillisecond: boolean, logger: LoggerService): void {
         const canExecute: boolean = !(this.console.minLevel > level);
 
         if (canExecute) {
-            const msTime: number = parseFloat((performance.now() - info.startTime).toFixed(this.DIGITS_TO_FIX));
-            const time: string = isMillisecond ? `${msTime}ms` : `${Math.floor(msTime / this.SECONDS)}s`;
             const methodName: string = DEFAULT_METHODS[level];
-            const logMethod: (...args: string[]) => void = (logger as any)[methodName];
+            const time: string = this.ensureTime(info, isMillisecond);
+            const logMethod: (...args: string[]) => void = (logger as Any)[methodName];
             logMethod(`TimerLog: ${info.title}`, `took ${time} to execute`);
         }
+    }
+
+    private ensureTime(info: TimerInfo, isMillisecond: boolean): string {
+        const msTime: number = parseFloat((performance.now() - info.startTime).toFixed(this.DIGITS_TO_FIX));
+        return isMillisecond ? `${msTime}ms` : `${Math.floor(msTime / this.SECONDS)}s`;
     }
 }

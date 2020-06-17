@@ -1,9 +1,11 @@
-(window as any)['__importDefault'] =
-    (window as any)['__importDefault'] ||
-    function(mod: any): any {
+import 'zone.js/dist/zone';
+
+import { Any } from '../projects/logger/src/lib/interfaces/logger.internal';
+
+(window as Any)['__importDefault'] =
+    (window as Any)['__importDefault'] ||
+    function(mod: Any): Any {
         return mod && mod.__esModule ? mod : { default: mod };
     };
 
-(window as any).global = window;
-
-import 'zone.js/dist/zone'; // Included with Angular CLI.
+(window as Any).global = window; // Included with Angular CLI.

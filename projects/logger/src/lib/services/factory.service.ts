@@ -1,10 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { DEFAULT_METHODS } from '../logger.config';
-import { ConsoleService } from './console.service';
-import { CssFactory } from './css-factory.service';
-import { GroupFactory } from './group-factory.service';
-import { LoggerService } from '../logger.service';
-import { LoggerOptionsImpl } from '../logger.options';
+
 import {
     ConsoleOperation as Operation,
     GroupFactoryMethod,
@@ -14,10 +9,17 @@ import {
     Pipeline,
     PipeOperation
 } from '../interfaces/logger.external';
-import { Arguments, Descriptor, ObjectKeyMap } from '../interfaces/logger.internal';
+import { Any, Arguments, Descriptor, ObjectKeyMap } from '../interfaces/logger.internal';
+import { DEFAULT_METHODS } from '../logger.config';
+import { LoggerOptionsImpl } from '../logger.options';
+import { LoggerService } from '../logger.service';
+import { ConsoleService } from './console.service';
+import { CssFactory } from './css-factory.service';
+import { GroupFactory } from './group-factory.service';
 
 @Injectable()
 export class LoggerFactory {
+    // eslint-disable-next-line max-params
     constructor(
         @Inject(LOGGER_OPTIONS) private readonly options: LoggerOptionsImpl,
         private readonly console: ConsoleService,
@@ -31,7 +33,7 @@ export class LoggerFactory {
 
         const operation: Operation =
             this.console.minLevel <= level
-                ? (this.console.instance as any)[methodName].bind(...args)
+                ? (this.console.instance as Any)[methodName].bind(...args)
                 : this.console.noop;
 
         const pipeOperation: PipeOperation = this.options.useLevelGroup
@@ -65,6 +67,7 @@ export class LoggerFactory {
         };
     }
 
+    // eslint-disable-next-line max-lines-per-function
     private getArgumentsByType(level: LoggerLevel): Arguments {
         const styleLabel: string = this.cssFactory.getStyleLabel(level);
         const lineStyle: string = this.cssFactory.style;

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { Clipboard, ClipboardData, SetDataType } from '../interfaces/logger.internal';
 
 declare global {
@@ -21,7 +22,7 @@ export class ClipboardFactory implements Clipboard {
     }
 
     public copyOnBuffer(data: unknown): boolean {
-        const text: string = typeof data !== 'string' ? JSON.stringify(data, null, this.DEFAULT_DEPTH) : data;
+        const text: string = typeof data === 'string' ? data : JSON.stringify(data, null, this.DEFAULT_DEPTH);
         let isExec: boolean = false;
 
         if (this.clipboardSetData) {

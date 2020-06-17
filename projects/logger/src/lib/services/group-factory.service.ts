@@ -1,10 +1,11 @@
 import { Inject, Injectable } from '@angular/core';
-import { ConsoleService } from './console.service';
-import { LoggerService } from '../logger.service';
-import { CssFactory } from './css-factory.service';
-import { Any } from '../interfaces/logger.internal';
+
 import { FormatOutput, GroupMethod, LOGGER_OPTIONS, LoggerLevel, Pipeline } from '../interfaces/logger.external';
+import { Any } from '../interfaces/logger.internal';
 import { LoggerOptionsImpl } from '../logger.options';
+import { LoggerService } from '../logger.service';
+import { ConsoleService } from './console.service';
+import { CssFactory } from './css-factory.service';
 
 @Injectable()
 export class GroupFactory {
@@ -30,11 +31,13 @@ export class GroupFactory {
         }
     }
 
+    // eslint-disable-next-line max-params
     public group<T>(title: string, pipeline: Pipeline<T> | undefined, logger: LoggerService, level: LoggerLevel): T {
         const group: GroupMethod = this.console.instance.group.bind(this.console.instance);
         return this.createGroupLogger<T>(group, title, pipeline, logger, level);
     }
 
+    // eslint-disable-next-line max-params
     public groupCollapsed<T = unknown>(
         title: string,
         pipeline: Pipeline<T> | undefined,
@@ -45,6 +48,7 @@ export class GroupFactory {
         return this.createGroupLogger<T>(groupCollapsed, title, pipeline, logger, level);
     }
 
+    // eslint-disable-next-line max-lines-per-function,max-params
     private createGroupLogger<T = unknown>(
         groupType: GroupMethod,
         title: string,
@@ -75,6 +79,7 @@ export class GroupFactory {
             this.executePipesGroup = false;
         }
 
+        // eslint-disable-next-line @typescript-eslint/tslint/config
         return pipeLineResult!;
     }
 

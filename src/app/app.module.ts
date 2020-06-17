@@ -1,10 +1,10 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
-import { AppComponent } from './app.component';
 import { LoggerModule } from '@angular-ru/logger';
 import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
 import { environment } from '../environments/environment';
+import { AppComponent } from './app.component';
 
 @NgModule({
     declarations: [AppComponent],

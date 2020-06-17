@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { LoggerService } from '../projects/logger/src/lib/logger.service';
-import { Logger } from '../projects/logger/src/lib/decorators/logger.decorator';
+
 import { DebugLog } from '../projects/logger/src/lib/decorators/debug.decorator';
-import { TraceLog } from '../projects/logger/src/lib/decorators/trace.decorator';
-import { InfoLog } from '../projects/logger/src/lib/decorators/info.decorator';
 import { ErrorLog } from '../projects/logger/src/lib/decorators/error.decorator';
-import { WarnLog } from '../projects/logger/src/lib/decorators/warn.decorator';
-import { Log } from '../projects/logger/src/lib/decorators/log.decorator';
-import { Group } from '../projects/logger/src/lib/decorators/groups/group.decorator';
 import { GroupCollapsed } from '../projects/logger/src/lib/decorators/groups/group-collapsed.decorator';
+import { Group } from '../projects/logger/src/lib/decorators/groups/group.decorator';
+import { InfoLog } from '../projects/logger/src/lib/decorators/info.decorator';
+import { Log } from '../projects/logger/src/lib/decorators/log.decorator';
+import { Logger } from '../projects/logger/src/lib/decorators/logger.decorator';
 import { TimerLog } from '../projects/logger/src/lib/decorators/timer.decorator';
+import { TraceLog } from '../projects/logger/src/lib/decorators/trace.decorator';
+import { WarnLog } from '../projects/logger/src/lib/decorators/warn.decorator';
 import { LogFn, LoggerLevel, TimerInfo } from '../projects/logger/src/lib/interfaces/logger.external';
 import { Fn } from '../projects/logger/src/lib/interfaces/logger.internal';
+import { LoggerService } from '../projects/logger/src/lib/logger.service';
 
 interface HttpDebugInterface {
     method: string;
@@ -37,6 +38,11 @@ export class MyTestComponent implements OnInit {
     public hook: string | null = null;
     public doneHeavy: boolean = false;
     public name: string = 'MockLoggerComponent';
+
+    public static getUrlInfo({ method, url, queryParams }: Partial<HttpDebugInterface>): string {
+        const params: string = queryParams ? `?${queryParams}` : '';
+        return `[${method}] - ${url}${params}`;
+    }
 
     @Group('Test group')
     public print(val: string): string {
@@ -73,21 +79,16 @@ export class MyTestComponent implements OnInit {
         this.count++;
     }
 
-    @Group((name: string) => `Test group with ${name}`)
+    @Group((name: string): string => `Test group with ${name}`)
     public method(name: string): string {
         this.logger.log('group is worked');
         return name;
     }
 
-    @Group((options: Partial<HttpDebugInterface>) => MyTestComponent.getUrlInfo(options))
+    @Group((options: Partial<HttpDebugInterface>): string => MyTestComponent.getUrlInfo(options))
     public hello(name: string): string {
         this.logger.log('group is worked');
         return name;
-    }
-
-    public static getUrlInfo({ method, url, queryParams }: Partial<HttpDebugInterface>): string {
-        const params: string = queryParams ? `?${queryParams}` : '';
-        return `[${method}] - ${url}${params}`;
     }
 
     @TimerLog('mock:ngOnInit')
@@ -112,6 +113,7 @@ export class MyTestComponent implements OnInit {
     }
 
     private extracted(seconds: number, done: Fn): void {
+        // eslint-disable-next-line @typescript-eslint/no-magic-numbers
         const e: number = new Date().getTime() + seconds * 1000;
         while (new Date().getTime() <= e) {
             this.doneHeavy = true;

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { ObjectKeyMap } from '../projects/logger/src/lib/interfaces/logger.internal';
 
 export enum TestLoggerLineType {

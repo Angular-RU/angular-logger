@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { LexerJSON } from '../logger.config';
 
 @Injectable()
@@ -10,9 +11,10 @@ export class JsonFactory {
     private readonly _key: string = 'color:red';
     private readonly lexerTypeFinder: RegExp = LexerJSON;
 
+    // eslint-disable-next-line max-lines-per-function
     public colorsJSON(json: string): string[] {
         const arr: string[] = [];
-        json = json.replace(this.lexerTypeFinder, (match: string) => {
+        json = json.replace(this.lexerTypeFinder, (match: string): string => {
             let style: string = this._number;
             if (/^"/.test(match)) {
                 if (/:$/.test(match)) {

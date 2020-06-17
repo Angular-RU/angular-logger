@@ -10,7 +10,7 @@
         "build:app": "ng build",
         "build.meta": "echo 'prebuild'",
         "test": "jest --config ./jest.app.config.js --coverage",
-        "lint": "ng lint",
+        "lint": "eslint --fix \"**/*.ts\"",
         "format": "prettier --write \"**/*.{ts,html,css,scss,md,js,json}\"",
         "coverage": "jest --config ./jest.app.config.js --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
     },
@@ -38,6 +38,7 @@
         "zone.js": "~0.10.3"
     },
     "devDependencies": {
+        "@angular-ru/eslint-config": "12.20.1",
         "@angular-ru/prettier-config": "^12.19.1",
         "@angular-ru/tsconfig": "^12.19.1",
         "@angular-devkit/build-angular": "^0.803.27",
