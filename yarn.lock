@@ -138,10 +138,10 @@
     "@angular-devkit/core" "8.3.21"
     rxjs "6.4.0"
 
-"@angular-ru/eslint-config@12.20.1":
-  version "12.20.1"
-  resolved "https://registry.yarnpkg.com/@angular-ru/eslint-config/-/eslint-config-12.20.1.tgz#d6c0d66e7dfac9ab1699e4321a21183c34b58965"
-  integrity sha512-en0SESCzSx408gck9fvgYPLKN71+VONtK/alb2h6HaIIH071BeAZ38vMxm+sWVukjvP38haiZN8OQhlAnrvoJA==
+"@angular-ru/eslint-config@12.21.0":
+  version "12.21.0"
+  resolved "https://registry.yarnpkg.com/@angular-ru/eslint-config/-/eslint-config-12.21.0.tgz#e05da26610f165a73f201dc75af0833580d88dc3"
+  integrity sha512-hUuM5hFENndS8O/9bBk5cuh4K3pPsUW4lEkp6mwnQUaZS50YnmsaVYhYCJhr5eq4yPUHoj3EE+QOJQcOsVWrgQ==
   dependencies:
     "@types/eslint" "6.8.1"
     "@typescript-eslint/eslint-plugin" "2.34.0"
@@ -160,10 +160,10 @@
     tslint-eslint-rules "5.4.0"
     tslint-sonarts "1.9.0"
 
-"@angular-ru/jest-utils@12.19.0":
-  version "12.19.0"
-  resolved "https://registry.yarnpkg.com/@angular-ru/jest-utils/-/jest-utils-12.19.0.tgz#58450bf17b0b298c09f526846185e7abbc37cc3a"
-  integrity sha512-+kOaiBQk00/7pqEjnog/kxWtd3IZb2fSkEuvTSoL6w6eIT6xj/WO8s9t2NTlpBRhtcPKDP0+AgXRKVpfkjqGgA==
+"@angular-ru/jest-utils@12.21.0":
+  version "12.21.0"
+  resolved "https://registry.yarnpkg.com/@angular-ru/jest-utils/-/jest-utils-12.21.0.tgz#de7ad6de43912f55953c38606456fbd62ef2bd43"
+  integrity sha512-U4nv/t0YMzHzZXHgs+BpINP3byg+kdPHZtyn1FaBbCkfvqz2Qsi6Y/StgSBD9g9cASKNPPxfKmxMcqjP4X1l2g==
   dependencies:
     "@types/jest" "25.2.3"
     jest "26.0.1"
